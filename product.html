@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Name — Pusy Bali</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">FREE SHIPPING OVER $150 | FREE EXCHANGES*</div>
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="nav-logo"><a href="index.html">Pusy Bali</a></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="#">🔍</a>
+        <a href="#">👤</a>
+        <a href="cart.html">🛒</a>
+      </div>
+      <div class="hamburger-menu">☰</div>
+    </div>
+  </header>
+
+  <div class="container product-page">
+    <div class="product-gallery">
+      <div class="thumbnails">
+        <img src="images/prod1-thumb1.jpg" alt="Thumb1" onclick="setMain(this)">
+        <img src="images/prod1-thumb2.jpg" alt="Thumb2" onclick="setMain(this)">
+        <!-- more thumbs -->
+      </div>
+      <div class="main-image">
+        <img id="main-img" src="images/prod1-main.jpg" alt="Product main">
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h2>Product Name</h2>
+      <div class="price">$79.00</div>
+      <div class="variants">
+        <label>Color:</label>
+        <select>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+      <div class="variants">
+        <label>Size:</label>
+        <select>
+          <option>XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+      </div>
+      <button class="btn add-to-cart">Add to Cart</button>
+      <div class="description" style="margin-top:1.5rem;">
+        <h3>Description</h3>
+        <p>This is where product description goes. Include details, materials, sizing, care instructions, etc.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-widgets">
+      <div class="footer-widget">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="collections.html">All Products</a></li>
+          <li><a href="collections.html?cat=new">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h3>Follow Us</h3>
+        <ul>
+          <li><a href="https://www.instagram.com/pusy_bali/">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Pusy Bali. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger?.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    function setMain(imgEl) {
+      const main = document.getElementById('main-img');
+      main.src = imgEl.src;
+    }
+  </script>
+</body>
+</html>
