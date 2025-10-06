@@ -3,37 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pusy Bali — New Arrivals</title>
+  <title>Pusy Bali</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- You might include fonts, icons, or other CSS/JS here -->
 </head>
 <body>
+  <!-- Top bar -->
+  <div class="top-bar">FREE SHIPPING OVER $150 | FREE EXCHANGES*</div>
+
+  <!-- Header / Navigation -->
   <header class="site-header">
-    <div class="top-bar">
-      <span>FREE SHIPPING OVER $150 | FREE EXCHANGES*</span>
-    </div>
-    <nav class="main-nav">
-      <div class="logo"><a href="/">Pusy Bali</a></div>
+    <div class="container navbar">
+      <div class="nav-logo"><a href="index.html">Pusy Bali</a></div>
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/collections/new-arrivals">New Arrivals</a></li>
-        <li><a href="/collections">Shop All</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Shop</a>
+          <div class="dropdown">
+            <a href="collections.html?cat=new">New Arrivals</a>
+            <a href="collections.html?cat=tops">Tops</a>
+            <a href="collections.html?cat=bottoms">Bottoms</a>
+            <!-- etc -->
+          </div>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav-icons">
-        <a href="/search" class="icon-search">🔍</a>
-        <a href="/account" class="icon-account">👤</a>
-        <a href="/cart" class="icon-cart">🛒</a>
+        <a href="#">🔍</a>
+        <a href="#">👤</a>
+        <a href="cart.html">🛒</a>
       </div>
-    </nav>
+      <div class="hamburger-menu">☰</div>
+    </div>
   </header>
 
-  <main class="new-arrivals-page">
-    <section class="page-header">
+  <!-- Hero banner -->
+  <section class="hero">
+    <img src="images/hero.jpg" alt="Hero Banner">
+    <div class="hero-content">
       <h1>New Arrivals</h1>
-    </section>
+      <p>Discover the latest collection from Pusy Bali</p>
+      <a href="collections.html" class="btn">Shop Now</a>
+    </div>
+  </section>
 
-    <section class="product-grid">
+  <div class="container">
+    <!-- Featured / Highlights -->
+    <section class="featured-products">
+      <h2>Featured</h2>
+      <div class="product-grid">
+        <!-- Example product card -->
+        <div class="product-card">
+          <a href="product.html?prod=1">
+            <div class="image-wrapper">
+              <img src="images/prod1.jpg" alt="Product 1">
+            </div>
+            <div class="card-info">
+              <div class="title">Product 1 Name</div>
+              <div class="price">$79.00</div>
+            </div>
+          </a>
+        </div>
+        <!-- repeat for other featured -->
+      </div>
+      <div class="text-center" style="margin: 2rem 0;">
+        <a href="collections.html" class="btn">View All</a>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-widgets">
+      <div class="footer-widget">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="collections.html">All Products</a></li>
+          <li><a href="collections.html?cat=new">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-widget">
+        <h3>Follow Us</h3>
+        <ul>
+          <li><a href="https://www.instagram.com/pusy_bali/">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Pusy Bali. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    // Toggle mobile menu
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger?.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
       <!-- Example product item -->
       <div class="product-card">
         <a href="/product/product-slug-1">
