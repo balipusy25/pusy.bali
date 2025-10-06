@@ -1,94 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali | Fashion Brand</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pusy Bali — New Arrivals</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- You might include fonts, icons, or other CSS/JS here -->
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <div class="logo">Pusy Bali</div>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#shop">Shop</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+  <header class="site-header">
+    <div class="top-bar">
+      <span>FREE SHIPPING OVER $150 | FREE EXCHANGES*</span>
+    </div>
+    <nav class="main-nav">
+      <div class="logo"><a href="/">Pusy Bali</a></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/collections/new-arrivals">New Arrivals</a></li>
+        <li><a href="/collections">Shop All</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
+      <div class="nav-icons">
+        <a href="/search" class="icon-search">🔍</a>
+        <a href="/account" class="icon-account">👤</a>
+        <a href="/cart" class="icon-cart">🛒</a>
+      </div>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-text">
-      <h1>Affordable Casual & Party Outfits</h1>
-      <p>Activewear • Dresses • Accessories</p>
-      <a href="#shop" class="btn">Shop Now</a>
+  <main class="new-arrivals-page">
+    <section class="page-header">
+      <h1>New Arrivals</h1>
+    </section>
+
+    <section class="product-grid">
+      <!-- Example product item -->
+      <div class="product-card">
+        <a href="/product/product-slug-1">
+          <div class="product-image">
+            <img src="images/product1.jpg" alt="Product 1" />
+          </div>
+          <div class="product-info">
+            <h2 class="product-title">Product 1 Name</h2>
+            <span class="product-price">$79.99</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Repeat product-card for each product -->
+      <!-- ... -->
+    </section>
+
+    <div class="load-more-wrapper">
+      <button class="load-more-btn">Load More</button>
     </div>
-  </section>
+  </main>
 
-  <!-- Shop Section -->
-  <section class="shop" id="shop">
-    <h2>Our Collection</h2>
-    <div class="products">
-      <div class="product">
-        <img src="assets/item1.jpg" alt="Calista Set">
-        <h3>Calista Set</h3>
-        <p>$45</p>
-      </div>
-      <div class="product">
-        <img src="assets/item2.jpg" alt="Aelita Lace Dress">
-        <h3>Aelita Lace Dress</h3>
-        <p>$60</p>
-      </div>
-      <div class="product">
-        <img src="assets/item3.jpg" alt="Summer Activewear">
-        <h3>Summer Activewear</h3>
-        <p>$35</p>
-      </div>
-      <div class="product">
-        <img src="assets/item4.jpg" alt="Casual Party Dress">
-        <h3>Casual Party Dress</h3>
-        <p>$55</p>
-      </div>
-      <div class="product">
-        <img src="assets/item5.jpg" alt="Tropical Skirt">
-        <h3>Tropical Skirt</h3>
-        <p>$30</p>
-      </div>
-      <div class="product">
-        <img src="assets/item6.jpg" alt="Beach Set">
-        <h3>Beach Set</h3>
-        <p>$40</p>
-      </div>
+  <footer class="site-footer">
+    <div class="footer-section">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="/collections">Shop All</a></li>
+        <li><a href="/collections/new-arrivals">New Arrivals</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
     </div>
-    <a href="#" class="btn more-btn">More</a>
-  </section>
-
-  <!-- About Section -->
-  <section class="about" id="about">
-    <h2>About Us</h2>
-    <p>
-      Pusy Bali brings you affordable yet stylish outfits perfect for Bali vibes.
-      From casual streetwear to party dresses and activewear, our collections
-      are designed to make you feel confident and comfortable.
-    </p>
-    <p><strong>Our Stores:</strong> Ungasan • Canggu / Batu Bolong</p>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <h2>Contact Us</h2>
-    <p>Follow us on Instagram: <a href="https://www.instagram.com/pusy_bali/" target="_blank">@pusy_bali</a></p>
-    <p>Email: info@pusybali.com</p>
-    <p>WhatsApp: +62 812 3456 7890</p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Pusy Bali. All Rights Reserved.</p>
+    <div class="footer-section">
+      <h3>Support</h3>
+      <ul>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/returns">Returns Policy</a></li>
+        <li><a href="/faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <ul class="social-links">
+        <li><a href="https://www.instagram.com/pusy_bali/">Instagram</a></li>
+        <li><a href="https://www.facebook.com/">Facebook</a></li>
+        <!-- etc -->
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Pusy Bali. All rights reserved.</p>
+    </div>
   </footer>
+
+  <script>
+    // Example “Load More” behavior (just reveals hidden items)
+    document.querySelector('.load-more-btn')?.addEventListener('click', function(){
+      const hidden = document.querySelectorAll('.product-card.hidden');
+      hidden.forEach((el, i) => {
+        if (i < 6) { // show 6 more each click
+          el.classList.remove('hidden');
+        }
+      });
+      if (document.querySelectorAll('.product-card.hidden').length === 0) {
+        this.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
