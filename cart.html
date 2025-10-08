@@ -1,103 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Your Cart — Pusy Bali</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .cart-wrap { max-width:1200px;margin:3rem auto;padding:0 5%; }
+    table { width:100%; border-collapse:collapse; }
+    th,td { padding:0.75rem; border-bottom:1px solid #eee; text-align:left; }
+    .qty { width:72px; }
+    .cart-actions { text-align:right; margin-top:1.5rem; }
+  </style>
 </head>
 <body>
-  <div class="top-bar">FREE SHIPPING OVER $150 | FREE EXCHANGES*</div>
-  <header class="site-header">
-    <div class="container navbar">
-      <div class="nav-logo"><a href="index.html">Pusy Bali</a></div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="collections.html">Shop</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="nav-icons">
-        <a href="#">🔍</a>
-        <a href="#">👤</a>
-        <a href="cart.html">🛒</a>
-      </div>
-      <div class="hamburger-menu">☰</div>
-    </div>
-  </header>
 
-  <div class="container" style="margin: 2rem 0;">
-    <h1>Your Cart</h1>
-    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
-      <thead>
-        <tr>
-          <th style="text-align:left; padding:0.5rem; border-bottom: 1px solid #eaeaea;">Product</th>
-          <th style="padding:0.5rem; border-bottom: 1px solid #eaeaea;">Price</th>
-          <th style="padding:0.5rem; border-bottom: 1px solid #eaeaea;">Qty</th>
-          <th style="padding:0.5rem; border-bottom: 1px solid #eaeaea;">Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="padding:0.75rem;">Product 1 Name</td>
-          <td style="padding:0.75rem;">$79.00</td>
-          <td style="padding:0.75rem;"><input type="number" value="1" min="1" style="width: 60px;"></td>
-          <td style="padding:0.75rem;">$79.00</td>
-        </tr>
-        <!-- more rows -->
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3" style="padding:0.75rem; text-align: right; font-weight: 600;">Subtotal:</td>
-          <td style="padding:0.75rem; font-weight: 600;">$158.00</td>
-        </tr>
-      </tfoot>
-    </table>
-    <div style="margin-top: 2rem; text-align: right;">
-      <button class="btn">Proceed to Checkout</button>
+  <div class="announcement-bar">
+    <div class="announcement-text">
+      <p>✨ Free Shipping on Orders Over $100 ✨ New Collection Just Dropped ✨</p>
+      <p>✨ Free Shipping on Orders Over $100 ✨ New Collection Just Dropped ✨</p>
     </div>
   </div>
 
-  <footer class="site-footer">
-    <div class="container footer-widgets">
-      <div class="footer-widget">
-        <h3>Shop</h3>
-        <ul>
-          <li><a href="collections.html">All Products</a></li>
-          <li><a href="collections.html?cat=new">New Arrivals</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Support</h3>
-        <ul>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Follow Us</h3>
-        <ul>
-          <li><a href="https://www.instagram.com/pusy_bali/">Instagram</a></li>
-        </ul>
-      </div>
+  <header>
+    <div class="logo"><a href="index.html">Pusy Bali</a></div>
+    <nav class="nav-links" id="navCart">
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+    <div class="header-icons">
+      <input class="search-box" placeholder="Search..." />
+      <i class="icon user-icon">👤</i>
+      <i class="icon cart-icon">🛒</i>
+      <button class="hamburger" id="burgerCart">☰</button>
     </div>
-    <div class="footer-bottom">© 2025 Pusy Bali. All Rights Reserved.</div>
+  </header>
+
+  <main class="cart-wrap">
+    <h1>Your Cart</h1>
+
+    <table>
+      <thead>
+        <tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr>
+      </thead>
+      <tbody id="cartBody">
+        <tr>
+          <td style="display:flex;gap:1rem;align-items:center;">
+            <img src="assets/item1.jpg" style="width:80px;height:100px;object-fit:cover;border:1px solid #eaeaea;">
+            <div>
+              <div style="font-weight:600;">Ribbed Midi Dress</div>
+              <div style="color:#666;font-size:0.9rem;">Size: M • Color: Sand</div>
+            </div>
+          </td>
+          <td>$89.00</td>
+          <td><input class="qty" type="number" min="1" value="1" onchange="updateTotals()"></td>
+          <td class="rowTotal">$89.00</td>
+        </tr>
+        <tr>
+          <td style="display:flex;gap:1rem;align-items:center;">
+            <img src="assets/item3.jpg" style="width:80px;height:100px;object-fit:cover;border:1px solid #eaeaea;">
+            <div>
+              <div style="font-weight:600;">Everyday Tee</div>
+              <div style="color:#666;font-size:0.9rem;">Size: S • Color: Black</div>
+            </div>
+          </td>
+          <td>$35.00</td>
+          <td><input class="qty" type="number" min="1" value="2" onchange="updateTotals()"></td>
+          <td class="rowTotal">$70.00</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="text-align:right;font-weight:700;">Subtotal:</td>
+          <td id="subTotal" style="font-weight:700;">$159.00</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="cart-actions">
+      <button class="btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="newsletter">
+      <h3>Join Our Newsletter</h3>
+      <input type="email" placeholder="Enter your email" />
+      <button>Subscribe</button>
+    </div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="collections.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="policies.html">Policies</a>
+    </div>
+    <p class="copyright">© 2025 Pusy Bali. All rights reserved.</p>
   </footer>
-  
-  <script>
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
-    hamburger?.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+
+<script>
+  document.getElementById('burgerCart').addEventListener('click', () => {
+    document.getElementById('navCart').classList.toggle('open');
+  });
+
+  function parsePrice(text) {
+    return parseFloat(text.replace('$','')) || 0;
+  }
+
+  function updateTotals(){
+    const rows = document.querySelectorAll('#cartBody tr');
+    let subtotal = 0;
+    rows.forEach((r)=>{
+      const price = parsePrice(r.children[1].innerText);
+      const qty = Number(r.querySelector('input[type="number"]').value);
+      const total = price * qty;
+      r.querySelector('.rowTotal').innerText = '$' + total.toFixed(2);
+      subtotal += total;
     });
-  </script>
+    document.getElementById('subTotal').innerText = '$' + subtotal.toFixed(2);
+  }
+
+  updateTotals();
+
+  function checkout(){
+    alert('Demo checkout: implement real checkout via payment gateway / platform.');
+    // redirect to payment gateway or integrated checkout
+  }
+</script>
 </body>
 </html>
