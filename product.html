@@ -1,115 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Name — Pusy Bali</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ribbed Midi Dress — Pusy Bali</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* small product-specific tweaks */
+    .product-container { max-width:1200px; margin:3rem auto; padding:0 5%; display:flex; gap:2rem; flex-wrap:wrap; }
+    .product-gallery { flex:1 1 480px; }
+    .product-thumbs { display:flex; gap:0.5rem; margin-top:0.75rem; }
+    .product-thumbs img { width:72px; height:72px; object-fit:cover; cursor:pointer; border:1px solid #eaeaea; }
+    .product-info { flex:1 1 380px; }
+    .meta { color:#666; margin-bottom:1rem; }
+    .variant-select { padding:0.6rem; margin-right:0.5rem; border:1px solid #ccc; border-radius:6px; }
+    @media (max-width:900px){ .product-container{flex-direction:column;} }
+  </style>
 </head>
 <body>
-  <div class="top-bar">FREE SHIPPING OVER $150 | FREE EXCHANGES*</div>
-  <header class="site-header">
-    <div class="container navbar">
-      <div class="nav-logo"><a href="index.html">Pusy Bali</a></div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="collections.html">Shop</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="nav-icons">
-        <a href="#">🔍</a>
-        <a href="#">👤</a>
-        <a href="cart.html">🛒</a>
-      </div>
-      <div class="hamburger-menu">☰</div>
-    </div>
-  </header>
 
-  <div class="container product-page">
-    <div class="product-gallery">
-      <div class="thumbnails">
-        <img src="images/prod1-thumb1.jpg" alt="Thumb1" onclick="setMain(this)">
-        <img src="images/prod1-thumb2.jpg" alt="Thumb2" onclick="setMain(this)">
-        <!-- more thumbs -->
-      </div>
-      <div class="main-image">
-        <img id="main-img" src="images/prod1-main.jpg" alt="Product main">
-      </div>
-    </div>
-
-    <div class="product-details">
-      <h2>Product Name</h2>
-      <div class="price">$79.00</div>
-      <div class="variants">
-        <label>Color:</label>
-        <select>
-          <option>Black</option>
-          <option>White</option>
-        </select>
-      </div>
-      <div class="variants">
-        <label>Size:</label>
-        <select>
-          <option>XS</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-        </select>
-      </div>
-      <button class="btn add-to-cart">Add to Cart</button>
-      <div class="description" style="margin-top:1.5rem;">
-        <h3>Description</h3>
-        <p>This is where product description goes. Include details, materials, sizing, care instructions, etc.</p>
-      </div>
+  <div class="announcement-bar">
+    <div class="announcement-text">
+      <p>✨ Free Shipping on Orders Over $100 ✨ New Collection Just Dropped ✨</p>
+      <p>✨ Free Shipping on Orders Over $100 ✨ New Collection Just Dropped ✨</p>
     </div>
   </div>
 
-  <footer class="site-footer">
-    <div class="container footer-widgets">
-      <div class="footer-widget">
-        <h3>Shop</h3>
-        <ul>
-          <li><a href="collections.html">All Products</a></li>
-          <li><a href="collections.html?cat=new">New Arrivals</a></li>
-        </ul>
+  <header>
+    <div class="logo"><a href="index.html">Pusy Bali</a></div>
+    <nav class="nav-links" id="navLinksProd">
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+    <div class="header-icons">
+      <input class="search-box" placeholder="Search..." />
+      <i class="icon user-icon">👤</i>
+      <i class="icon cart-icon">🛒</i>
+      <button class="hamburger" id="burgerProd">☰</button>
+    </div>
+  </header>
+
+  <main class="product-container">
+    <div class="product-gallery">
+      <div class="main-image">
+        <img id="mainImg" src="assets/item1.jpg" alt="Ribbed Midi Dress" style="width:100%;border-radius:6px;"/>
       </div>
-      <div class="footer-widget">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Support</h3>
-        <ul>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Follow Us</h3>
-        <ul>
-          <li><a href="https://www.instagram.com/pusy_bali/">Instagram</a></li>
-        </ul>
+      <div class="product-thumbs">
+        <img src="assets/item1.jpg" alt="" onclick="document.getElementById('mainImg').src=this.src">
+        <img src="assets/item1-2.jpg" alt="" onclick="document.getElementById('mainImg').src=this.src">
+        <img src="assets/item1-3.jpg" alt="" onclick="document.getElementById('mainImg').src=this.src">
       </div>
     </div>
-    <div class="footer-bottom">© 2025 Pusy Bali. All Rights Reserved.</div>
+
+    <aside class="product-info">
+      <h2>Ribbed Midi Dress</h2>
+      <div class="meta">SKU: PB-0101 • In stock</div>
+      <div class="price" style="font-size:1.6rem;font-weight:700;margin-bottom:1rem;">$89</div>
+
+      <div class="variants">
+        <label>Size</label>
+        <select class="variant-select" id="size">
+          <option>XS</option><option>S</option><option>M</option><option>L</option>
+        </select>
+
+        <label>Color</label>
+        <select class="variant-select" id="color">
+          <option>Black</option><option>Sand</option><option>Olive</option>
+        </select>
+      </div>
+
+      <div style="margin-top:1.25rem;">
+        <button class="btn add-to-cart" onclick="addToCart()">Add to cart</button>
+        <button class="btn" style="background:#fff;color:#111;border:1px solid #eaeaea;margin-left:0.5rem;" onclick="buyNow()">Buy now</button>
+      </div>
+
+      <div style="margin-top:1.75rem;">
+        <h3>Description</h3>
+        <p style="color:#555;">A fitted ribbed midi dress crafted from a soft stretch blend. Wear it with sneakers for a daytime look or strappy heels for evening.</p>
+
+        <h4 style="margin-top:1rem;">Care</h4>
+        <p style="color:#555;">Cold wash, lay flat to dry. Do not bleach.</p>
+      </div>
+
+      <div style="margin-top:1.75rem;">
+        <h4>You may also like</h4>
+        <div style="display:flex;gap:0.75rem;margin-top:0.75rem;">
+          <a href="product.html?prod=6"><img src="assets/item6.jpg" style="width:80px;height:100px;object-fit:cover;border:1px solid #eaeaea;"></a>
+          <a href="product.html?prod=7"><img src="assets/item7.jpg" style="width:80px;height:100px;object-fit:cover;border:1px solid #eaeaea;"></a>
+          <a href="product.html?prod=8"><img src="assets/item8.jpg" style="width:80px;height:100px;object-fit:cover;border:1px solid #eaeaea;"></a>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="newsletter">
+      <h3>Join Our Newsletter</h3>
+      <input type="email" placeholder="Enter your email" />
+      <button>Subscribe</button>
+    </div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="collections.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="policies.html">Policies</a>
+    </div>
+    <p class="copyright">© 2025 Pusy Bali. All rights reserved.</p>
   </footer>
 
-  <script>
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
-    hamburger?.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
+<script>
+  document.getElementById('burgerProd').addEventListener('click', () => {
+    document.getElementById('navLinksProd').classList.toggle('open');
+  });
 
-    function setMain(imgEl) {
-      const main = document.getElementById('main-img');
-      main.src = imgEl.src;
-    }
-  </script>
+  function addToCart() {
+    alert('Added to cart (demo). Implement real cart logic with backend or localStorage.');
+  }
+  function buyNow() {
+    window.location.href = 'cart.html';
+  }
+</script>
 </body>
 </html>
