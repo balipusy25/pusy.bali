@@ -1,132 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop — Pusy Bali</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Collections</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="top-bar">FREE SHIPPING OVER $150 | FREE EXCHANGES*</div>
-  <header class="site-header">
-    <div class="container navbar">
-      <div class="nav-logo"><a href="index.html">Pusy Bali</a></div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="collections.html">Shop</a>
-          <div class="dropdown">
-            <a href="collections.html?cat=new">New Arrivals</a>
-            <a href="collections.html?cat=tops">Tops</a>
-            <a href="collections.html?cat=bottoms">Bottoms</a>
-          </div>
-        </li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="nav-icons">
-        <a href="#">🔍</a>
-        <a href="#">👤</a>
-        <a href="cart.html">🛒</a>
-      </div>
-      <div class="hamburger-menu">☰</div>
-    </div>
-  </header>
 
-  <div class="container">
-    <section class="filter-sort-bar">
-      <div class="filters">
-        <select name="filter-category" id="filter-category">
-          <option value="">All Categories</option>
-          <option value="tops">Tops</option>
-          <option value="bottoms">Bottoms</option>
-          <!-- etc -->
-        </select>
-        <select name="filter-price" id="filter-price">
-          <option value="">Sort by Price</option>
-          <option value="low-high">Low to High</option>
-          <option value="high-low">High to Low</option>
-        </select>
-      </div>
-      <div class="sort">
-        <label>Sort by:</label>
-        <select name="sort-order" id="sort-order">
-          <option value="new">Newest</option>
-          <option value="best">Best Selling</option>
-        </select>
-      </div>
-    </section>
-
-    <section class="product-grid">
-      <!-- product cards here -->
-      <div class="product-card">
-        <a href="product.html?prod=1">
-          <div class="image-wrapper"><img src="images/prod1.jpg" alt=""></div>
-          <div class="card-info">
-            <div class="title">Product 1</div>
-            <div class="price">$79.00</div>
-          </div>
-        </a>
-      </div>
-      <!-- repeat -->
-    </section>
-
-    <div class="text-center" style="margin: 2rem 0;">
-      <button class="btn">Load More</button>
+  <!-- Announcement -->
+  <div class="announcement-bar">
+    <div class="announcement-text">
+      <p>✨ Free Shipping on Orders Over $100 ✨ New Collection Just Dropped ✨</p>
+      <p>✨ Free Shipping on Orders Over $100 ✨ New Collection Just Dropped ✨</p>
     </div>
   </div>
 
-  <footer class="site-footer">
-    <div class="container footer-widgets">
-      <div class="footer-widget">
-        <h3>Shop</h3>
-        <ul>
-          <li><a href="collections.html">All Products</a></li>
-          <li><a href="collections.html?cat=new">New Arrivals</a></li>
-        </ul>
+  <!-- Header -->
+  <header>
+    <div class="logo"><a href="index.html">Pusy Bali</a></div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+
+    <div class="header-icons">
+      <input class="search-box" placeholder="Search..." />
+      <i class="icon user-icon">👤</i>
+      <i class="icon cart-icon">🛒</i>
+      <button class="hamburger" id="burger">☰</button>
+    </div>
+  </header>
+
+  <!-- Collection top hero -->
+  <section class="hero" style="height:40vh;">
+    <img src="assets/collection-hero.jpg" alt="Collections hero">
+    <div class="hero-content">
+      <h1>Collections</h1>
+      <p>Shop curated edits — new drops and best sellers.</p>
+      <a href="#grid" class="btn">Shop Collection</a>
+    </div>
+  </section>
+
+  <div class="container" id="grid" style="max-width:1200px;margin:3rem auto;padding:0 5%;">
+    <!-- filter & sort -->
+    <div class="filter-sort-bar" style="margin-top:0;">
+      <div class="filters">
+        <select id="catFilter">
+          <option value="">All Categories</option>
+          <option value="new">New Arrivals</option>
+          <option value="tops">Tops</option>
+          <option value="dresses">Dresses</option>
+        </select>
+        <select id="priceFilter">
+          <option value="">Price</option>
+          <option value="low">Low to High</option>
+          <option value="high">High to Low</option>
+        </select>
       </div>
-      <div class="footer-widget">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Support</h3>
-        <ul>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Follow Us</h3>
-        <ul>
-          <li><a href="https://www.instagram.com/pusy_bali/">Instagram</a></li>
-          <li><a href="#">Facebook</a></li>
-        </ul>
+      <div class="sort">
+        <label>Sort:</label>
+        <select id="sortBy">
+          <option value="newest">Newest</option>
+          <option value="best">Best selling</option>
+        </select>
       </div>
     </div>
-    <div class="footer-bottom">© 2025 Pusy Bali. All Rights Reserved.</div>
+
+    <!-- Product grid -->
+    <section class="product-grid">
+      <div class="grid">
+        <!-- 12 placeholders (first 8 visible, rest hidden -> load more) -->
+        <div class="product-card"><a href="product.html?prod=1"><img src="assets/item1.jpg" alt=""><p>Ribbed Midi Dress</p><span>$89</span></a></div>
+        <div class="product-card"><a href="product.html?prod=2"><img src="assets/item2.jpg" alt=""><p>Silk Blouse</p><span>$79</span></a></div>
+        <div class="product-card"><a href="product.html?prod=3"><img src="assets/item3.jpg" alt=""><p>Everyday Tee</p><span>$35</span></a></div>
+        <div class="product-card"><a href="product.html?prod=4"><img src="assets/item4.jpg" alt=""><p>Wide Leg Pants</p><span>$120</span></a></div>
+        <div class="product-card"><a href="product.html?prod=5"><img src="assets/item5.jpg" alt=""><p>Mini Skirt</p><span>$65</span></a></div>
+        <div class="product-card"><a href="product.html?prod=6"><img src="assets/item6.jpg" alt=""><p>Lightweight Jacket</p><span>$95</span></a></div>
+        <div class="product-card"><a href="product.html?prod=7"><img src="assets/item7.jpg" alt=""><p>Knit Top</p><span>$75</span></a></div>
+        <div class="product-card"><a href="product.html?prod=8"><img src="assets/item8.jpg" alt=""><p>Wrap Dress</p><span>$110</span></a></div>
+
+        <!-- Hidden extras -->
+        <div class="product-card hidden"><a href="product.html?prod=9"><img src="assets/item9.jpg" alt=""><p>Layered Tank</p><span>$40</span></a></div>
+        <div class="product-card hidden"><a href="product.html?prod=10"><img src="assets/item10.jpg" alt=""><p>Structured Blazer</p><span>$150</span></a></div>
+        <div class="product-card hidden"><a href="product.html?prod=11"><img src="assets/item11.jpg" alt=""><p>Denim Short</p><span>$55</span></a></div>
+        <div class="product-card hidden"><a href="product.html?prod=12"><img src="assets/item12.jpg" alt=""><p>Silk Scarf</p><span>$45</span></a></div>
+      </div>
+
+      <div style="text-align:center;margin:2rem 0;">
+        <button class="btn" id="loadMore">Load More</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer (same style as index) -->
+  <footer>
+    <div class="newsletter">
+      <h3>Join Our Newsletter</h3>
+      <input type="email" placeholder="Enter your email" />
+      <button>Subscribe</button>
+    </div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="collections.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="policies.html">Policies</a>
+    </div>
+    <p class="copyright">© 2025 Pusy Bali. All rights reserved.</p>
   </footer>
 
-  <script>
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
-    hamburger?.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
+<script>
+  // Mobile nav toggle
+  document.getElementById('burger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
 
-    // Load more logic (example)
-    document.querySelector('.btn')?.addEventListener('click', () => {
-      const hidden = document.querySelectorAll('.product-card.hidden');
-      hidden.forEach((el, i) => {
-        if (i < 6) el.classList.remove('hidden');
-      });
-      if (document.querySelectorAll('.product-card.hidden').length === 0) {
-        document.querySelector('.btn').style.display = 'none';
-      }
-    });
-  </script>
+  // Load more functionality
+  document.getElementById('loadMore').addEventListener('click', () => {
+    const hidden = document.querySelectorAll('.product-card.hidden');
+    for (let i = 0; i < 4 && i < hidden.length; i++) {
+      hidden[i].classList.remove('hidden');
+    }
+    if (document.querySelectorAll('.product-card.hidden').length === 0) {
+      document.getElementById('loadMore').style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
