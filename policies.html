@@ -1,81 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Policies — Pusy Bali</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Pusy Bali</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .contact-wrap { max-width:1000px;margin:3rem auto;padding:0 5%; display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .contact-form input, .contact-form textarea { width:100%; padding:0.8rem; border:1px solid #eaeaea; border-radius:6px; margin-bottom:0.75rem; }
+    .contact-info { background:#fafafa; padding:1.25rem; border-radius:8px; }
+    @media (max-width:900px){ .contact-wrap{grid-template-columns:1fr;} }
+  </style>
 </head>
 <body>
-  <div class="top-bar">FREE SHIPPING OVER $150 | FREE EXCHANGES*</div>
-  <header class="site-header">
-    <div class="container navbar">
-      <div class="nav-logo"><a href="index.html">Pusy Bali</a></div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="collections.html">Shop</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="nav-icons">
-        <a href="#">🔍</a>
-        <a href="#">👤</a>
-        <a href="cart.html">🛒</a>
-      </div>
-      <div class="hamburger-menu">☰</div>
+
+  <div class="announcement-bar">
+    <div class="announcement-text">
+      <p>✨ Free Shipping on Orders Over $100 ✨ New Collection Just Dropped ✨</p>
+      <p>✨ Free Shipping on Orders Over $100 ✨ New Collection Just Dropped ✨</p>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo"><a href="index.html">Pusy Bali</a></div>
+    <nav class="nav-links" id="navContact">
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+    <div class="header-icons">
+      <input class="search-box" placeholder="Search..." />
+      <i class="icon user-icon">👤</i>
+      <i class="icon cart-icon">🛒</i>
+      <button class="hamburger" id="burgerContact">☰</button>
     </div>
   </header>
 
-  <div class="container" style="padding: 2rem 0;">
-    <h1>Policies</h1>
-    <h2>Shipping & Returns</h2>
-    <p>Write your shipping policy, returns/exchange rules here.</p>
-    <h2>Privacy Policy</h2>
-    <p>Your privacy policy text here.</p>
-    <h2>Terms & Conditions</h2>
-    <p>Your terms & conditions here.</p>
-  </div>
+  <main class="contact-wrap">
+    <section class="contact-form">
+      <h1>Contact Us</h1>
+      <p style="color:#666;">Questions about sizing, orders, or collaborations? Send us a message and we'll respond within 48 hours.</p>
+      <form onsubmit="submitForm(event)">
+        <input type="text" id="name" placeholder="Your name" required />
+        <input type="email" id="email" placeholder="Your email" required />
+        <input type="text" id="subject" placeholder="Subject" />
+        <textarea id="message" rows="6" placeholder="Message" required></textarea>
+        <button class="btn" type="submit">Send Message</button>
+      </form>
+    </section>
 
-  <footer class="site-footer">
-    <div class="container footer-widgets">
-      <div class="footer-widget">
-        <h3>Shop</h3>
-        <ul>
-          <li><a href="collections.html">All Products</a></li>
-          <li><a href="collections.html?cat=new">New Arrivals</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Support</h3>
-        <ul>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-        </ul>
-      </div>
-      <div class="footer-widget">
-        <h3>Follow Us</h3>
-        <ul>
-          <li><a href="https://www.instagram.com/pusy_bali/">Instagram</a></li>
-        </ul>
-      </div>
+    <aside class="contact-info">
+      <h3>Customer Support</h3>
+      <p style="color:#666;">support@pusybali.example (demo)</p>
+      <p style="color:#666;">Mon — Fri • 9:00 — 18:00</p>
+
+      <h4 style="margin-top:1rem;">Wholesale & Partnerships</h4>
+      <p style="color:#666;">For wholesale enquires, email wholesale@pusybali.example</p>
+
+      <h4 style="margin-top:1rem;">Visit</h4>
+      <p style="color:#666;">Pop-up locations will be announced on Instagram.</p>
+
+      <h4 style="margin-top:1rem;">Find us on social</h4>
+      <p><a href="https://www.instagram.com/pusy_bali/" target="_blank" style="color:#111;">Instagram</a></p>
+    </aside>
+  </main>
+
+  <section style="max-width:1000px;margin:2rem auto;padding:0 5%;">
+    <h3>Location (demo)</h3>
+    <div style="width:100%;height:300px;background:#f0f0f0;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#999;">Map placeholder — add Google Maps iframe here</div>
+  </section>
+
+  <footer>
+    <div class="newsletter">
+      <h3>Join Our Newsletter</h3>
+      <input type="email" placeholder="Enter your email" />
+      <button>Subscribe</button>
     </div>
-    <div class="footer-bottom">© 2025 Pusy Bali. All Rights Reserved.</div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="collections.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="policies.html">Policies</a>
+    </div>
+    <p class="copyright">© 2025 Pusy Bali. All rights reserved.</p>
   </footer>
 
-  <script>
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
-    hamburger?.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-  </script>
+<script>
+  document.getElementById('burgerContact').addEventListener('click', () => {
+    document.getElementById('navContact').classList.toggle('open');
+  });
+
+  function submitForm(e){
+    e.preventDefault();
+    // demo: show a message + reset
+    alert('Thanks! Your message has been sent (demo). Replace with real form handling.');
+    document.getElementById('name').value='';
+    document.getElementById('email').value='';
+    document.getElementById('subject').value='';
+    document.getElementById('message').value='';
+  }
+</script>
 </body>
 </html>
