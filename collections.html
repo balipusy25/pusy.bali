@@ -3,53 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pusy Bali | Shop</title>
+<title>Collections - Puys Bail</title>
 <link rel="stylesheet" href="style.css">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header class="navbar">
-  <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <nav class="nav-links">
-    <a href="#" id="search-icon">🔍</a>
-    <a href="cart.html">🛒<span class="cart-count">0</span></a>
-    <a href="profile.html">👤</a>
-  </nav>
-</header>
+<header><!-- Same header as index.html --></header>
 
-<div class="search-slide hidden" id="search-slide">
-  <input type="text" placeholder="Search products...">
-  <button id="search-close">Close</button>
-</div>
-
-<section class="collections">
-  <h2>Our Collections</h2>
-
-  <!-- FILTERS -->
-  <div class="filters">
-    <select id="category-filter" onchange="filterProducts()">
-      <option value="all">All Categories</option>
-      <option value="new">New</option>
-      <option value="bottoms">Bottoms</option>
-      <option value="tanks">Tanks</option>
-      <option value="accessories">Accessories</option>
-    </select>
-    <select id="sort-filter" onchange="sortProducts()">
-      <option value="default">Sort By</option>
-      <option value="price-asc">Price Low → High</option>
-      <option value="price-desc">Price High → Low</option>
-      <option value="name-asc">Name A → Z</option>
-      <option value="name-desc">Name Z → A</option>
-    </select>
-  </div>
-
-  <!-- PRODUCT GRID -->
-  <div class="product-grid" id="products-grid"></div>
+<section class="filters">
+    <label>Category:
+        <select id="filter-category">
+            <option value="all">All</option>
+            <option value="category1">Category 1</option>
+            <option value="category2">Category 2</option>
+        </select>
+    </label>
+    <label>Size:
+        <select id="filter-size">
+            <option value="all">All</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+        </select>
+    </label>
+    <label>Color:
+        <select id="filter-color">
+            <option value="all">All</option>
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+        </select>
+    </label>
+    <label>Price:
+        <select id="filter-price">
+            <option value="all">All</option>
+            <option value="low">Low &lt; $50</option>
+            <option value="high">High &gt; $50</option>
+        </select>
+    </label>
 </section>
 
-<footer>
-  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
-</footer>
+<section class="collection-grid">
+    <div class="product-item" data-category="category1" data-size="small" data-color="red" data-price="low">
+        <img src="assets/pic1.jpg" alt="Product 1">
+        <h3>Product 1</h3>
+        <p>50</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product-item" data-category="category2" data-size="medium" data-color="blue" data-price="high">
+        <img src="assets/pic2.jpg" alt="Product 2">
+        <h3>Product 2</h3>
+        <p>100</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+</section>
 
-<script src="main.js"></script>
+<footer><!-- Same footer --></footer>
+<script src="script.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
