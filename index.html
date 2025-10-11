@@ -3,98 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop | Home</title>
+  <title>Pusy Bali | Home</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo"><a href="index.html">ShopName</a></div>
-    <nav class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="collections.html">Collections</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="cart.html" class="cart-link">
-        Cart (<span class="cart-count">0</span>)
-      </a>
-      <a href="login.html" id="userLink">Login</a>
-    </nav>
-  </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Discover Your Style</h1>
-      <p>Shop the latest trends and timeless essentials — crafted to elevate your everyday look.</p>
-      <a href="collections.html" class="btn">Shop Now</a>
-    </div>
-  </section>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo"><a href="index.html">Pusy Bali</a></div>
+  <nav class="nav-links">
+    <a href="collections.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">🛒 (<span class="cart-count">0</span>)</a>
+    <a href="login.html">👤</a>
+    <a href="#" id="search-icon">🔍</a>
+  </nav>
+</header>
 
-  <!-- TRENDING SECTION -->
-  <section class="trending">
-    <h2>Trending Now</h2>
-    <div class="product-grid">
-      <div class="product-card">
-        <img src="assets/product1.jpg" alt="Product 1">
-        <h3>Elegant Bag</h3>
-        <p>$49.99</p>
-        <button onclick="addToCart('p1', 'Elegant Bag', 49.99, 'assets/product1.jpg')">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="assets/product2.jpg" alt="Product 2">
-        <h3>Classic Watch</h3>
-        <p>$79.99</p>
-        <button onclick="addToCart('p2', 'Classic Watch', 79.99, 'assets/product2.jpg')">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="assets/product3.jpg" alt="Product 3">
-        <h3>Denim Jacket</h3>
-        <p>$89.99</p>
-        <button onclick="addToCart('p3', 'Denim Jacket', 89.99, 'assets/product3.jpg')">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="assets/product4.jpg" alt="Product 4">
-        <h3>Summer Dress</h3>
-        <p>$59.99</p>
-        <button onclick="addToCart('p4', 'Summer Dress', 59.99, 'assets/product4.jpg')">Add to Cart</button>
-      </div>
-    </div>
-  </section>
+<!-- SEARCH SLIDE -->
+<div id="search-slide" class="search-slide hidden">
+  <input type="text" placeholder="Search for products..." id="search-input">
+  <button id="search-close">X</button>
+</div>
 
-  <!-- FEATURE SECTION -->
-  <section class="features">
-    <div class="feature">
-      <h3>Fast Shipping</h3>
-      <p>Get your orders delivered swiftly and safely.</p>
-    </div>
-    <div class="feature">
-      <h3>Quality Guaranteed</h3>
-      <p>Every item is crafted with precision and care.</p>
-    </div>
-    <div class="feature">
-      <h3>Easy Returns</h3>
-      <p>Hassle-free returns for 14 days after purchase.</p>
-    </div>
-  </section>
+<!-- HERO SLIDER -->
+<section class="hero-slider">
+  <div class="slide"><img src="assets/pic1.jpg" alt="Hero 1"><div class="hero-text">Free Shipping on Orders $50+</div></div>
+  <div class="slide"><img src="assets/pic2.jpg" alt="Hero 2"><div class="hero-text">Summer Sale Up to 30% Off</div></div>
+  <div class="slide"><img src="assets/pic3.jpg" alt="Hero 3"><div class="hero-text">New Arrivals Daily</div></div>
+  <button class="shop-now" onclick="location.href='collections.html'">Shop Now</button>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 ShopName. All rights reserved.</p>
-  </footer>
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="category-card" onclick="filterCollection('new')"><img src="assets/pic1.jpg"><span>New</span></div>
+  <div class="category-card" onclick="filterCollection('bottoms')"><img src="assets/pic2.jpg"><span>Bottoms</span></div>
+  <div class="category-card" onclick="filterCollection('tanks')"><img src="assets/pic3.jpg"><span>Tanks</span></div>
+  <div class="category-card" onclick="filterCollection('accessories')"><img src="assets/pic4.jpg"><span>Accessories</span></div>
+</section>
 
-  <script src="main.js"></script>
-  <script>
-    // Auto update login/profile link
-    document.addEventListener("DOMContentLoaded", () => {
-      const userLink = document.getElementById("userLink");
-      const user = JSON.parse(localStorage.getItem("currentUser"));
-      if (user) {
-        userLink.textContent = "Profile";
-        userLink.href = "profile.html";
-      }
-    });
-  </script>
+<!-- NEW PRODUCTS -->
+<section class="new-products">
+  <h2>New Arrivals</h2>
+  <div class="product-grid">
+    <div class="product-card"><img src="assets/pic1.jpg"><h3>Product 1</h3><p>$50</p><button onclick="addToCart(1)">Add to Cart</button></div>
+    <div class="product-card"><img src="assets/pic2.jpg"><h3>Product 2</h3><p>$60</p><button onclick="addToCart(2)">Add to Cart</button></div>
+    <div class="product-card"><img src="assets/pic3.jpg"><h3>Product 3</h3><p>$40</p><button onclick="addToCart(3)">Add to Cart</button></div>
+    <div class="product-card"><img src="assets/pic4.jpg"><h3>Product 4</h3><p>$70</p><button onclick="addToCart(4)">Add to Cart</button></div>
+  </div>
+</section>
+
+<!-- TRENDING / VIDEOS -->
+<section class="trending">
+  <h2>Trending</h2>
+  <div class="video-grid">
+    <video src="assets/pic1.mp4" controls></video>
+    <video src="assets/pic2.mp4" controls></video>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Pusy Bali. All Rights Reserved.</p>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>
