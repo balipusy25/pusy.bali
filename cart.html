@@ -3,64 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart & Checkout - Puys Bail</title>
+<title>Puys Bail - Cart & Checkout</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header><!-- Same header --></header>
+<header>
+  <div class="logo">Puys Bail</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="collections.html">Collections</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <input type="text" placeholder="Search products" id="search-input">
+    <div class="cart-icon" data-count="0"><i class="fas fa-shopping-cart"></i></div>
+  </div>
+</header>
 
 <section class="checkout-page">
-    <h2>Checkout</h2>
-    
-    <div class="steps">
-        <div class="step active" data-step="1">Cart Review</div>
-        <div class="step" data-step="2">Shipping Info</div>
-        <div class="step" data-step="3">Payment</div>
-        <div class="step" data-step="4">Confirmation</div>
-    </div>
+  <h2>Checkout</h2>
+  <div class="steps">
+    <div class="step active" data-step="1">Cart</div>
+    <div class="step" data-step="2">Shipping</div>
+    <div class="step" data-step="3">Payment</div>
+    <div class="step" data-step="4">Confirmation</div>
+  </div>
 
-    <div class="step-content" id="step-1">
-        <table class="cart-table">
-            <thead>
-                <tr><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th><th>Remove</th></tr>
-            </thead>
-            <tbody>
-                <!-- Cart items populated by checkout.js -->
-            </tbody>
-        </table>
-        <button class="next-step-btn">Next: Shipping Info</button>
-    </div>
+  <div class="step-content" id="step-1">
+    <table class="cart-table">
+      <thead>
+        <tr><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th><th>Remove</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button class="next-step-btn">Next: Shipping</button>
+  </div>
 
-    <div class="step-content" id="step-2" style="display:none;">
-        <form id="shipping-form">
-            <input type="text" placeholder="Full Name" required>
-            <input type="text" placeholder="Address" required>
-            <input type="text" placeholder="City" required>
-            <input type="text" placeholder="Postal Code" required>
-            <input type="tel" placeholder="Phone" required>
-            <button type="button" class="next-step-btn">Next: Payment</button>
-        </form>
-    </div>
+  <div class="step-content" id="step-2" style="display:none;">
+    <form id="shipping-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Address" required>
+      <input type="text" placeholder="City" required>
+      <input type="text" placeholder="Postal Code" required>
+      <input type="tel" placeholder="Phone" required>
+      <button type="button" class="next-step-btn">Next: Payment</button>
+    </form>
+  </div>
 
-    <div class="step-content" id="step-3" style="display:none;">
-        <form id="payment-form">
-            <input type="text" placeholder="Cardholder Name" required>
-            <input type="text" placeholder="Card Number" required>
-            <input type="text" placeholder="Expiry MM/YY" required>
-            <input type="text" placeholder="CVV" required>
-            <button type="button" class="next-step-btn">Next: Confirmation</button>
-        </form>
-    </div>
+  <div class="step-content" id="step-3" style="display:none;">
+    <form id="payment-form">
+      <input type="text" placeholder="Cardholder Name" required>
+      <input type="text" placeholder="Card Number" required>
+      <input type="text" placeholder="Expiry MM/YY" required>
+      <input type="text" placeholder="CVV" required>
+      <button type="button" class="next-step-btn">Next: Confirmation</button>
+    </form>
+  </div>
 
-    <div class="step-content" id="step-4" style="display:none;">
-        <h3>Thank you! Your order is confirmed.</h3>
-        <p>Order Number: <span id="order-number">#12345</span></p>
-        <a href="index.html" class="btn">Back to Home</a>
-    </div>
+  <div class="step-content" id="step-4" style="display:none;">
+    <h3>Thank you! Your order is confirmed.</h3>
+    <p>Order Number: <span id="order-number">#12345</span></p>
+    <a href="index.html" class="btn">Back to Home</a>
+  </div>
 </section>
 
-<footer><!-- Same footer --></footer>
+<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <p>Email: info@puysbail.com</p>
+      <p>Phone: +123456789</p>
+    </div>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Puys Bail. All Rights Reserved.</div>
+</footer>
+
 <script src="checkout.js"></script>
 <script src="login.js"></script>
 </body>
