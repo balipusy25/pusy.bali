@@ -1,64 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collections - Pusy Bali</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Pusy Bali</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-  <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="icons">
-      <span id="search-icon">🔍</span>
-      <a href="cart.html">🛒<span id="cart-count">0</span></a>
-      <a href="login.html">👤</a>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo"><a href="index.html">Pusy Bali</a></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="collections.html" class="active">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="cart.html">🛒 (<span id="cart-count">0</span>)</a>
+      <a href="profile.html">👤</a>
     </div>
   </nav>
-</header>
 
-<!-- Sliding search panel -->
-<div id="search-panel">
-  <input type="text" placeholder="Search products..." id="search-input">
-  <button id="close-search">✖</button>
-</div>
+  <!-- FILTER BAR -->
+  <section class="filter-bar">
+    <div class="filter-options">
+      <select id="category-filter">
+        <option value="all">All Categories</option>
+        <option value="tops">Tops</option>
+        <option value="bottoms">Bottoms</option>
+        <option value="dresses">Dresses</option>
+        <option value="accessories">Accessories</option>
+      </select>
 
-<!-- Filters -->
-<section class="filters">
-  <label>Category:
-    <select id="category-filter">
-      <option value="all">All</option>
-      <option value="new">New</option>
-      <option value="bottoms">Bottoms</option>
-      <option value="tanks">Tanks</option>
-      <option value="accessories">Accessories</option>
-    </select>
-  </label>
-  <label>Sort by:
-    <select id="sort-filter">
-      <option value="newest">Newest</option>
-      <option value="price-asc">Price: Low to High</option>
-      <option value="price-desc">Price: High to Low</option>
-    </select>
-  </label>
-</section>
+      <select id="sort-filter">
+        <option value="default">Sort by</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="newest">Newest</option>
+      </select>
+    </div>
+  </section>
 
-<!-- Product Grid -->
-<section class="collection-grid" id="collection-grid">
-  <!-- Populated by main.js -->
-</section>
+  <!-- PRODUCTS -->
+  <section class="trending">
+    <h2>Shop All Collections</h2>
+    <div class="product-grid" id="shop-products">
+      <div class="product-card" data-category="tops" data-price="49">
+        <img src="assets/pic1.jpg" alt="Top 1">
+        <h3>Summer Linen Top</h3>
+        <p>$49</p>
+        <button onclick="addToCart('Summer Linen Top', 49)">Add to Cart</button>
+      </div>
 
-<footer>
-  <p>&copy; 2025 Pusy Bali</p>
-</footer>
+      <div class="product-card" data-category="bottoms" data-price="69">
+        <img src="assets/pic2.jpg" alt="Bottom 1">
+        <h3>White Flow Pants</h3>
+        <p>$69</p>
+        <button onclick="addToCart('White Flow Pants', 69)">Add to Cart</button>
+      </div>
 
-<script src="main.js"></script>
+      <div class="product-card" data-category="dresses" data-price="89">
+        <img src="assets/pic3.jpg" alt="Dress 1">
+        <h3>Beach Sunset Dress</h3>
+        <p>$89</p>
+        <button onclick="addToCart('Beach Sunset Dress', 89)">Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="accessories" data-price="29">
+        <img src="assets/pic4.jpg" alt="Accessory 1">
+        <h3>Shell Necklace</h3>
+        <p>$29</p>
+        <button onclick="addToCart('Shell Necklace', 29)">Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="bottoms" data-price="79">
+        <img src="assets/pic5.jpg" alt="Bottom 2">
+        <h3>Wide Linen Shorts</h3>
+        <p>$79</p>
+        <button onclick="addToCart('Wide Linen Shorts', 79)">Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="dresses" data-price="95">
+        <img src="assets/pic6.jpg" alt="Dress 2">
+        <h3>Golden Hour Maxi</h3>
+        <p>$95</p>
+        <button onclick="addToCart('Golden Hour Maxi', 95)">Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="tops" data-price="55">
+        <img src="assets/pic7.jpg" alt="Top 2">
+        <h3>Silk Strap Tank</h3>
+        <p>$55</p>
+        <button onclick="addToCart('Silk Strap Tank', 55)">Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="accessories" data-price="39">
+        <img src="assets/pic8.jpg" alt="Accessory 2">
+        <h3>Rattan Bag</h3>
+        <p>$39</p>
+        <button onclick="addToCart('Rattan Bag', 39)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
