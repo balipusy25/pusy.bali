@@ -1,56 +1,47 @@
-let currentStep = 1;
-const totalSteps = 4;
-const steps = document.querySelectorAll('.step');
-const stepContents = document.querySelectorAll('.step-content');
-const nextButtons = document.querySelectorAll('.next-step-btn');
-const cartTableBody = document.querySelector('.cart-table tbody');
+/* checkout.js
+   - Renders cart on cart.html
+   - Quantity changes, remove item
+   - Multi-step navigation (Cart -> Shipping -> Payment -> Confirmation)
+   - Generates order number and clears cart on confirmation
+*/
 
-function renderCart() {
+document.addEventListener('DOMContentLoaded', () => {
+  const readCart = () => JSON.parse(localStorage.getItem('puysCart') || '[]');
+  const writeCart = (c) => localStorage.setItem('puysCart', JSON.stringify(c));
+  let cart = readCart();
+
+  // DOM refs
+  const cartTableBody = document.querySelector('.cart-table tbody');
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const stepContents = Array.from(document.querySelectorAll('.step-content'));
+  const nextButtons = Array.from(document.querySelectorAll('.next-step-btn'));
+  const orderNumElem = document.getElementById('order-number');
+
+  function currency(v){ return '$' + (Math.round((v||0)*100)/100).toFixed(2); }
+
+  function renderCart() {
     if(!cartTableBody) return;
+    cart = readCart();
     cartTableBody.innerHTML = '';
-    cart.forEach(item=>{
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${item.name}</td>
-                        <td>$${item.price}</td>
-                        <td><input type="number" value="${item.qty}" min="1" class="qty-input"></td>
-                        <td class="total-price">$${(item.price*item.qty).toFixed(2)}</td>
-                        <td><button class="remove-item">X</button></td>`;
-        cartTableBody.appendChild(tr);
-    });
-    attachCartEvents();
-}
-renderCart();
-
-function attachCartEvents(){
-    const qtyInputs = document.querySelectorAll('.qty-input');
-    const removeButtons = document.querySelectorAll('.remove-item');
-    qtyInputs.forEach((input,index)=>{
-        input.addEventListener('input',()=>{
-            cart[index].qty = parseInt(input.value);
-            saveCart();
-            renderCart();
-        });
-    });
-    removeButtons.forEach((btn,index)=>{
-        btn.addEventListener('click',()=>{
-            cart.splice(index,1);
-            saveCart();
-            renderCart();
-        });
-    });
-}
-
-/* Step Navigation */
-nextButtons.forEach(btn=>{
-    btn.addEventListener('click',()=>{
-        stepContents[currentStep-1].style.display='none';
-        steps[currentStep-1].classList.remove('active');
-        currentStep++;
-        if(currentStep>totalSteps) currentStep=totalSteps;
-        stepContents[currentStep-1].style.display='block';
-        steps[currentStep-1].classList.add('active');
-    });
-});
-
-const orderNumElem = document.getElementById('order-number');
-if(orderNumElem) orderNumElem.innerText = '#'+Math.floor(Math.random()*90000+10000);
+    if(cart.length === 0) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td colspan="5">Your cart is empty.</td>`;
+      cartTableBody.appendChild(tr);
+      return;
+    }
+    cart.forEach((item, idx) => {
+      const tr = document.createElement('tr');
+      tr.dataset.index = idx;
+      tr.innerHTML = `
+        <td style="text-align:left">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <img src="${item.img || ''}" alt="" style="width:60px;height:60px;object-fit:cover;border:1px solid #ddd;">
+            <div>
+              <div style="font-weight:600">${item.name}</div>
+            </div>
+          </div>
+        </td>
+        <td>${currency(item.price)}</td>
+        <td><input type="number" class="qty-input" value="${item.qty}" min="1" data-idx="${idx}"></td>
+        <td class="total-price">${currency(item.price * item.qty)}</td>
+        <td
