@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pusy Bali | Sign Up</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar">
+  <div class="logo"><a href="index.html">Pusy Bali</a></div>
+  <nav class="nav-links">
+    <a href="#" id="search-icon">🔍</a>
+    <a href="cart.html">🛒<span class="cart-count">0</span></a>
+    <a href="profile.html">👤</a>
+  </nav>
+</header>
+
+<div class="search-slide hidden" id="search-slide">
+  <input type="text" placeholder="Search products...">
+  <button id="search-close">Close</button>
+</div>
+
+<section class="auth-section">
+  <h2>Sign Up</h2>
+  <form id="signup-form">
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Sign Up</button>
+  </form>
+  <div class="oauth">
+    <p>Or sign up with:</p>
+    <button onclick="signupWithGoogle()">Google</button>
+    <button onclick="signupWithFacebook()">Facebook</button>
+  </div>
+  <p>Already have an account? <a href="login.html">Login</a></p>
+</section>
+
+<footer>
+  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
