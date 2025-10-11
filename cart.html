@@ -10,32 +10,25 @@
 <header class="navbar">
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
   <nav class="nav-links">
-    <a href="collections.html">Shop</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="cart.html">🛒 (<span class="cart-count">0</span>)</a>
-    <a href="login.html">👤</a>
     <a href="#" id="search-icon">🔍</a>
+    <a href="cart.html">🛒<span class="cart-count">0</span></a>
+    <a href="profile.html">👤</a>
   </nav>
 </header>
 
-<div id="search-slide" class="search-slide hidden">
-  <input type="text" placeholder="Search for products..." id="search-input-cart">
-  <button id="search-close">X</button>
+<div class="search-slide hidden" id="search-slide">
+  <input type="text" placeholder="Search products...">
+  <button id="search-close">Close</button>
 </div>
 
-<section class="checkout">
+<section class="checkout-container">
   <h2>Your Cart</h2>
-  <div class="checkout-cart" id="cart-items">
-    <!-- Cart items dynamically generated in main.js -->
-  </div>
-  <div class="checkout-summary" id="cart-summary">
-    <!-- Total and checkout button dynamically generated -->
-  </div>
+  <div id="cart-items"></div>
+  <div id="cart-summary"></div>
 </section>
 
 <footer>
-  <p>© 2025 Pusy Bali. All Rights Reserved.</p>
+  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
 </footer>
 
 <script src="main.js"></script>
