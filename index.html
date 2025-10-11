@@ -1,80 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pusy Bali - Home</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Home</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
 </head>
 <body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo"><a href="index.html">ShopName</a></div>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link">
+        Cart (<span class="cart-count">0</span>)
+      </a>
+      <a href="login.html" id="userLink">Login</a>
+    </nav>
+  </header>
 
-<!-- Top Banner -->
-<div class="top-banner">
-  <div class="banner-text">Free shipping over $50</div>
-  <div class="banner-text">20% off selected items</div>
-  <div class="banner-text">New arrivals every week</div>
-</div>
-
-<!-- Header -->
-<header>
-  <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <nav>
-    <ul>
-      <li><a href="collections.html">Shop</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="icons">
-      <span id="search-icon">🔍</span>
-      <a href="cart.html">🛒<span id="cart-count">0</span></a>
-      <a href="login.html">👤</a>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Discover Your Style</h1>
+      <p>Shop the latest trends and timeless essentials — crafted to elevate your everyday look.</p>
+      <a href="collections.html" class="btn">Shop Now</a>
     </div>
-  </nav>
-</header>
+  </section>
 
-<!-- Sliding Search Panel -->
-<div id="search-panel">
-  <input type="text" placeholder="Search products..." id="search-input">
-  <button id="close-search">✖</button>
-</div>
+  <!-- TRENDING SECTION -->
+  <section class="trending">
+    <h2>Trending Now</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="assets/product1.jpg" alt="Product 1">
+        <h3>Elegant Bag</h3>
+        <p>$49.99</p>
+        <button onclick="addToCart('p1', 'Elegant Bag', 49.99, 'assets/product1.jpg')">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="assets/product2.jpg" alt="Product 2">
+        <h3>Classic Watch</h3>
+        <p>$79.99</p>
+        <button onclick="addToCart('p2', 'Classic Watch', 79.99, 'assets/product2.jpg')">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="assets/product3.jpg" alt="Product 3">
+        <h3>Denim Jacket</h3>
+        <p>$89.99</p>
+        <button onclick="addToCart('p3', 'Denim Jacket', 89.99, 'assets/product3.jpg')">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="assets/product4.jpg" alt="Product 4">
+        <h3>Summer Dress</h3>
+        <p>$59.99</p>
+        <button onclick="addToCart('p4', 'Summer Dress', 59.99, 'assets/product4.jpg')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
 
-<!-- Hero Section -->
-<section class="hero">
-  <img src="assets/pic1.jpg" alt="Hero Image">
-  <a href="collections.html" class="shop-now-btn">Shop Now</a>
-</section>
+  <!-- FEATURE SECTION -->
+  <section class="features">
+    <div class="feature">
+      <h3>Fast Shipping</h3>
+      <p>Get your orders delivered swiftly and safely.</p>
+    </div>
+    <div class="feature">
+      <h3>Quality Guaranteed</h3>
+      <p>Every item is crafted with precision and care.</p>
+    </div>
+    <div class="feature">
+      <h3>Easy Returns</h3>
+      <p>Hassle-free returns for 14 days after purchase.</p>
+    </div>
+  </section>
 
-<!-- Categories -->
-<section class="categories">
-  <div class="category" data-cat="new">New</div>
-  <div class="category" data-cat="bottoms">Bottoms</div>
-  <div class="category" data-cat="tanks">Tanks</div>
-  <div class="category" data-cat="accessories">Accessories</div>
-</section>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 ShopName. All rights reserved.</p>
+  </footer>
 
-<!-- Secondary Hero -->
-<section class="secondary-hero">
-  <img src="assets/pic2.jpg" alt="Secondary Hero">
-  <a href="collections.html" class="shop-now-btn">Shop Now</a>
-</section>
-
-<!-- New Products -->
-<section class="new-products" id="new-products">
-  <!-- Populated by main.js -->
-</section>
-
-<!-- Trending / Video Section -->
-<section class="videos">
-  <video src="assets/vid1.mp4" controls></video>
-  <video src="assets/vid2.mp4" controls></video>
-</section>
-
-<!-- Footer -->
-<footer>
-  <p>&copy; 2025 Pusy Bali</p>
-  <a href="about.html">About</a>
-</footer>
-
-<script src="main.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Auto update login/profile link
+    document.addEventListener("DOMContentLoaded", () => {
+      const userLink = document.getElementById("userLink");
+      const user = JSON.parse(localStorage.getItem("currentUser"));
+      if (user) {
+        userLink.textContent = "Profile";
+        userLink.href = "profile.html";
+      }
+    });
+  </script>
 </body>
 </html>
