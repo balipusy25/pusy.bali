@@ -3,34 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pusy Bali | Cart</title>
+<title>Cart & Checkout - Puys Bail</title>
 <link rel="stylesheet" href="style.css">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header class="navbar">
-  <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <nav class="nav-links">
-    <a href="#" id="search-icon">🔍</a>
-    <a href="cart.html">🛒<span class="cart-count">0</span></a>
-    <a href="profile.html">👤</a>
-  </nav>
-</header>
+<header><!-- Same header --></header>
 
-<div class="search-slide hidden" id="search-slide">
-  <input type="text" placeholder="Search products...">
-  <button id="search-close">Close</button>
-</div>
+<section class="checkout-page">
+    <h2>Checkout</h2>
+    
+    <div class="steps">
+        <div class="step active" data-step="1">Cart Review</div>
+        <div class="step" data-step="2">Shipping Info</div>
+        <div class="step" data-step="3">Payment</div>
+        <div class="step" data-step="4">Confirmation</div>
+    </div>
 
-<section class="checkout-container">
-  <h2>Your Cart</h2>
-  <div id="cart-items"></div>
-  <div id="cart-summary"></div>
+    <div class="step-content" id="step-1">
+        <table class="cart-table">
+            <thead>
+                <tr><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th><th>Remove</th></tr>
+            </thead>
+            <tbody>
+                <!-- Cart items populated by checkout.js -->
+            </tbody>
+        </table>
+        <button class="next-step-btn">Next: Shipping Info</button>
+    </div>
+
+    <div class="step-content" id="step-2" style="display:none;">
+        <form id="shipping-form">
+            <input type="text" placeholder="Full Name" required>
+            <input type="text" placeholder="Address" required>
+            <input type="text" placeholder="City" required>
+            <input type="text" placeholder="Postal Code" required>
+            <input type="tel" placeholder="Phone" required>
+            <button type="button" class="next-step-btn">Next: Payment</button>
+        </form>
+    </div>
+
+    <div class="step-content" id="step-3" style="display:none;">
+        <form id="payment-form">
+            <input type="text" placeholder="Cardholder Name" required>
+            <input type="text" placeholder="Card Number" required>
+            <input type="text" placeholder="Expiry MM/YY" required>
+            <input type="text" placeholder="CVV" required>
+            <button type="button" class="next-step-btn">Next: Confirmation</button>
+        </form>
+    </div>
+
+    <div class="step-content" id="step-4" style="display:none;">
+        <h3>Thank you! Your order is confirmed.</h3>
+        <p>Order Number: <span id="order-number">#12345</span></p>
+        <a href="index.html" class="btn">Back to Home</a>
+    </div>
 </section>
 
-<footer>
-  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
-</footer>
-
-<script src="main.js"></script>
+<footer><!-- Same footer --></footer>
+<script src="checkout.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
