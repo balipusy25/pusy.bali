@@ -10,25 +10,55 @@
 
 <header>
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
+  <nav>
+    <div class="icons">
+      <span id="search-icon">🔍</span>
+      <a href="cart.html">🛒<span id="cart-count">0</span></a>
+      <a href="login.html">👤</a>
+    </div>
+  </nav>
 </header>
 
+<!-- Sliding search panel -->
+<div id="search-panel">
+  <input type="text" placeholder="Search products..." id="search-input">
+  <button id="close-search">✖</button>
+</div>
+
 <main class="checkout-container">
+
   <h1>Checkout</h1>
-  <div id="cart-summary">
-    <!-- Populated by main.js -->
-  </div>
 
-  <h2>Shipping Details</h2>
-  <form id="shipping-form">
-    <input type="text" placeholder="Full Name" required>
-    <input type="text" placeholder="Address" required>
-    <input type="text" placeholder="City" required>
-    <input type="text" placeholder="Postal Code" required>
-    <input type="text" placeholder="Country" required>
-  </form>
+  <!-- Cart Summary -->
+  <section id="checkout-cart">
+    <h2>Cart Items</h2>
+    <div id="checkout-items">
+      <!-- Populated by main.js -->
+    </div>
+    <div id="checkout-total">
+      Total: $<span id="checkout-total-amount">0.00</span>
+    </div>
+  </section>
 
-  <h2>Payment</h2>
-  <div id="paypal-button-container"></div>
+  <!-- Shipping Details -->
+  <section id="shipping-details">
+    <h2>Shipping Information</h2>
+    <form id="shipping-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Address" required>
+      <input type="text" placeholder="City" required>
+      <input type="text" placeholder="Postal Code" required>
+      <input type="text" placeholder="Country" required>
+    </form>
+  </section>
+
+  <!-- Payment -->
+  <section id="payment-methods">
+    <h2>Payment</h2>
+    <button id="credit-card-btn">Pay with Credit Card</button>
+    <div id="paypal-button-container"></div>
+  </section>
+
 </main>
 
 <footer>
@@ -40,7 +70,7 @@
 <script>
 paypal.Buttons({
   createOrder: (data, actions) => {
-    let total = localStorage.getItem('cartTotal') || '0.01';
+    const total = localStorage.getItem('cartTotal') || '0.01';
     return actions.order.create({
       purchase_units: [{ amount: { value: total } }]
     });
@@ -48,6 +78,8 @@ paypal.Buttons({
   onApprove: (data, actions) => {
     return actions.order.capture().then(details => {
       alert('Transaction completed by ' + details.payer.name.given_name);
+      localStorage.setItem('cart', JSON.stringify([])); // empty cart
+      localStorage.setItem('cartTotal', '0');
       window.location.href = "success.html";
     });
   }
