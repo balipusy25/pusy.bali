@@ -3,103 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Puys Bail</title>
+<title>Puys Bail - Home</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
-    <div class="header-top">
-        <div class="logo">Puys Bail</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="collections.html">Collections</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="header-right">
-            <input type="text" placeholder="Search...">
-            <i class="fas fa-shopping-cart cart-icon" data-count="0"></i>
-            <div id="login-container">
-                <button id="google-login">Login with Google</button>
-                <button id="facebook-login">Login with Facebook</button>
-                <span id="user-name" style="margin-left:10px;"></span>
-            </div>
-        </div>
-    </div>
+  <div class="logo">Puys Bail</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="collections.html">Collections</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <input type="text" placeholder="Search products" id="search-input">
+    <div class="cart-icon" data-count="0"><i class="fas fa-shopping-cart"></i></div>
+  </div>
 </header>
 
 <section class="hero-slider">
-    <div class="slide active">
-        <img src="assets/pic1.jpg" alt="Slide 1">
-        <div class="hero-text">
-            <h1>Welcome to Puys Bail</h1>
-            <p>Your trusted bail solutions</p>
-        </div>
-    </div>
-    <div class="slide">
-        <img src="assets/pic2.jpg" alt="Slide 2">
-        <div class="hero-text">
-            <h1>Fast & Reliable</h1>
-            <p>We get you out quickly</p>
-        </div>
-    </div>
-    <button class="prev">&#10094;</button>
-    <button class="next">&#10095;</button>
+  <div class="slide active"><img src="assets/pic1.jpg" alt=""><div class="hero-text">New Collection</div></div>
+  <div class="slide"><img src="assets/pic2.jpg" alt=""><div class="hero-text">Summer Sale</div></div>
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
 </section>
 
 <section class="about">
-    <h2>About Our Brand</h2>
-    <p>Puys Bail is dedicated to providing fast, reliable, and confidential bail services. Our mission is to help our clients regain their freedom with ease and professionalism.</p>
+  <h2>About Our Brand</h2>
+  <p>Puys Bail is committed to quality and style. Each collection is carefully designed to make you feel elegant and confident.</p>
 </section>
 
-<section class="featured-products">
-    <h2>Featured Services</h2>
-    <div class="products-grid">
-        <div class="product-item">
-            <img src="assets/pic1.jpg" alt="Service 1">
-            <h3>Service 1</h3>
-            <p>50</p>
-            <button class="add-to-cart">Add to Cart</button>
-        </div>
-        <div class="product-item">
-            <img src="assets/pic2.jpg" alt="Service 2">
-            <h3>Service 2</h3>
-            <p>75</p>
-            <button class="add-to-cart">Add to Cart</button>
-        </div>
-        <div class="product-item">
-            <img src="assets/pic3.jpg" alt="Service 3">
-            <h3>Service 3</h3>
-            <p>100</p>
-            <button class="add-to-cart">Add to Cart</button>
-        </div>
+<section class="featured-collections">
+  <h2>Featured Products</h2>
+  <div class="products-grid">
+    <div class="product-item" data-category="clothes" data-size="M" data-color="Red" data-price="50">
+      <img src="assets/pic1.jpg" alt="">
+      <h3>Product 1</h3>
+      <p>$50</p>
+      <button class="add-to-cart">Add to Cart</button>
     </div>
+    <div class="product-item" data-category="clothes" data-size="L" data-color="Blue" data-price="60">
+      <img src="assets/pic2.jpg" alt="">
+      <h3>Product 2</h3>
+      <p>$60</p>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
 </section>
 
 <footer>
-    <div class="footer-container">
-        <div class="footer-section">
-            <h3>Puys Bail</h3>
-            <p>Reliable, Fast, Confidential</p>
-        </div>
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="collections.html">Collections</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Follow Us</h3>
-            <i class="fab fa-facebook-square"></i>
-            <i class="fab fa-twitter-square"></i>
-            <i class="fab fa-instagram-square"></i>
-        </div>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <p>Email: info@puysbail.com</p>
+      <p>Phone: +123456789</p>
     </div>
-    <p class="footer-bottom">&copy; 2025 Puys Bail. All rights reserved.</p>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Puys Bail. All Rights Reserved.</div>
 </footer>
 
 <script src="script.js"></script>
