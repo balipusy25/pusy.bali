@@ -1,86 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pusy Bali - Home</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Top moving banner -->
+<div class="top-banner">
+  <div class="banner-text">Free shipping over $50</div>
+  <div class="banner-text">20% off selected items</div>
+  <div class="banner-text">New arrivals every week</div>
+</div>
+
 <!-- Header -->
 <header>
-  <div class="top-banner">
-    <p>Free Shipping on Orders Over $50</p>
-  </div>
-  <div class="nav-bar">
-    <div class="logo">Pusy Bali</div>
-    <input type="text" id="search" placeholder="Search products...">
-    <div class="nav-icons">
-      <a href="cart.html" id="cart-button">Cart (<span id="cart-count">0</span>)</a>
-      <a href="login.html">you</a>
+  <div class="logo"><a href="index.html">Pusy Bali</a></div>
+  <nav>
+    <ul>
+      <li><a href="collections.html">Shop</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="icons">
+      <span id="search-icon">🔍</span>
+      <a href="cart.html">🛒<span id="cart-count">0</span></a>
+      <a href="login.html">👤</a>
     </div>
-    <div class="menu-toggle">☰</div>
-    <nav class="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="collections.html">Collections</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
+  </nav>
 </header>
 
-<main>
+<!-- Sliding search panel -->
+<div id="search-panel">
+  <input type="text" placeholder="Search products..." id="search-input">
+  <button id="close-search">✖</button>
+</div>
 
-  <!-- Hero / Slider -->
-  <section class="hero">
-    <img src="assets/pic1.jpg" alt="Hero Banner">
-    <a href="collections.html" class="btn">Shop Now</a>
-  </section>
+<!-- Hero section -->
+<section class="hero">
+  <img src="assets/pic1.jpg" alt="Hero Image">
+  <a href="collections.html" class="shop-now-btn">Shop Now</a>
+</section>
 
-  <!-- Featured Products -->
-  <section class="product-grid">
-    <div class="product">
-      <img src="assets/pic2.jpg" alt="Product 1">
-      <h3>Product 1</h3>
-      <p>$29.99</p>
-      <button onclick="addToCart('Product 1',29.99)">Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="assets/pic3.jpg" alt="Product 2">
-      <h3>Product 2</h3>
-      <p>$39.99</p>
-      <button onclick="addToCart('Product 2',39.99)">Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="assets/pic4.jpg" alt="Product 3">
-      <h3>Product 3</h3>
-      <p>$49.99</p>
-      <button onclick="addToCart('Product 3',49.99)">Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="assets/pic5.jpg" alt="Product 4">
-      <h3>Product 4</h3>
-      <p>$59.99</p>
-      <button onclick="addToCart('Product 4',59.99)">Add to Cart</button>
-    </div>
-  </section>
+<!-- Category section -->
+<section class="categories">
+  <div class="category" data-cat="new">New</div>
+  <div class="category" data-cat="bottoms">Bottoms</div>
+  <div class="category" data-cat="tanks">Tanks</div>
+  <div class="category" data-cat="accessories">Accessories</div>
+</section>
 
-  <!-- Trending / Videos Section -->
-  <section class="trending">
-    <h2>Trending</h2>
-    <div class="trending-videos">
-      <video src="assets/video1.mp4" controls></video>
-      <video src="assets/video2.mp4" controls></video>
-      <video src="assets/video3.mp4" controls></video>
-    </div>
-  </section>
+<!-- Secondary hero -->
+<section class="secondary-hero">
+  <img src="assets/pic2.jpg" alt="Secondary Hero">
+  <a href="collections.html" class="shop-now-btn">Shop Now</a>
+</section>
 
-</main>
+<!-- Newly added products -->
+<section class="new-products" id="new-products">
+  <!-- main.js will populate products -->
+</section>
+
+<!-- Video section -->
+<section class="videos">
+  <video src="assets/vid1.mp4" controls></video>
+  <video src="assets/vid2.mp4" controls></video>
+</section>
 
 <!-- Footer -->
 <footer>
-  <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
+  <p>&copy; 2025 Pusy Bali</p>
+  <a href="about.html">About</a>
 </footer>
 
 <script src="main.js"></script>
