@@ -1,301 +1,196 @@
-/* ==========================
-   MAIN.JS — PUSY BALI SHOP
-   ========================== */
+// -------------------------
+// Global Variables
+// -------------------------
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
-// ------------------------------
-// GLOBAL UTILITIES
-// ------------------------------
-function $(sel, ctx = document) {
-  return ctx.querySelector(sel);
-}
-function $$(sel, ctx = document) {
-  return ctx.querySelectorAll(sel);
-}
-
-// Save & Load from localStorage
-function save(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-}
-function load(key, def = null) {
-  const v = localStorage.getItem(key);
-  if (!v) return def;
-  try {
-    return JSON.parse(v);
-  } catch {
-    return def;
-  }
-}
-
-// ------------------------------
+// -------------------------
 // CART FUNCTIONS
-// ------------------------------
-function loadCart() {
-  return load("cart", []);
+// -------------------------
+function addToCart(productId, productName, price, image) {
+  const existing = cart.find(item => item.id === productId);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ id: productId, name: productName, price, image, qty: 1 });
+  }
+  saveCart();
+  updateCartCount();
+  alert(`${productName} added to cart.`);
 }
 
-function saveCart(cart) {
-  save("cart", cart);
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.id !== productId);
+  saveCart();
+  renderCart();
   updateCartCount();
 }
 
-function clearCart() {
-  saveCart([]);
+function changeQuantity(productId, newQty) {
+  const item = cart.find(i => i.id === productId);
+  if (item) {
+    item.qty = parseInt(newQty);
+    if (item.qty <= 0) removeFromCart(productId);
+  }
+  saveCart();
+  renderCart();
+  updateCartCount();
 }
 
-function addToCart(item) {
-  const cart = loadCart();
-  const existing = cart.find((c) => c.id === item.id);
-  if (existing) existing.qty += 1;
-  else cart.push({ ...item, qty: 1 });
-  saveCart(cart);
-  alert("Added to cart!");
-}
-
-function removeFromCart(id) {
-  const cart = loadCart().filter((c) => c.id !== id);
-  saveCart(cart);
-}
-
-function cartTotal() {
-  const cart = loadCart();
-  return cart.reduce((t, c) => t + c.price * c.qty, 0).toFixed(2);
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 function updateCartCount() {
-  const cart = loadCart();
-  const count = cart.reduce((n, i) => n + i.qty, 0);
-  const el = $("#cart-count");
-  if (el) el.textContent = count;
-  localStorage.setItem("cartTotal", cartTotal());
+  const count = cart.reduce((a, b) => a + b.qty, 0);
+  const badge = document.querySelector(".cart-count");
+  if (badge) badge.textContent = count;
 }
 
-// ------------------------------
-// RENDER CART PAGE
-// ------------------------------
-function renderCartPage() {
-  const cartContainer = $("#cart-items");
-  if (!cartContainer) return;
+function renderCart() {
+  const container = document.getElementById("cart-items");
+  if (!container) return;
 
-  const cart = loadCart();
+  container.innerHTML = "";
   if (cart.length === 0) {
-    cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+    container.innerHTML = "<p>Your cart is empty.</p>";
+    document.querySelector("#cart-total").textContent = "$0.00";
     return;
   }
 
-  cartContainer.innerHTML = cart
-    .map(
-      (item) => `
-    <div class="cart-item">
-      <img src="${item.img}" alt="">
+  cart.forEach(item => {
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+      <img src="${item.image}" alt="${item.name}" />
       <div class="cart-details">
         <h4>${item.name}</h4>
-        <p>$${item.price}</p>
-        <div class="cart-controls">
-          <span>Qty: ${item.qty}</span>
-          <button onclick="removeFromCart(${item.id});renderCartPage();">Remove</button>
-        </div>
+        <p>$${item.price.toFixed(2)}</p>
+        <input type="number" min="1" value="${item.qty}" onchange="changeQuantity('${item.id}', this.value)">
+        <button onclick="removeFromCart('${item.id}')">Remove</button>
       </div>
-    </div>`
-    )
-    .join("");
+    `;
+    container.appendChild(div);
+  });
 
-  $("#cart-total").textContent = cartTotal();
+  const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+  document.querySelector("#cart-total").textContent = "$" + total.toFixed(2);
 }
 
-// ------------------------------
-// RENDER CHECKOUT PAGE
-// ------------------------------
-function renderCheckoutPage() {
-  const checkoutItems = $("#checkout-items");
-  if (!checkoutItems) return;
+// -------------------------
+// CHECKOUT FUNCTIONS
+// -------------------------
+function initPayPalButton() {
+  if (typeof paypal === "undefined") return;
 
-  const cart = loadCart();
-  if (cart.length === 0) {
-    checkoutItems.innerHTML = "<p>Your cart is empty.</p>";
-    $("#order-total").textContent = "0.00";
-    return;
+  paypal.Buttons({
+    style: {
+      shape: "rect",
+      color: "gold",
+      layout: "vertical",
+      label: "paypal",
+    },
+    createOrder: function (data, actions) {
+      const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: total.toFixed(2) },
+        }],
+      });
+    },
+    onApprove: function (data, actions) {
+      return actions.order.capture().then(function (details) {
+        alert("Payment completed by " + details.payer.name.given_name);
+        finalizeOrderDemo(details);
+      });
+    },
+    onError: function (err) {
+      console.error(err);
+      alert("Something went wrong during payment.");
+    }
+  }).render("#paypal-button-container");
+}
+
+// This is just a demo function.
+// A real one would call your backend webhook endpoint.
+function finalizeOrderDemo(details) {
+  console.log("Finalize order demo:", details);
+  cart = [];
+  saveCart();
+  updateCartCount();
+  alert("Order successful! Check console for details.");
+}
+
+// -------------------------
+// LOGIN / SIGNUP LOGIC
+// -------------------------
+function signup(email, password) {
+  if (users.find(u => u.email === email)) {
+    alert("Email already registered!");
+    return false;
   }
-
-  checkoutItems.innerHTML = cart
-    .map(
-      (i) => `
-    <div class="checkout-item">
-      <img src="${i.img}" alt="">
-      <div>
-        <p>${i.name}</p>
-        <p>$${i.price} × ${i.qty}</p>
-      </div>
-    </div>`
-    )
-    .join("");
-
-  const total = cartTotal();
-  $("#order-items-count").textContent = cart.length;
-  $("#order-subtotal").textContent = total;
-  $("#order-total").textContent = total;
+  const newUser = { email, password };
+  users.push(newUser);
+  localStorage.setItem("users", JSON.stringify(users));
+  alert("Signup successful!");
+  return true;
 }
 
-// ------------------------------
-// USER AUTH (FAKE + SOCIAL LOGIN)
-// ------------------------------
-function getCurrentUser() {
-  return load("user", null);
-}
-
-function saveUser(user) {
-  save("user", user);
+function login(email, password) {
+  const user = users.find(u => u.email === email && u.password === password);
+  if (user) {
+    currentUser = user;
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    alert("Login successful!");
+    window.location.href = "profile.html";
+  } else {
+    alert("Invalid email or password.");
+  }
 }
 
 function logout() {
-  localStorage.removeItem("user");
-  window.location.href = "login.html";
+  currentUser = null;
+  localStorage.removeItem("currentUser");
+  alert("You have logged out.");
+  window.location.href = "index.html";
 }
 
-// Dummy Google & Facebook login placeholders
-function googleLogin() {
-  const user = {
-    name: "Google User",
-    email: "googleuser@example.com",
-    provider: "Google",
-  };
-  saveUser(user);
+// Google/Facebook mock login
+function loginWithProvider(provider) {
+  currentUser = { email: provider + "@mockuser.com" };
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  alert(`Logged in via ${provider}!`);
   window.location.href = "profile.html";
 }
 
-function facebookLogin() {
-  const user = {
-    name: "Facebook User",
-    email: "facebookuser@example.com",
-    provider: "Facebook",
-  };
-  saveUser(user);
-  window.location.href = "profile.html";
-}
+// -------------------------
+// PROFILE PAGE LOGIC
+// -------------------------
+function renderProfile() {
+  const container = document.getElementById("profile-info");
+  if (!container) return;
 
-// Traditional form signup/login
-function handleLoginForm() {
-  const form = $("#login-form");
-  if (!form) return;
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = form.email.value.trim();
-    const password = form.password.value.trim();
-    if (!email || !password) return alert("Enter email and password");
-    const user = { email, name: email.split("@")[0], provider: "local" };
-    saveUser(user);
-    window.location.href = "profile.html";
-  });
-}
-
-// ------------------------------
-// PROFILE PAGE
-// ------------------------------
-function renderProfilePage() {
-  const root = $("#profile-root");
-  if (!root) return;
-  const user = getCurrentUser();
-  if (!user) {
-    root.innerHTML = `
-      <p>You are not logged in.</p>
-      <a href="login.html" class="btn">Login</a>
-    `;
+  if (!currentUser) {
+    container.innerHTML = `<p>Please <a href="login.html">log in</a>.</p>`;
     return;
   }
 
-  const orders = load(`orders_${user.email}`, []);
-  root.innerHTML = `
-    <h2>Welcome, ${user.name}</h2>
-    <p>Provider: ${user.provider}</p>
-    <h3>Your Orders</h3>
-    <div class="order-list">
-      ${
-        orders.length
-          ? orders
-              .map(
-                (o) => `
-        <div class="order-card">
-          <h4>Order #${o.id}</h4>
-          <p>Total: $${o.total}</p>
-          <p>Date: ${new Date(o.createdAt).toLocaleString()}</p>
-        </div>`
-              )
-              .join("")
-          : "<p>No orders yet.</p>"
-      }
-    </div>
-    <button onclick="logout()" class="btn">Logout</button>
+  container.innerHTML = `
+    <h3>Welcome, ${currentUser.email}</h3>
+    <p>You are logged in.</p>
+    <button onclick="logout()">Logout</button>
   `;
 }
 
-// ------------------------------
-// LOCAL DEMO ORDER STORAGE
-// ------------------------------
-function saveOrderForDemo(email, order) {
-  const key = `orders_${email}`;
-  const orders = load(key, []);
-  orders.push(order);
-  save(key, orders);
-}
-
-// ------------------------------
-// CHECKOUT FINALIZATION
-// ------------------------------
-function finalizeOrderDemo(paypalDetails) {
-  try {
-    const cart = loadCart();
-    const total = cartTotal();
-    const user = getCurrentUser() || { email: "guest@example.com", name: "Guest" };
-    const orderId = "OD" + Date.now();
-    const order = {
-      id: orderId,
-      items: cart,
-      total,
-      createdAt: new Date().toISOString(),
-      payer: paypalDetails?.payer || null,
-    };
-
-    // Save to local profile
-    saveOrderForDemo(user.email, order);
-
-    // Optional backend notification
-    fetch("/api/record-order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ provider: "paypal", order, paypalDetails }),
-    }).catch((err) => console.warn("backend notify failed", err));
-
-    clearCart();
-    window.location.href = "success.html";
-  } catch (err) {
-    console.error("finalizeOrderDemo", err);
-    clearCart();
-    window.location.href = "success.html";
-  }
-}
-
-// ------------------------------
-// SEARCH PANEL LOGIC
-// ------------------------------
-function initSearchPanel() {
-  const searchIcon = $("#search-icon");
-  const panel = $("#search-panel");
-  const closeBtn = $("#close-search");
-
-  if (searchIcon && panel && closeBtn) {
-    searchIcon.addEventListener("click", () => (panel.style.display = "flex"));
-    closeBtn.addEventListener("click", () => (panel.style.display = "none"));
-  }
-}
-
-// ------------------------------
-// ON PAGE LOAD
-// ------------------------------
+// -------------------------
+// INIT ON PAGE LOAD
+// -------------------------
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
-  initSearchPanel();
-  renderCartPage();
-  renderCheckoutPage();
-  renderProfilePage();
-  handleLoginForm();
+  renderCart();
+  renderProfile();
+  if (document.getElementById("paypal-button-container")) {
+    initPayPalButton();
+  }
 });
