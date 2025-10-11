@@ -1,152 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Checkout - Pusy Bali</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Pusy Bali</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
 </head>
 <body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo"><a href="index.html">Pusy Bali</a></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="collections.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="cart.html" class="cart-link">Cart (<span class="cart-count">0</span>)</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
 
-<header>
-  <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <div class="icons">
-    <span id="search-icon">🔍</span>
-    <a href="cart.html">🛒<span id="cart-count">0</span></a>
-    <a href="login.html">👤</a>
-  </div>
-</header>
+  <!-- CHECKOUT FORM -->
+  <section class="checkout">
+    <h2>Checkout</h2>
 
-<!-- search panel (same as other pages) -->
-<div id="search-panel">
-  <input id="search-input" placeholder="Search products...">
-  <button id="close-search">✖</button>
-</div>
+    <div class="checkout-container">
 
-<main class="checkout-container">
+      <!-- BILLING DETAILS -->
+      <form id="billing-form" class="billing-form">
+        <h3>Billing Details</h3>
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="John Doe" required>
 
-  <h1>Checkout</h1>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
 
-  <!-- Left: Cart + Shipping -->
-  <div class="checkout-grid">
+        <label for="address">Address</label>
+        <input type="text" id="address" placeholder="123 Street Name" required>
 
-    <section class="checkout-left">
-      <h2>Shipping Address</h2>
-      <form id="shipping-form">
-        <input name="fullName" placeholder="Full name" required>
-        <input name="address" placeholder="Address line 1" required>
-        <input name="address2" placeholder="Address line 2">
-        <input name="city" placeholder="City" required>
-        <input name="postal" placeholder="Postal / ZIP" required>
-        <input name="country" placeholder="Country" required>
+        <label for="city">City</label>
+        <input type="text" id="city" placeholder="City" required>
+
+        <label for="zip">ZIP / Postal Code</label>
+        <input type="text" id="zip" placeholder="12345" required>
+
+        <label for="country">Country</label>
+        <input type="text" id="country" placeholder="Country" required>
       </form>
 
-      <h2 style="margin-top:20px">Order summary</h2>
-      <div id="checkout-items">
-        <!-- populated by main.js -->
+      <!-- CART SUMMARY -->
+      <div class="checkout-cart">
+        <h3>Order Summary</h3>
+        <div id="cart-items"></div>
+        <p>Total: <strong id="cart-total">$0.00</strong></p>
+      </div>
+    </div>
+
+    <!-- PAYMENT OPTIONS -->
+    <section class="payment-options">
+      <h3>Pay With</h3>
+
+      <!-- PayPal Button -->
+      <div id="paypal-button-container"></div>
+
+      <!-- Credit Card Form (mock front-end only) -->
+      <div class="credit-card-payment">
+        <h4>Credit / Debit Card</h4>
+        <label for="cardName">Cardholder Name</label>
+        <input type="text" id="cardName" placeholder="John Doe" required>
+
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+
+        <label for="expiry">Expiry Date</label>
+        <input type="text" id="expiry" placeholder="MM/YY" required>
+
+        <label for="cvc">CVC</label>
+        <input type="text" id="cvc" placeholder="123" required>
+
+        <button onclick="mockCreditCardPayment()">Pay $<span id="credit-total">0.00</span></button>
       </div>
     </section>
+  </section>
 
-    <!-- Right: Totals & Payment -->
-    <aside class="checkout-right">
-      <div class="order-box">
-        <h3>Order</h3>
-        <p>Items: <span id="order-items-count">0</span></p>
-        <p>Subtotal: $<span id="order-subtotal">0.00</span></p>
-        <p>Shipping: <span id="order-shipping">FREE</span></p>
-        <hr>
-        <h3>Total: $<span id="order-total">0.00</span></h3>
-      </div>
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+  </footer>
 
-      <div style="margin-top:16px;">
-        <h3>Pay with PayPal (cards included)</h3>
-        <!-- PayPal button placeholder -->
-        <div id="paypal-button-container"></div>
-      </div>
+  <script src="main.js"></script>
+  <script>
+    // Update credit card total
+    const creditTotal = document.getElementById("credit-total");
+    creditTotal.textContent = (cart.reduce((sum, i) => sum + i.price * i.qty, 0)).toFixed(2);
 
-      <div style="margin-top:18px;">
-        <h3>Or pay with card</h3>
-        <p style="font-size:0.9rem;color:#555">PayPal accepts card payments on this button; if you want direct card forms (card fields) you'll need a card processor (Stripe/Adyen) integrated server-side.</p>
-        <button id="card-pay-btn" class="checkout-btn">Pay with Card (via PayPal)</button>
-      </div>
-    </aside>
-
-  </div>
-</main>
-
-<footer>
-  <p>&copy; 2025 Pusy Bali</p>
-</footer>
-
-<script src="main.js"></script>
-
-<!-- PayPal SDK: replace YOUR_PAYPAL_CLIENT_ID with your live/test key -->
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
-
-<script>
-  // INIT: render PayPal buttons using the cart total stored by main.js
-  function getCartTotalForPayPal() {
-    // main.js stores cartTotal in localStorage as string
-    const t = localStorage.getItem('cartTotal') || '0.01';
-    // ensure two decimals
-    return parseFloat(t).toFixed(2);
-  }
-
-  paypal.Buttons({
-    style: { layout: 'vertical', color: 'black', shape: 'rect', label: 'paypal' },
-
-    createOrder: function(data, actions) {
-      const total = getCartTotalForPayPal();
-      return actions.order.create({
-        purchase_units: [{
-          amount: { value: total }
-        }]
-      });
-    },
-
-    onApprove: function(data, actions) {
-      // capture on PayPal and receive details
-      return actions.order.capture().then(function(details) {
-        // details is the PayPal response with payer info and capture info
-        // 1) client-side finalize (demo storage + redirect)
-        if (typeof finalizeOrderDemo === 'function') {
-          try { finalizeOrderDemo(details); } catch(e){ console.warn('finalizeOrderDemo error', e); }
-        }
-
-        // 2) send a copy to your backend API (optional, recommended)
-        //    backend can validate / store / notify owner
-        fetch('/api/record-order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            provider: 'paypal',
-            providerData: details,
-            total: getCartTotalForPayPal(),
-            timestamp: new Date().toISOString()
-          })
-        }).catch(err => {
-          // network failure is OK; the server will still get official webhook from PayPal
-          console.warn('failed to POST order to backend', err);
-        });
-
-        // 3) user feedback (you already redirected inside finalizeOrderDemo to success page)
-        return details;
-      });
-    },
-
-    onError: function(err) {
-      console.error('PayPal Buttons error', err);
-      alert('Payment failed. Please try again or contact support.');
+    function mockCreditCardPayment() {
+      const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+      if (total <= 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      alert("Credit card payment processed for $" + total.toFixed(2));
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+      renderCart();
+      window.location.href = "index.html";
     }
-  }).render('#paypal-button-container');
-
-  // card-pay-btn triggers PayPal card checkout (same SDK handles card)
-  document.getElementById('card-pay-btn')?.addEventListener('click', () => {
-    // open the same PayPal card flow: easiest way is to render PayPal Buttons configured
-    // for card funding. For a production card form, integrate a card processor. Here we
-    // simply inform user that PayPal button accepts card payments on desktop/mobile.
-    alert('On this site PayPal button supports card payments (no separate card form). If you need a native card checkout, we can integrate Stripe or another processor.');
-  });
-</script>
+  </script>
 </body>
 </html>
