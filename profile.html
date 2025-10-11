@@ -10,31 +10,40 @@
 <header class="navbar">
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
   <nav class="nav-links">
-    <a href="collections.html">Shop</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="cart.html">🛒 (<span class="cart-count">0</span>)</a>
-    <a href="login.html">👤</a>
+    <a href="#" id="search-icon">🔍</a>
+    <a href="cart.html">🛒<span class="cart-count">0</span></a>
+    <a href="profile.html">👤</a>
   </nav>
 </header>
 
-<section class="profile-section">
-  <h2>Your Profile</h2>
-  <div class="profile-container">
-    <label>Name</label>
-    <input type="text" id="profile-name">
-    <label>Email</label>
-    <input type="email" id="profile-email">
-    <label>Address</label>
-    <input type="text" id="profile-address">
-    <button onclick="saveProfile()">Save Changes</button>
-  </div>
+<div class="search-slide hidden" id="search-slide">
+  <input type="text" placeholder="Search products...">
+  <button id="search-close">Close</button>
+</div>
 
-  <h3>Order History</h3>
-  <div id="order-history">
-    <!-- Dynamically generated orders -->
+<section class="profile">
+  <h2>Your Profile</h2>
+  <div class="profile-info">
+    <h3>Personal Information</h3>
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email">
+    <input type="text" placeholder="Phone">
+    <button onclick="updateProfile()">Update Profile</button>
+  </div>
+  <div class="profile-orders">
+    <h3>Order History</h3>
+    <div id="order-history">No orders yet.</div>
+  </div>
+  <div class="profile-address">
+    <h3>Saved Addresses</h3>
+    <div id="saved-addresses"></div>
+    <button onclick="addAddress()">Add Address</button>
   </div>
 </section>
+
+<footer>
+  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
+</footer>
 
 <script src="main.js"></script>
 </body>
