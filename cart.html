@@ -1,33 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cart | Pusy Bali</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - Pusy Bali</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
-  <div class="top-banner"><p>Free Shipping on Orders Over $50</p></div>
-  <div class="nav-bar">
-    <div class="logo">Pusy Bali</div>
-    <div class="menu-toggle">☰</div>
-    <nav class="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="collections.html">Collections</a>
-    </nav>
-  </div>
+  <div class="logo"><a href="index.html">Pusy Bali</a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="collections.html">Shop</a></li>
+    </ul>
+    <div class="icons">
+      <span id="search-icon">🔍</span>
+      <a href="cart.html">🛒<span id="cart-count">0</span></a>
+      <a href="login.html">👤</a>
+    </div>
+  </nav>
 </header>
 
-<main>
+<div id="search-panel">
+  <input type="text" placeholder="Search products..." id="search-input">
+  <button id="close-search">✖</button>
+</div>
+
+<main class="cart-container">
   <h1>Your Cart</h1>
   <div id="cart-items">
-    <p>Your cart is empty.</p>
+    <!-- main.js populates items -->
   </div>
-  <a href="checkout.html" class="btn">Proceed to Checkout</a>
+  <div class="cart-total">
+    Total: $<span id="cart-total">0.00</span>
+  </div>
+  <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
 </main>
 
-<footer><p>&copy; 2025 Pusy Bali. All rights reserved.</p></footer>
+<footer>
+  <p>&copy; 2025 Pusy Bali</p>
+  <a href="about.html">About</a>
+</footer>
+
 <script src="main.js"></script>
 </body>
 </html>
