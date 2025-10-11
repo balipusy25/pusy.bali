@@ -3,41 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pusy Bali | Product</title>
+<title>Product - Puys Bail</title>
 <link rel="stylesheet" href="style.css">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header class="navbar">
-  <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <nav class="nav-links">
-    <a href="#" id="search-icon">🔍</a>
-    <a href="cart.html">🛒<span class="cart-count">0</span></a>
-    <a href="profile.html">👤</a>
-  </nav>
-</header>
+<header><!-- Same header as index.html --></header>
 
-<div class="search-slide hidden" id="search-slide">
-  <input type="text" placeholder="Search products...">
-  <button id="search-close">Close</button>
-</div>
-
-<section class="product-page">
-  <div class="product-gallery">
-    <img src="assets/pic1.jpg" alt="Product Image">
-    <img src="assets/pic2.jpg" alt="Product Image">
-  </div>
-  <div class="product-info">
-    <h1>Product Name</h1>
-    <p>Price: $50</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent venenatis.</p>
-    <button onclick="addToCart(1)">Add to Cart</button>
-  </div>
+<section class="product-detail">
+    <div class="product-images">
+        <img src="assets/pic1.jpg" alt="Product Image 1">
+        <img src="assets/pic2.jpg" alt="Product Image 2">
+    </div>
+    <div class="product-info">
+        <h2>Product Name</h2>
+        <p>50</p>
+        <label>Size:
+            <select>
+                <option>Small</option>
+                <option>Medium</option>
+            </select>
+        </label>
+        <label>Color:
+            <select>
+                <option>Red</option>
+                <option>Blue</option>
+            </select>
+        </label>
+        <label>Quantity:
+            <input type="number" value="1" min="1" class="qty-input">
+        </label>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
 </section>
 
-<footer>
-  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
-</footer>
-
-<script src="main.js"></script>
+<footer><!-- Same footer --></footer>
+<script src="script.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
