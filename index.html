@@ -1,71 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali | Home</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pusy Bali | Home</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- NAVBAR -->
 <header class="navbar">
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
   <nav class="nav-links">
-    <a href="collections.html">Shop</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="cart.html">🛒 (<span class="cart-count">0</span>)</a>
-    <a href="login.html">👤</a>
     <a href="#" id="search-icon">🔍</a>
+    <a href="cart.html">🛒<span class="cart-count">0</span></a>
+    <a href="profile.html">👤</a>
   </nav>
 </header>
 
 <!-- SEARCH SLIDE -->
-<div id="search-slide" class="search-slide hidden">
-  <input type="text" placeholder="Search for products..." id="search-input">
-  <button id="search-close">X</button>
+<div class="search-slide hidden" id="search-slide">
+  <input type="text" placeholder="Search products...">
+  <button id="search-close">Close</button>
 </div>
 
 <!-- HERO SLIDER -->
 <section class="hero-slider">
-  <div class="slide"><img src="assets/pic1.jpg" alt="Hero 1"><div class="hero-text">Free Shipping on Orders $50+</div></div>
-  <div class="slide"><img src="assets/pic2.jpg" alt="Hero 2"><div class="hero-text">Summer Sale Up to 30% Off</div></div>
-  <div class="slide"><img src="assets/pic3.jpg" alt="Hero 3"><div class="hero-text">New Arrivals Daily</div></div>
+  <div class="slide active"><img src="assets/pic1.jpg" alt="Slide 1"><div class="hero-text">Summer Discounts Up to 50%</div></div>
+  <div class="slide"><img src="assets/pic2.jpg" alt="Slide 2"><div class="hero-text">New Arrivals Just Dropped</div></div>
+  <div class="slide"><img src="assets/pic3.jpg" alt="Slide 3"><div class="hero-text">Exclusive Collection</div></div>
   <button class="shop-now" onclick="location.href='collections.html'">Shop Now</button>
 </section>
 
 <!-- CATEGORIES -->
 <section class="categories">
-  <div class="category-card" onclick="filterCollection('new')"><img src="assets/pic1.jpg"><span>New</span></div>
-  <div class="category-card" onclick="filterCollection('bottoms')"><img src="assets/pic2.jpg"><span>Bottoms</span></div>
-  <div class="category-card" onclick="filterCollection('tanks')"><img src="assets/pic3.jpg"><span>Tanks</span></div>
-  <div class="category-card" onclick="filterCollection('accessories')"><img src="assets/pic4.jpg"><span>Accessories</span></div>
+  <div class="category-card" onclick="filterCollection('new')"><img src="assets/pic4.jpg" alt="New"><span>New</span></div>
+  <div class="category-card" onclick="filterCollection('bottoms')"><img src="assets/pic5.jpg" alt="Bottoms"><span>Bottoms</span></div>
+  <div class="category-card" onclick="filterCollection('tanks')"><img src="assets/pic6.jpg" alt="Tanks"><span>Tanks</span></div>
+  <div class="category-card" onclick="filterCollection('accessories')"><img src="assets/pic7.jpg" alt="Accessories"><span>Accessories</span></div>
 </section>
 
 <!-- NEW PRODUCTS -->
 <section class="new-products">
   <h2>New Arrivals</h2>
-  <div class="product-grid">
-    <div class="product-card"><img src="assets/pic1.jpg"><h3>Product 1</h3><p>$50</p><button onclick="addToCart(1)">Add to Cart</button></div>
-    <div class="product-card"><img src="assets/pic2.jpg"><h3>Product 2</h3><p>$60</p><button onclick="addToCart(2)">Add to Cart</button></div>
-    <div class="product-card"><img src="assets/pic3.jpg"><h3>Product 3</h3><p>$40</p><button onclick="addToCart(3)">Add to Cart</button></div>
-    <div class="product-card"><img src="assets/pic4.jpg"><h3>Product 4</h3><p>$70</p><button onclick="addToCart(4)">Add to Cart</button></div>
-  </div>
+  <div class="product-grid" id="products-grid"></div>
+  <button onclick="location.href='collections.html'">View All Products</button>
 </section>
 
-<!-- TRENDING / VIDEOS -->
+<!-- TRENDING -->
 <section class="trending">
-  <h2>Trending</h2>
+  <h2>Trending Videos</h2>
   <div class="video-grid">
-    <video src="assets/pic1.mp4" controls></video>
-    <video src="assets/pic2.mp4" controls></video>
+    <video src="assets/pic8.mp4" controls></video>
+    <video src="assets/pic9.mp4" controls></video>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2025 Pusy Bali. All Rights Reserved.</p>
+  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
 </footer>
 
 <script src="main.js"></script>
