@@ -7,54 +7,47 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header class="navbar">
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
   <nav class="nav-links">
-    <a href="collections.html">Shop</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="cart.html">🛒 (<span class="cart-count">0</span>)</a>
-    <a href="login.html">👤</a>
     <a href="#" id="search-icon">🔍</a>
+    <a href="cart.html">🛒<span class="cart-count">0</span></a>
+    <a href="profile.html">👤</a>
   </nav>
 </header>
 
-<!-- SEARCH SLIDE -->
-<div id="search-slide" class="search-slide hidden">
-  <input type="text" placeholder="Search for products..." id="search-input-collections">
-  <button id="search-close">X</button>
+<div class="search-slide hidden" id="search-slide">
+  <input type="text" placeholder="Search products...">
+  <button id="search-close">Close</button>
 </div>
 
-<!-- COLLECTIONS FILTER -->
-<section class="filter-bar">
-  <label>Category:</label>
-  <select id="category-filter" onchange="filterProducts()">
-    <option value="all">All</option>
-    <option value="new">New</option>
-    <option value="bottoms">Bottoms</option>
-    <option value="tanks">Tanks</option>
-    <option value="accessories">Accessories</option>
-  </select>
-  <label>Sort By:</label>
-  <select id="sort-filter" onchange="sortProducts()">
-    <option value="default">Default</option>
-    <option value="price-asc">Price: Low → High</option>
-    <option value="price-desc">Price: High → Low</option>
-    <option value="name-asc">Name: A → Z</option>
-    <option value="name-desc">Name: Z → A</option>
-  </select>
-</section>
+<section class="collections">
+  <h2>Our Collections</h2>
 
-<!-- PRODUCTS GRID -->
-<section class="new-products">
-  <div class="product-grid" id="products-grid">
-    <!-- Products dynamically generated in main.js -->
+  <!-- FILTERS -->
+  <div class="filters">
+    <select id="category-filter" onchange="filterProducts()">
+      <option value="all">All Categories</option>
+      <option value="new">New</option>
+      <option value="bottoms">Bottoms</option>
+      <option value="tanks">Tanks</option>
+      <option value="accessories">Accessories</option>
+    </select>
+    <select id="sort-filter" onchange="sortProducts()">
+      <option value="default">Sort By</option>
+      <option value="price-asc">Price Low → High</option>
+      <option value="price-desc">Price High → Low</option>
+      <option value="name-asc">Name A → Z</option>
+      <option value="name-desc">Name Z → A</option>
+    </select>
   </div>
+
+  <!-- PRODUCT GRID -->
+  <div class="product-grid" id="products-grid"></div>
 </section>
 
 <footer>
-  <p>© 2025 Pusy Bali. All Rights Reserved.</p>
+  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
 </footer>
 
 <script src="main.js"></script>
