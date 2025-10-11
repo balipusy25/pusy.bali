@@ -1,112 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout | Pusy Bali</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pusy Bali | Checkout</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo"><a href="index.html">Pusy Bali</a></div>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="collections.html">Shop</a>
-      <a href="contact.html">Contact</a>
-      <a href="about.html">About</a>
-      <a href="cart.html" class="cart-link">Cart (<span class="cart-count">0</span>)</a>
-      <a href="profile.html">Profile</a>
-    </nav>
-  </header>
+<header class="navbar">
+  <div class="logo"><a href="index.html">Pusy Bali</a></div>
+  <nav class="nav-links">
+    <a href="collections.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">🛒 (<span class="cart-count">0</span>)</a>
+    <a href="login.html">👤</a>
+    <a href="#" id="search-icon">🔍</a>
+  </nav>
+</header>
 
-  <!-- CHECKOUT FORM -->
-  <section class="checkout">
-    <h2>Checkout</h2>
+<div id="search-slide" class="search-slide hidden">
+  <input type="text" placeholder="Search for products..." id="search-input-checkout">
+  <button id="search-close">X</button>
+</div>
 
-    <div class="checkout-container">
-
-      <!-- BILLING DETAILS -->
-      <form id="billing-form" class="billing-form">
-        <h3>Billing Details</h3>
-        <label for="fullName">Full Name</label>
-        <input type="text" id="fullName" placeholder="John Doe" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="you@example.com" required>
-
-        <label for="address">Address</label>
-        <input type="text" id="address" placeholder="123 Street Name" required>
-
-        <label for="city">City</label>
-        <input type="text" id="city" placeholder="City" required>
-
-        <label for="zip">ZIP / Postal Code</label>
-        <input type="text" id="zip" placeholder="12345" required>
-
-        <label for="country">Country</label>
-        <input type="text" id="country" placeholder="Country" required>
-      </form>
-
-      <!-- CART SUMMARY -->
-      <div class="checkout-cart">
-        <h3>Order Summary</h3>
-        <div id="cart-items"></div>
-        <p>Total: <strong id="cart-total">$0.00</strong></p>
-      </div>
+<section class="checkout">
+  <h2>Checkout</h2>
+  <div class="checkout-container">
+    <!-- Billing Form -->
+    <div class="billing-form">
+      <h3>Billing Information</h3>
+      <label>Name</label>
+      <input type="text" id="billing-name">
+      <label>Email</label>
+      <input type="email" id="billing-email">
+      <label>Address</label>
+      <input type="text" id="billing-address">
+      <label>City</label>
+      <input type="text" id="billing-city">
+      <label>Postal Code</label>
+      <input type="text" id="billing-postal">
     </div>
 
-    <!-- PAYMENT OPTIONS -->
-    <section class="payment-options">
-      <h3>Pay With</h3>
+    <!-- Order Summary -->
+    <div class="checkout-cart" id="checkout-cart">
+      <!-- Dynamically populated in main.js -->
+    </div>
+  </div>
 
-      <!-- PayPal Button -->
+  <!-- Payment Section -->
+  <section class="payment-options">
+    <h3>Payment Method</h3>
+
+    <div class="paypal-payment">
       <div id="paypal-button-container"></div>
+    </div>
 
-      <!-- Credit Card Form (mock front-end only) -->
-      <div class="credit-card-payment">
-        <h4>Credit / Debit Card</h4>
-        <label for="cardName">Cardholder Name</label>
-        <input type="text" id="cardName" placeholder="John Doe" required>
-
-        <label for="cardNumber">Card Number</label>
-        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
-
-        <label for="expiry">Expiry Date</label>
-        <input type="text" id="expiry" placeholder="MM/YY" required>
-
-        <label for="cvc">CVC</label>
-        <input type="text" id="cvc" placeholder="123" required>
-
-        <button onclick="mockCreditCardPayment()">Pay $<span id="credit-total">0.00</span></button>
-      </div>
-    </section>
+    <div class="credit-card-payment">
+      <label>Card Number</label>
+      <input type="text" placeholder="1234 5678 9012 3456">
+      <label>Expiration</label>
+      <input type="text" placeholder="MM/YY">
+      <label>CVC</label>
+      <input type="text" placeholder="123">
+      <button onclick="finalizeCreditCardOrder()">Pay with Card</button>
+    </div>
   </section>
+</section>
 
-  <footer>
-    <p>© 2025 Pusy Bali. All rights reserved.</p>
-  </footer>
+<footer>
+  <p>© 2025 Pusy Bali. All Rights Reserved.</p>
+</footer>
 
-  <script src="main.js"></script>
-  <script>
-    // Update credit card total
-    const creditTotal = document.getElementById("credit-total");
-    creditTotal.textContent = (cart.reduce((sum, i) => sum + i.price * i.qty, 0)).toFixed(2);
-
-    function mockCreditCardPayment() {
-      const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-      if (total <= 0) {
-        alert("Your cart is empty.");
-        return;
-      }
-      alert("Credit card payment processed for $" + total.toFixed(2));
-      cart = [];
-      localStorage.setItem("cart", JSON.stringify(cart));
-      updateCartCount();
-      renderCart();
-      window.location.href = "index.html";
-    }
-  </script>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<script src="main.js"></script>
 </body>
 </html>
