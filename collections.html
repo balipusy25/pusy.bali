@@ -1,81 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Collections | Pusy Bali</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pusy Bali - Collections</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
-  <div class="top-banner"><p>Free Shipping on Orders Over $50</p></div>
-  <div class="nav-bar">
-    <div class="logo">Pusy Bali</div>
-    <input type="text" id="search" placeholder="Search products...">
-    <div class="nav-icons">
-      <a href="cart.html" id="cart-button">Cart (<span id="cart-count">0</span>)</a>
-      <a href="login.html">User</a>
+  <div class="logo"><a href="index.html">Pusy Bali</a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="icons">
+      <span id="search-icon">🔍</span>
+      <a href="cart.html">🛒<span id="cart-count">0</span></a>
+      <a href="login.html">👤</a>
     </div>
-    <div class="menu-toggle">☰</div>
-    <nav class="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="collections.html">Collections</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
+  </nav>
 </header>
 
-<main>
-  <h1>Our Collection</h1>
-  <div class="filters">
-    <button>All</button>
-    <button>New Arrivals</button>
-    <button>Best Sellers</button>
-    <button>Sale</button>
-  </div>
+<!-- Sliding search panel -->
+<div id="search-panel">
+  <input type="text" placeholder="Search products..." id="search-input">
+  <button id="close-search">✖</button>
+</div>
 
-  <section class="product-grid">
-    <div class="product">
-      <img src="assets/pic2.jpg" alt="Product 1">
-      <h3>Product 1</h3>
-      <p>$29.99</p>
-      <button onclick="addToCart('Product 1',29.99)">Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="assets/pic3.jpg" alt="Product 2">
-      <h3>Product 2</h3>
-      <p>$39.99</p>
-      <button onclick="addToCart('Product 2',39.99)">Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="assets/pic4.jpg" alt="Product 3">
-      <h3>Product 3</h3>
-      <p>$49.99</p>
-      <button onclick="addToCart('Product 3',49.99)">Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="assets/pic5.jpg" alt="Product 4">
-      <h3>Product 4</h3>
-      <p>$59.99</p>
-      <button onclick="addToCart('Product 4',59.99)">Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="assets/pic6.jpg" alt="Product 5">
-      <h3>Product 5</h3>
-      <p>$69.99</p>
-      <button onclick="addToCart('Product 5',69.99)">Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="assets/pic7.jpg" alt="Product 6">
-      <h3>Product 6</h3>
-      <p>$79.99</p>
-      <button onclick="addToCart('Product 6',79.99)">Add to Cart</button>
-    </div>
-  </section>
-</main>
+<section class="collection-grid" id="collection-grid">
+  <!-- main.js will populate products dynamically based on category -->
+</section>
 
-<footer><p>&copy; 2025 Pusy Bali. All rights reserved.</p></footer>
+<footer>
+  <p>&copy; 2025 Pusy Bali</p>
+  <a href="about.html">About</a>
+</footer>
+
 <script src="main.js"></script>
 </body>
 </html>
