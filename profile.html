@@ -1,49 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profile - Pusy Bali</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Profile - Pusy Bali</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <nav>
-    <div class="icons">
-      <span id="search-icon">🔍</span>
-      <a href="cart.html">🛒<span id="cart-count">0</span></a>
-      <a href="login.html">👤</a>
-    </div>
-  </nav>
+  <div class="icons">
+    <span id="search-icon">🔍</span>
+    <a href="cart.html">🛒<span id="cart-count">0</span></a>
+    <a href="login.html">👤</a>
+  </div>
 </header>
 
-<!-- Sliding search panel -->
 <div id="search-panel">
-  <input type="text" placeholder="Search products..." id="search-input">
+  <input id="search-input" placeholder="Search products...">
   <button id="close-search">✖</button>
 </div>
 
 <main class="profile-container">
-  <h1>My Profile</h1>
-
-  <section class="profile-info">
-    <h2>Account Details</h2>
-    <p><strong>Name:</strong> John Doe</p>
-    <p><strong>Email:</strong> john@example.com</p>
-    <button>Edit Info</button>
-  </section>
-
-  <section class="orders">
-    <h2>Order History</h2>
-    <div class="order-item">
-      <p>Order #1234 - $45.00 - Delivered</p>
-    </div>
-    <div class="order-item">
-      <p>Order #1235 - $30.00 - Processing</p>
-    </div>
-  </section>
+  <!-- main.js will populate this area -->
+  <div id="profile-root">
+    <p>Loading profile...</p>
+  </div>
 </main>
 
 <footer>
@@ -51,5 +34,8 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+  // The main.js function renderProfilePage() will automatically fill #profile-root
+</script>
 </body>
 </html>
