@@ -3,60 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collections - Puys Bail</title>
+<title>Puys Bail - Collections</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header><!-- Same header as index.html --></header>
+<header>
+  <div class="logo">Puys Bail</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="collections.html">Collections</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <input type="text" placeholder="Search products" id="search-input">
+    <div class="cart-icon" data-count="0"><i class="fas fa-shopping-cart"></i></div>
+  </div>
+</header>
 
 <section class="filters">
-    <label>Category:
-        <select id="filter-category">
-            <option value="all">All</option>
-            <option value="category1">Category 1</option>
-            <option value="category2">Category 2</option>
-        </select>
-    </label>
-    <label>Size:
-        <select id="filter-size">
-            <option value="all">All</option>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-        </select>
-    </label>
-    <label>Color:
-        <select id="filter-color">
-            <option value="all">All</option>
-            <option value="red">Red</option>
-            <option value="blue">Blue</option>
-        </select>
-    </label>
-    <label>Price:
-        <select id="filter-price">
-            <option value="all">All</option>
-            <option value="low">Low &lt; $50</option>
-            <option value="high">High &gt; $50</option>
-        </select>
-    </label>
+  <label>Category
+    <select id="filter-category">
+      <option value="all">All</option>
+      <option value="clothes">Clothes</option>
+      <option value="accessories">Accessories</option>
+    </select>
+  </label>
+  <label>Size
+    <select id="filter-size">
+      <option value="all">All</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+    </select>
+  </label>
+  <label>Color
+    <select id="filter-color">
+      <option value="all">All</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Black">Black</option>
+    </select>
+  </label>
+  <label>Price
+    <select id="filter-price">
+      <option value="all">All</option>
+      <option value="0-50">$0 - $50</option>
+      <option value="51-100">$51 - $100</option>
+    </select>
+  </label>
 </section>
 
 <section class="collection-grid">
-    <div class="product-item" data-category="category1" data-size="small" data-color="red" data-price="low">
-        <img src="assets/pic1.jpg" alt="Product 1">
-        <h3>Product 1</h3>
-        <p>50</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
-    <div class="product-item" data-category="category2" data-size="medium" data-color="blue" data-price="high">
-        <img src="assets/pic2.jpg" alt="Product 2">
-        <h3>Product 2</h3>
-        <p>100</p>
-        <button class="add-to-cart">Add to Cart</button>
-    </div>
+  <div class="product-item" data-category="clothes" data-size="M" data-color="Red" data-price="50">
+    <img src="assets/pic1.jpg" alt="">
+    <h3>Product 1</h3>
+    <p>$50</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="product-item" data-category="clothes" data-size="L" data-color="Blue" data-price="60">
+    <img src="assets/pic2.jpg" alt="">
+    <h3>Product 2</h3>
+    <p>$60</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="product-item" data-category="accessories" data-size="M" data-color="Black" data-price="30">
+    <img src="assets/pic3.jpg" alt="">
+    <h3>Product 3</h3>
+    <p>$30</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
 </section>
 
-<footer><!-- Same footer --></footer>
+<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <p>Email: info@puysbail.com</p>
+      <p>Phone: +123456789</p>
+    </div>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Puys Bail. All Rights Reserved.</div>
+</footer>
+
 <script src="script.js"></script>
 <script src="login.js"></script>
 </body>
