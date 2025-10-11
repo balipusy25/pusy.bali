@@ -1,113 +1,77 @@
-/* HERO SLIDER */
-let slideIndex = 0;
-function showSlides() {
-  const slides = document.querySelectorAll(".slide");
-  slides.forEach(s => s.classList.remove("active"));
-  slides[slideIndex].classList.add("active");
-  slideIndex = (slideIndex + 1) % slides.length;
-  setTimeout(showSlides, 4000);
-}
-showSlides();
-
-/* SEARCH SLIDE */
-document.getElementById("search-icon").addEventListener("click", () => {
-  document.getElementById("search-slide").classList.remove("hidden");
-});
-document.querySelectorAll("#search-close").forEach(btn=>{
-  btn.addEventListener("click", () => {
-    btn.parentElement.classList.add("hidden");
-  });
+// CART
+let cart = [];
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartUI();
 });
 
-/* CART LOGIC */
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+// Add to cart
 function addToCart(id) {
-  let item = cart.find(i => i.id === id);
-  if(item){ item.qty +=1; } else { cart.push({id, qty:1}); }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
+  cart.push(id);
+  updateCartUI();
 }
-function updateCartCount() {
-  document.querySelectorAll(".cart-count").forEach(span => {
-    span.textContent = cart.reduce((acc,i)=>acc+i.qty,0);
-  });
-}
-updateCartCount();
 
-/* COLLECTION PAGE PRODUCTS */
-const products = [
-  {id:1,name:"Product 1",price:50,category:"new",img:"assets/pic1.jpg"},
-  {id:2,name:"Product 2",price:60,category:"bottoms",img:"assets/pic2.jpg"},
-  {id:3,name:"Product 3",price:40,category:"tanks",img:"assets/pic3.jpg"},
-  {id:4,name:"Product 4",price:70,category:"accessories",img:"assets/pic4.jpg"}
+// Update Cart UI
+function updateCartUI() {
+  document.querySelectorAll('.cart-count').forEach(span => span.textContent = cart.length);
+  if(document.getElementById('cart-items')){
+    let cartDiv = document.getElementById('cart-items');
+    cartDiv.innerHTML = cart.length === 0 ? "<p>Cart is empty</p>" : cart.map(i => `<div>Product ${i}</div>`).join('');
+    if(document.getElementById('cart-summary')) {
+      document.getElementById('cart-summary').innerHTML = `<p>Total Items: ${cart.length}</p>`;
+    }
+  }
+}
+
+// HERO SLIDER
+let slides = document.querySelectorAll('.hero-slider .slide');
+let currentSlide = 0;
+setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 4000);
+
+// SEARCH SLIDE
+document.getElementById('search-icon')?.addEventListener('click', () => {
+  document.getElementById('search-slide').classList.add('show');
+});
+document.getElementById('search-close')?.addEventListener('click', () => {
+  document.getElementById('search-slide').classList.remove('show');
+});
+
+// PRODUCT FILTER / SORT
+let productsData = [
+  {id:1,name:"Item 1",category:"new",price:50,img:"assets/pic1.jpg"},
+  {id:2,name:"Item 2",category:"bottoms",price:35,img:"assets/pic2.jpg"},
+  {id:3,name:"Item 3",category:"tanks",price:20,img:"assets/pic3.jpg"},
+  {id:4,name:"Item 4",category:"tops",price:45,img:"assets/pic4.jpg"}
 ];
-
-function renderProducts(filter="all") {
-  const grid = document.getElementById("products-grid");
-  if(!grid) return;
-  let filtered = filter==="all"? products : products.filter(p=>p.category===filter);
-  grid.innerHTML = "";
-  filtered.forEach(p=>{
-    let div = document.createElement("div");
-    div.className="product-card";
-    div.innerHTML=`<img src="${p.img}"><h3>${p.name}</h3><p>$${p.price}</p><button onclick="addToCart(${p.id})">Add to Cart</button>`;
-    grid.appendChild(div);
-  });
-}
-function filterProducts(){
-  let cat = document.getElementById("category-filter").value;
-  renderProducts(cat);
-}
-function sortProducts(){
-  let sort = document.getElementById("sort-filter").value;
-  let sorted = [...products];
-  if(sort==="price-asc") sorted.sort((a,b)=>a.price-b.price);
-  else if(sort==="price-desc") sorted.sort((a,b)=>b.price-a.price);
-  else if(sort==="name-asc") sorted.sort((a,b)=>a.name.localeCompare(b.name));
-  else if(sort==="name-desc") sorted.sort((a,b)=>b.name.localeCompare(a.name));
-  renderProducts("all");
-}
-renderProducts();
-
-/* CART PAGE */
-function renderCart(){
-  const container = document.getElementById("cart-items");
-  const summary = document.getElementById("cart-summary");
-  if(!container) return;
-  container.innerHTML="";
-  let total=0;
-  cart.forEach(c=>{
-    let p = products.find(pr=>pr.id===c.id);
-    total+=p.price*c.qty;
-    let div = document.createElement("div");
-    div.className="cart-item";
-    div.innerHTML=`<span>${p.name}</span><input type="number" value="${c.qty}" min="1" onchange="updateQty(${c.id},this.value)"><span>$${p.price*c.qty}</span><button onclick="removeFromCart(${c.id})">X</button>`;
-    container.appendChild(div);
-  });
-  if(summary) summary.innerHTML=`<h3>Total: $${total}</h3><button onclick="location.href='checkout.html'">Proceed to Checkout</button>`;
-}
-function updateQty(id,val){ let item=cart.find(c=>c.id===id); item.qty=+val; localStorage.setItem("cart",JSON.stringify(cart)); renderCart(); updateCartCount(); }
-function removeFromCart(id){ cart=cart.filter(c=>c.id!==id); localStorage.setItem("cart",JSON.stringify(cart)); renderCart(); updateCartCount(); }
-renderCart();
-
-/* LOGIN / SIGNUP TAB */
-function showTab(tab){
-  document.getElementById("login-form").classList.toggle("hidden", tab!=="login");
-  document.getElementById("signup-form").classList.toggle("hidden", tab!=="signup");
+function filterProducts(cat){
+  if(document.getElementById('product-grid')){
+    let grid = document.getElementById('product-grid');
+    let filtered = cat ? productsData.filter(p=>p.category===cat) : productsData;
+    grid.innerHTML = filtered.map(p=>`
+      <div class="product-card">
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>$${p.price}</p>
+        <button onclick="addToCart(${p.id})">Add to Cart</button>
+      </div>`).join('');
+  }
 }
 
-/* PROFILE PAGE */
-function saveProfile(){
-  alert("Profile saved (demo)");
-}
+// OAUTH MOCK
+function loginWithGoogle(){alert('Google login (mock)');}
+function loginWithFacebook(){alert('Facebook login (mock)');}
+function signupWithGoogle(){alert('Google signup (mock)');}
+function signupWithFacebook(){alert('Facebook signup (mock)');}
 
-/* CHECKOUT PAYPAL MOCK */
-function finalizeCreditCardOrder(){
-  alert("Credit Card Payment Successful (demo)");
-}
+// PROFILE MOCK
+function updateProfile(){alert('Profile updated (mock)');}
+function addAddress(){alert('Address added (mock)');}
+
+// CHECKOUT MOCK
 function finalizeOrderDemo(details){
-  alert("PayPal Payment Successful (demo)");
+  alert('Order finalized (mock)');
+  location.href = 'success.html';
 }
-
-/* SIMPLE FILTER COLLECTION FROM INDEX */
-function filterCollection(cat){ localStorage.setItem("filterCategory",cat); location.href="collections.html"; }
