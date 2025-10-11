@@ -27,6 +27,30 @@
     <button type="submit">Pay Now</button>
   </form>
 </main>
+<!-- PayPal Buttons -->
+<div id="paypal-button-container"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '0.01' // replace with dynamic cart total
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Transaction completed by ' + details.payer.name.given_name);
+        // Redirect or call backend webhook
+        window.location.href = "/success.html";
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
 
 <footer><p>&copy; 2025 Pusy Bali. All rights reserved.</p></footer>
 <script src="main.js"></script>
