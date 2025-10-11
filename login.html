@@ -3,44 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Pusy Bali</title>
+<title>Login / Signup - Pusy Bali</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="collections.html">Shop</a></li>
-    </ul>
-    <div class="icons">
-      <span id="search-icon">🔍</span>
-      <a href="cart.html">🛒<span id="cart-count">0</span></a>
-      <a href="login.html">👤</a>
-    </div>
-  </nav>
 </header>
 
-<div id="search-panel">
-  <input type="text" placeholder="Search products..." id="search-input">
-  <button id="close-search">✖</button>
-</div>
-
 <main class="login-container">
-  <h1>Login / Sign Up</h1>
-  <button class="oauth-btn">Login with Google</button>
-  <button class="oauth-btn">Login with Facebook</button>
-  <form>
+  <h1>Login or Sign Up</h1>
+
+  <!-- Social Login -->
+  <button class="oauth-btn">Continue with Google</button>
+  <button class="oauth-btn">Continue with Facebook</button>
+
+  <hr>
+
+  <!-- Email Form -->
+  <form id="login-form">
     <input type="email" placeholder="Email" required>
     <input type="password" placeholder="Password" required>
     <button type="submit">Login</button>
+  </form>
+
+  <form id="signup-form">
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Sign Up</button>
   </form>
 </main>
 
 <footer>
   <p>&copy; 2025 Pusy Bali</p>
 </footer>
+
 <script src="main.js"></script>
 </body>
 </html>
