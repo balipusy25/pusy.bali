@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pusy Bali - Collections</title>
+<title>Collections - Pusy Bali</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,6 +13,7 @@
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="icons">
@@ -29,13 +30,33 @@
   <button id="close-search">✖</button>
 </div>
 
+<!-- Filters -->
+<section class="filters">
+  <label>Category:
+    <select id="category-filter">
+      <option value="all">All</option>
+      <option value="new">New</option>
+      <option value="bottoms">Bottoms</option>
+      <option value="tanks">Tanks</option>
+      <option value="accessories">Accessories</option>
+    </select>
+  </label>
+  <label>Sort by:
+    <select id="sort-filter">
+      <option value="newest">Newest</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+    </select>
+  </label>
+</section>
+
+<!-- Product Grid -->
 <section class="collection-grid" id="collection-grid">
-  <!-- main.js will populate products dynamically based on category -->
+  <!-- Populated by main.js -->
 </section>
 
 <footer>
   <p>&copy; 2025 Pusy Bali</p>
-  <a href="about.html">About</a>
 </footer>
 
 <script src="main.js"></script>
