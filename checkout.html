@@ -3,56 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout | Pusy Bali</title>
+  <title>Checkout - Pusy Bali</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="top-banner"><p>Free Shipping on Orders Over $50</p></div>
-  <div class="nav-bar">
-    <div class="logo">Pusy Bali</div>
-  </div>
-</header>
+  <!-- Header / Menu -->
+  <header>
+    <div class="logo"><a href="index.html">Pusy Bali</a></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<main>
-  <h1>Checkout</h1>
-  <p>Cart Total: $XXX.XX</p>
-  <form>
-    <input type="text" placeholder="Full Name" required>
-    <input type="email" placeholder="Email" required>
-    <input type="text" placeholder="Address" required>
-    <p>Select Payment Method:</p>
-    <img src="assets/pic12.jpg" alt="Credit Card" width="100">
-    <img src="assets/pic13.jpg" alt="PayPal" width="100">
-    <button type="submit">Pay Now</button>
-  </form>
-</main>
-<!-- PayPal Buttons -->
-<div id="paypal-button-container"></div>
+  <!-- Checkout Section -->
+  <main class="checkout-container">
+    <h1>Checkout</h1>
+    <p>Please review your cart and proceed to payment.</p>
 
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
-<script>
-  paypal.Buttons({
-    createOrder: function(data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: '0.01' // replace with dynamic cart total
-          }
-        }]
-      });
-    },
-    onApprove: function(data, actions) {
-      return actions.order.capture().then(function(details) {
-        alert('Transaction completed by ' + details.payer.name.given_name);
-        // Redirect or call backend webhook
-        window.location.href = "/success.html";
-      });
+    <!-- Cart summary -->
+    <div id="cart-summary">
+      <!-- main.js will dynamically populate items here -->
+    </div>
+
+    <!-- Total -->
+    <div id="cart-total">
+      Total: $<span id="total-amount">0.00</span>
+    </div>
+
+    <!-- PayPal Button -->
+    <div id="paypal-button-container"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="main.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+  <script>
+    // Grab total dynamically from main.js
+    function getCartTotal() {
+      const totalElement = document.getElementById('total-amount');
+      return totalElement ? totalElement.textContent : '0.01';
     }
-  }).render('#paypal-button-container');
-</script>
 
-<footer><p>&copy; 2025 Pusy Bali. All rights reserved.</p></footer>
-<script src="main.js"></script>
+    paypal.Buttons({
+      createOrder: (data, actions) => {
+        const total = getCartTotal(); // Get dynamic total
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: total }
+          }]
+        });
+      },
+      onApprove: (data, actions) => {
+        return actions.order.capture().then(details => {
+          alert('Transaction completed by ' + details.payer.name.given_name);
+          // Redirect to success page
+          window.location.href = "success.html";
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
 </body>
 </html>
