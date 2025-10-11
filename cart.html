@@ -3,44 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart - Pusy Bali</title>
+<title>Pusy Bali | Cart</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
+<header class="navbar">
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="collections.html">Shop</a></li>
-    </ul>
-    <div class="icons">
-      <span id="search-icon">🔍</span>
-      <a href="cart.html">🛒<span id="cart-count">0</span></a>
-      <a href="login.html">👤</a>
-    </div>
+  <nav class="nav-links">
+    <a href="collections.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">🛒 (<span class="cart-count">0</span>)</a>
+    <a href="login.html">👤</a>
+    <a href="#" id="search-icon">🔍</a>
   </nav>
 </header>
 
-<div id="search-panel">
-  <input type="text" placeholder="Search products..." id="search-input">
-  <button id="close-search">✖</button>
+<div id="search-slide" class="search-slide hidden">
+  <input type="text" placeholder="Search for products..." id="search-input-cart">
+  <button id="search-close">X</button>
 </div>
 
-<main class="cart-container">
-  <h1>Your Cart</h1>
-  <div id="cart-items">
-    <!-- main.js populates items -->
+<section class="checkout">
+  <h2>Your Cart</h2>
+  <div class="checkout-cart" id="cart-items">
+    <!-- Cart items dynamically generated in main.js -->
   </div>
-  <div class="cart-total">
-    Total: $<span id="cart-total">0.00</span>
+  <div class="checkout-summary" id="cart-summary">
+    <!-- Total and checkout button dynamically generated -->
   </div>
-  <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
-</main>
+</section>
 
 <footer>
-  <p>&copy; 2025 Pusy Bali</p>
-  <a href="about.html">About</a>
+  <p>© 2025 Pusy Bali. All Rights Reserved.</p>
 </footer>
 
 <script src="main.js"></script>
