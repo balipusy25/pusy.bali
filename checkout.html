@@ -10,69 +10,42 @@
 <header class="navbar">
   <div class="logo"><a href="index.html">Pusy Bali</a></div>
   <nav class="nav-links">
-    <a href="collections.html">Shop</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="cart.html">🛒 (<span class="cart-count">0</span>)</a>
-    <a href="login.html">👤</a>
     <a href="#" id="search-icon">🔍</a>
+    <a href="cart.html">🛒<span class="cart-count">0</span></a>
+    <a href="profile.html">👤</a>
   </nav>
 </header>
 
-<div id="search-slide" class="search-slide hidden">
-  <input type="text" placeholder="Search for products..." id="search-input-checkout">
-  <button id="search-close">X</button>
+<div class="search-slide hidden" id="search-slide">
+  <input type="text" placeholder="Search products...">
+  <button id="search-close">Close</button>
 </div>
 
 <section class="checkout">
   <h2>Checkout</h2>
-  <div class="checkout-container">
-    <!-- Billing Form -->
-    <div class="billing-form">
-      <h3>Billing Information</h3>
-      <label>Name</label>
-      <input type="text" id="billing-name">
-      <label>Email</label>
-      <input type="email" id="billing-email">
-      <label>Address</label>
-      <input type="text" id="billing-address">
-      <label>City</label>
-      <input type="text" id="billing-city">
-      <label>Postal Code</label>
-      <input type="text" id="billing-postal">
-    </div>
+  <div class="checkout-cart" id="cart-items"></div>
+  <div class="checkout-summary" id="cart-summary"></div>
 
-    <!-- Order Summary -->
-    <div class="checkout-cart" id="checkout-cart">
-      <!-- Dynamically populated in main.js -->
-    </div>
+  <div class="billing-form">
+    <h3>Billing Details</h3>
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email">
+    <input type="text" placeholder="Address">
+    <input type="text" placeholder="City">
+    <input type="text" placeholder="Zip Code">
   </div>
 
-  <!-- Payment Section -->
-  <section class="payment-options">
+  <div class="payment-options">
     <h3>Payment Method</h3>
-
-    <div class="paypal-payment">
-      <div id="paypal-button-container"></div>
-    </div>
-
-    <div class="credit-card-payment">
-      <label>Card Number</label>
-      <input type="text" placeholder="1234 5678 9012 3456">
-      <label>Expiration</label>
-      <input type="text" placeholder="MM/YY">
-      <label>CVC</label>
-      <input type="text" placeholder="123">
-      <button onclick="finalizeCreditCardOrder()">Pay with Card</button>
-    </div>
-  </section>
+    <button onclick="finalizeCreditCardOrder()">Credit Card</button>
+    <button onclick="finalizeOrderDemo()">PayPal</button>
+  </div>
 </section>
 
 <footer>
-  <p>© 2025 Pusy Bali. All Rights Reserved.</p>
+  <p><a href="about.html">About</a> | © 2025 Pusy Bali</p>
 </footer>
 
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
 <script src="main.js"></script>
 </body>
 </html>
