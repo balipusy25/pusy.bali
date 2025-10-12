@@ -2,7 +2,7 @@
 
 // ======== GLOBAL ELEMENTS ========
 const cartCount = document.querySelector('.cart-count');
-const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 const userDisplay = document.querySelector('.user-display');
 const searchForm = document.querySelector('.search-form');
 
@@ -51,3 +51,16 @@ function filterProducts(criteria) {
     }
   });
 }
+
+// ======== LOAD PRODUCTS FOR SEARCH ========
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.location.pathname.includes('search.html')) {
+    const query = localStorage.getItem('searchQuery');
+    const resultsContainer = document.querySelector('.search-results');
+    if (resultsContainer && query) {
+      resultsContainer.innerHTML = `<h2>Search results for "${query}"</h2>`;
+      // Placeholder search logic
+      resultsContainer.innerHTML += `<p>Showing matching products...</p>`;
+    }
+  }
+});
