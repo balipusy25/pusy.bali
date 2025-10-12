@@ -5,13 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pusy Bali | Search</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script type="module" src="script.js" defer></script>
 </head>
 <body>
-
-  <!-- TOP BAR -->
-  <div class="top-bar">Search our products</div>
 
   <!-- NAVBAR -->
   <header>
@@ -23,75 +19,18 @@
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
+        <i class="fa-solid fa-magnifying-glass"></i>
         <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="cart-count">0</span>
       </div>
     </div>
-    <form class="search-form active">
-      <input type="text" id="searchInput" placeholder="Search products..." required>
-      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
   </header>
 
-  <!-- SEARCH RESULTS -->
-  <section class="checkout-container">
+  <section class="search-section">
     <h2>Search Results</h2>
-    <div id="searchResults" class="product-grid"></div>
+    <div id="search-results"></div>
   </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Pusy Bali. All rights reserved.</p>
-    <div class="instagram">
-      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
-        <img src="assets/logo.png" alt="Instagram Logo">
-      </a>
-    </div>
-  </footer>
-
-  <script>
-    const products = [
-      {name: 'Tank 1', price: 49.99, image:'assets/pic1.jpg'},
-      {name: 'Bottom 1', price: 59.99, image:'assets/pic2.jpg'},
-      {name: 'Gym 1', price: 39.99, image:'assets/pic3.jpg'},
-      {name: 'New Arrival 1', price: 29.99, image:'assets/pic4.jpg'},
-      {name: 'Tank 2', price: 45.99, image:'assets/pic5.jpg'},
-      {name: 'Bottom 2', price: 55.99, image:'assets/pic6.jpg'}
-    ];
-
-    const searchInput = document.getElementById('searchInput');
-    const searchResults = document.getElementById('searchResults');
-
-    function renderResults(results) {
-      searchResults.innerHTML = '';
-      if (results.length === 0) {
-        searchResults.innerHTML = '<p>No products found.</p>';
-        return;
-      }
-      results.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <img src="${product.image}" alt="${product.name}">
-          <h4>${product.name}</h4>
-          <p>$${product.price.toFixed(2)}</p>
-          <button onclick="addToCart(${JSON.stringify(product)})">Add to Cart</button>
-        `;
-        searchResults.appendChild(card);
-      });
-    }
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-      renderResults(filtered);
-    });
-
-    // initial render
-    renderResults(products);
-  </script>
 
 </body>
 </html>
