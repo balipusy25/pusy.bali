@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pusy Bali | Checkout</title>
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase-config.js"></script>
   <script type="module" src="checkout.js" defer></script>
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <header>
     <div class="navbar">
       <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
@@ -17,6 +20,8 @@
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass" onclick="window.location.href='search.html'"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="cart-count">0</span>
       </div>
@@ -25,13 +30,15 @@
 
   <section class="checkout-section">
     <h2>Checkout</h2>
-    <div id="checkout-items">
-      <!-- Cart items will load here -->
-    </div>
-    <p>Total: $<span id="checkout-total">0</span></p>
+    <div id="cart-items"></div>
+    <p>Total: $<span id="checkout-total">0.00</span></p>
     <div id="paypal-button-container"></div>
   </section>
 
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD"></script>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
