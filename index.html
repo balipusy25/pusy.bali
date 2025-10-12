@@ -1,131 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusy Bali | Home</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-  <script defer src="login.js"></script>
-  <script defer src="checkout.js"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
+  <!-- TOP SCROLLING BAR -->
+  <div class="top-bar">Welcome to Pusy Bali! Exclusive gym & lifestyle apparel.</div>
 
-  <!-- Top moving strip -->
-  <div class="top-strip">
-    <div class="top-strip-inner"><span id="top-msg">Free shipping over $100 • New drop every Friday</span></div>
-  </div>
-
-  <!-- Header -->
-  <header class="site-header container">
-    <div class="header-left">
-      <a href="index.html" class="logo"><img src="assets/logo.png" alt="Pusy Bali" class="logo-img"></a>
-    </div>
-
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="collections.html">Shop</a></li>
-        <li><a href="collections.html?category=gym">Gym</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-
-    <div class="header-right">
-      <div class="search-wrap">
-        <input id="header-search" type="search" placeholder="Search products..." aria-label="Search">
-        <button id="search-btn" class="btn small">Search</button>
+  <!-- NAVBAR -->
+  <header>
+    <div class="navbar">
+      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="collections.html">Shop</a>
+        <a href="contact.html">Contact</a>
       </div>
-
-      <div class="user-wrap">
-        <button id="open-auth" class="btn small"><i class="fa fa-user"></i></button>
-        <span id="user-greeting" class="user-greeting"></span>
-      </div>
-
-      <div class="cart-wrap">
-        <button id="open-cart" class="cart-btn" title="View cart"><i class="fa fa-shopping-cart"></i></button>
-        <span id="cart-count" class="cart-count">0</span>
+      <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
       </div>
     </div>
+    <form class="search-form" style="display:none;">
+      <input type="text" placeholder="Search products..." required>
+      <button type="submit">Search</button>
+    </form>
   </header>
 
-  <!-- Hero -->
+  <!-- HERO SECTION -->
   <section class="hero">
-    <img src="assets/pic1.jpg" alt="Hero" class="hero-img">
-    <div class="hero-overlay"></div>
-    <div class="hero-content container">
-      <h1>Move With Confidence</h1>
-      <p>Performance apparel designed to fit, perform, and last.</p>
-      <a href="collections.html" id="hero-shopnow" class="btn primary large">Shop Now</a>
+    <h1>Discover Your Style</h1>
+    <button onclick="window.location.href='collections.html'">Shop Now</button>
+  </section>
+
+  <!-- CATEGORY BUTTONS -->
+  <section class="category-buttons">
+    <button onclick="window.location.href='collections.html?filter=new'">New</button>
+    <button onclick="window.location.href='collections.html?filter=tanks'">Tanks</button>
+    <button onclick="window.location.href='collections.html?filter=bottoms'">Bottoms</button>
+    <button onclick="window.location.href='collections.html?filter=gym'">Gym</button>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="new-arrivals">
+    <h2>New Arrivals</h2>
+    <div class="product-grid">
+      <div class="product-card" data-category="tanks">
+        <img src="assets/pic1.jpg" alt="Product 1">
+        <h4>Product 1</h4>
+        <p>$49.99</p>
+        <button onclick="addToCart({name:'Product 1',price:49.99,image:'assets/pic1.jpg'})">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="bottoms">
+        <img src="assets/pic2.jpg" alt="Product 2">
+        <h4>Product 2</h4>
+        <p>$59.99</p>
+        <button onclick="addToCart({name:'Product 2',price:59.99,image:'assets/pic2.jpg'})">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="gym">
+        <img src="assets/pic3.jpg" alt="Product 3">
+        <h4>Product 3</h4>
+        <p>$39.99</p>
+        <button onclick="addToCart({name:'Product 3',price:39.99,image:'assets/pic3.jpg'})">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="new">
+        <img src="assets/pic4.jpg" alt="Product 4">
+        <h4>Product 4</h4>
+        <p>$29.99</p>
+        <button onclick="addToCart({name:'Product 4',price:29.99,image:'assets/pic4.jpg'})">Add to Cart</button>
+      </div>
     </div>
   </section>
 
-  <!-- Category quick -->
-  <section class="category-strip container">
-    <div class="category-grid">
-      <a class="cat-card" href="collections.html?category=new">
-        <img src="assets/pic2.jpg" alt="New"><div class="cat-title">New</div>
-      </a>
-      <a class="cat-card" href="collections.html?category=tanks">
-        <img src="assets/pic3.jpg" alt="Tanks"><div class="cat-title">Tanks</div>
-      </a>
-      <a class="cat-card" href="collections.html?category=bottoms">
-        <img src="assets/pic4.jpg" alt="Bottoms"><div class="cat-title">Bottoms</div>
-      </a>
-      <a class="cat-card" href="collections.html?category=gym">
-        <img src="assets/pic5.jpg" alt="Gym"><div class="cat-title">Gym</div>
-      </a>
+  <!-- VIDEO SECTION -->
+  <section class="new-arrivals">
+    <h2>Videos</h2>
+    <div class="product-grid">
+      <video controls src="assets/video1.mp4" width="100%"></video>
+      <video controls src="assets/video2.mp4" width="100%"></video>
     </div>
   </section>
 
-  <!-- New Arrivals -->
-  <section class="section container">
-    <header class="section-head"><h2>New Arrivals</h2><p class="muted">Freshly added — shop the latest</p></header>
-    <div id="home-new-grid" class="products-grid">
-      <!-- example product card -->
-      <article class="product-item product-card" data-id="p1" data-category="new" data-price="50" data-size="M" data-color="Red">
-        <a class="product-link"><img src="assets/pic6.jpg" alt="Product 1"><h3>Product 1</h3><div class="price">$50</div></a>
-        <div class="product-actions"><button class="btn tiny add-to-cart">Add to cart</button><button class="btn tiny view-product">View</button></div>
-      </article>
-
-      <article class="product-item product-card" data-id="p2" data-category="tanks" data-price="35" data-size="S" data-color="Black">
-        <a class="product-link"><img src="assets/pic7.jpg" alt="Product 2"><h3>Product 2</h3><div class="price">$35</div></a>
-        <div class="product-actions"><button class="btn tiny add-to-cart">Add to cart</button><button class="btn tiny view-product">View</button></div>
-      </article>
-
-      <article class="product-item product-card" data-id="p3" data-category="bottoms" data-price="70" data-size="M" data-color="Grey">
-        <a class="product-link"><img src="assets/pic8.jpg" alt="Product 3"><h3>Product 3</h3><div class="price">$70</div></a>
-        <div class="product-actions"><button class="btn tiny add-to-cart">Add to cart</button><button class="btn tiny view-product">View</button></div>
-      </article>
-    </div>
-  </section>
-
-  <!-- Videos -->
-  <section class="section container">
-    <header class="section-head"><h2>Videos</h2><p class="muted">See the range in motion</p></header>
-    <div class="video-grid">
-      <div class="video-card"><video controls width="100%" poster="assets/pic10.jpg"><source src="assets/video1.mp4" type="video/mp4"></video></div>
-      <div class="video-card"><video controls width="100%" poster="assets/pic11.jpg"><source src="assets/video2.mp4" type="video/mp4"></video></div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section class="section about-brand container">
+  <!-- ABOUT BRAND -->
+  <section class="new-arrivals">
     <h2>About Pusy Bali</h2>
-    <p>We design performance-minded activewear using premium materials. Fast shipping, easy returns, and a small team who cares about quality.</p>
+    <p>Pusy Bali provides premium gym & lifestyle apparel designed for comfort, style, and performance. Shop our collection and experience quality like no other.</p>
   </section>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="col"><h4>Pusy Bali</h4><p class="muted">Performance, comfort, style</p></div>
-      <div class="col"><h4>Shop</h4><ul><li><a href="collections.html?category=new">New</a></li><li><a href="collections.html?category=tanks">Tanks</a></li><li><a href="collections.html?category=bottoms">Bottoms</a></li><li><a href="collections.html?category=gym">Gym</a></li></ul></div>
-      <div class="col"><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="col"><h4>Follow</h4><a class="ig-round" href="https://www.instagram.com/pusy_bali/" target="_blank"><img src="assets/logo.png" alt="ig" style="width:36px;height:36px;border-radius:50%;"></a></div>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+    <div class="instagram">
+      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
+        <img src="assets/logo.png" alt="Instagram Logo">
+      </a>
     </div>
-    <div class="footer-bottom container"><div>© 2025 Pusy Bali</div><div class="socials"><a href="https://www.instagram.com/pusy_bali/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a></div></div>
   </footer>
-
 </body>
 </html>
