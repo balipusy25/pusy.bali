@@ -1,35 +1,56 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Search results</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
-<script defer src="login.js"></script>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Search</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <script defer src="login.js"></script>
 </head>
 <body>
+
 <header class="site-header container">
   <div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo" class="logo-img"></a></div>
   <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="collections.html">Shop</a></li></ul></nav>
-  <div class="header-right">
-    <div class="search-wrap"><input id="header-search" type="search" placeholder="Search products..."><button id="search-btn" class="btn small">Search</button></div>
-    <div class="cart-wrap"><button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button><span id="cart-count" class="cart-count">0</span></div>
-  </div>
+  <div class="header-right"><div class="search-wrap"><input id="header-search" type="search" placeholder="Search products..."><button id="search-btn" class="btn small">Search</button></div><div class="cart-wrap"><button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button><span id="cart-count" class="cart-count">0</span></div></div>
 </header>
 
 <main class="container section">
-  <header class="section-head">
-    <h2>Search results</h2>
-    <p class="muted" id="search-subtitle"></p>
-  </header>
-
-  <div id="search-results" class="products-grid">
-    <!-- Results appended by script.js -->
-  </div>
+  <header class="section-head"><h2>Search results</h2><p class="muted" id="search-subtitle"></p></header>
+  <div id="search-results" class="products-grid"></div>
 </main>
 
 <footer class="site-footer">
   <div class="container footer-grid"><div class="col"><h4>Pusy Bali</h4></div><div class="col"><h4>Help</h4></div><div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div></div>
 </footer>
+
+<script>
+/* small search results renderer */
+document.addEventListener('DOMContentLoaded', () => {
+  const q = new URLSearchParams(window.location.search);
+  const query = q.get('q') || localStorage.getItem('searchQuery') || '';
+  const subtitle = document.getElementById('search-subtitle');
+  if (subtitle) subtitle.textContent = query ? `Results for "${query}"` : 'No search term provided.';
+  const resultsWrap = document.getElementById('search-results');
+
+  // load all products from collections grid on collection page or use local sample
+  let sample = [
+    {id:'p1', name:'Product 1', price:50, img:'assets/pic6.jpg', category:'new'},
+    {id:'p2', name:'Product 2', price:35, img:'assets/pic7.jpg', category:'tanks'},
+    {id:'p3', name:'Product 3', price:70, img:'assets/pic8.jpg', category:'bottoms'}
+  ];
+
+  const filtered = sample.filter(p => !query || p.name.toLowerCase().includes(query.toLowerCase()));
+  if (filtered.length === 0) resultsWrap.innerHTML = '<p class="muted">No results found.</p>';
+  else {
+    resultsWrap.innerHTML = filtered.map(p => `
+      <article class="product-card" data-id="${p.id}">
+        <a class="product-link"><img src="${p.img}" alt="${p.name}"><h3>${p.name}</h3><div class="price">$${p.price}</div></a>
+        <div class="product-actions"><button class="btn tiny add-to-cart">Add to cart</button><button class="btn tiny view-product">View</button></div>
+      </article>
+    `).join('');
+  }
+});
+</script>
 </body>
 </html>
