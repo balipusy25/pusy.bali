@@ -5,15 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pusy Bali | Shop</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script type="module" src="script.js" defer></script>
 </head>
 <body>
-
-  <!-- TOP BAR -->
-  <div class="top-bar">Explore our full collection of premium gym & lifestyle apparel.</div>
-
-  <!-- NAVBAR -->
   <header>
     <div class="navbar">
       <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
@@ -23,80 +17,36 @@
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
-        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
+        <i class="fa-solid fa-cart-shopping" onclick="window.location.href='cart.html'"></i>
         <span class="cart-count">0</span>
       </div>
     </div>
-    <form class="search-form" style="display:none;">
-      <input type="text" placeholder="Search products..." required>
-      <button type="submit">Search</button>
-    </form>
   </header>
 
-  <!-- COLLECTION FILTERS -->
-  <section class="category-buttons">
-    <button onclick="filterProducts('all')">All</button>
-    <button onclick="filterProducts('tanks')">Tanks</button>
-    <button onclick="filterProducts('bottoms')">Bottoms</button>
-    <button onclick="filterProducts('gym')">Gym</button>
-    <button onclick="filterProducts('new')">New</button>
-  </section>
+  <section class="collection">
+    <h2>Shop Our Collection</h2>
+    <div class="filters">
+      <label>Category:
+        <select id="filter-category">
+          <option value="all">All</option>
+          <option value="tanks">Tanks</option>
+          <option value="bottoms">Bottoms</option>
+          <option value="gym">Gym</option>
+          <option value="new">New</option>
+        </select>
+      </label>
+      <label>Sort by:
+        <select id="sort-products">
+          <option value="newest">Newest</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+        </select>
+      </label>
+    </div>
 
-  <!-- PRODUCTS GRID -->
-  <section class="new-arrivals">
-    <h2>Shop All Products</h2>
-    <div class="product-grid">
-      <div class="product-card" data-category="tanks">
-        <img src="assets/pic1.jpg" alt="Tank 1">
-        <h4>Tank 1</h4>
-        <p>$49.99</p>
-        <button onclick="addToCart({name:'Tank 1',price:49.99,image:'assets/pic1.jpg'})">Add to Cart</button>
-      </div>
-      <div class="product-card" data-category="bottoms">
-        <img src="assets/pic2.jpg" alt="Bottom 1">
-        <h4>Bottom 1</h4>
-        <p>$59.99</p>
-        <button onclick="addToCart({name:'Bottom 1',price:59.99,image:'assets/pic2.jpg'})">Add to Cart</button>
-      </div>
-      <div class="product-card" data-category="gym">
-        <img src="assets/pic3.jpg" alt="Gym 1">
-        <h4>Gym 1</h4>
-        <p>$39.99</p>
-        <button onclick="addToCart({name:'Gym 1',price:39.99,image:'assets/pic3.jpg'})">Add to Cart</button>
-      </div>
-      <div class="product-card" data-category="new">
-        <img src="assets/pic4.jpg" alt="New 1">
-        <h4>New Arrival 1</h4>
-        <p>$29.99</p>
-        <button onclick="addToCart({name:'New Arrival 1',price:29.99,image:'assets/pic4.jpg'})">Add to Cart</button>
-      </div>
-      <!-- More product placeholders -->
-      <div class="product-card" data-category="tanks">
-        <img src="assets/pic5.jpg" alt="Tank 2">
-        <h4>Tank 2</h4>
-        <p>$45.99</p>
-        <button onclick="addToCart({name:'Tank 2',price:45.99,image:'assets/pic5.jpg'})">Add to Cart</button>
-      </div>
-      <div class="product-card" data-category="bottoms">
-        <img src="assets/pic6.jpg" alt="Bottom 2">
-        <h4>Bottom 2</h4>
-        <p>$55.99</p>
-        <button onclick="addToCart({name:'Bottom 2',price:55.99,image:'assets/pic6.jpg'})">Add to Cart</button>
-      </div>
+    <div class="product-grid" id="collection-grid">
+      <!-- Products will be dynamically loaded via script.js -->
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Pusy Bali. All rights reserved.</p>
-    <div class="instagram">
-      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
-        <img src="assets/logo.png" alt="Instagram Logo">
-      </a>
-    </div>
-  </footer>
-
 </body>
 </html>
