@@ -5,31 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pusy Bali | Home</title>
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase-config.js"></script>
   <script type="module" src="script.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-    import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAEYagLFefMcmnOjbMGZLg2eNhCFDFXiwM",
-      authDomain: "pusy-bali.firebaseapp.com",
-      projectId: "pusy-bali",
-      storageBucket: "pusy-bali.firebasestorage.app",
-      messagingSenderId: "22279488877",
-      appId: "1:22279488877:web:0519d5fbf37cc1eacc0664",
-      measurementId: "G-NMN23YM78Y"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    window.auth = getAuth(app);
-    window.googleProvider = new GoogleAuthProvider();
-  </script>
 </head>
 <body>
+
   <!-- TOP SCROLLING BAR -->
-  <div class="top-bar">Welcome to Pusy Bali! Exclusive gym & lifestyle apparel.</div>
+  <div class="top-bar"><span>Welcome to Pusy Bali! Exclusive gym & lifestyle apparel.</span></div>
 
   <!-- NAVBAR -->
   <header>
@@ -41,16 +24,12 @@
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
+        <i class="fa-solid fa-magnifying-glass" onclick="window.location.href='search.html'"></i>
         <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
-        <i class="fa-solid fa-cart-shopping" onclick="window.location.href='cart.html'"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
         <span class="cart-count">0</span>
       </div>
     </div>
-    <form class="search-form">
-      <input type="text" placeholder="Search products..." required>
-      <button type="submit">Search</button>
-    </form>
   </header>
 
   <!-- HERO SECTION -->
@@ -70,31 +49,8 @@
   <!-- NEW ARRIVALS -->
   <section class="new-arrivals">
     <h2>New Arrivals</h2>
-    <div class="product-grid">
-      <div class="product-card" data-category="tanks">
-        <img src="assets/pic1.jpg" alt="Product 1">
-        <h4>Product 1</h4>
-        <p>$49.99</p>
-        <button onclick="addToCart({name:'Product 1',price:49.99,image:'assets/pic1.jpg'})">Add to Cart</button>
-      </div>
-      <div class="product-card" data-category="bottoms">
-        <img src="assets/pic2.jpg" alt="Product 2">
-        <h4>Product 2</h4>
-        <p>$59.99</p>
-        <button onclick="addToCart({name:'Product 2',price:59.99,image:'assets/pic2.jpg'})">Add to Cart</button>
-      </div>
-      <div class="product-card" data-category="gym">
-        <img src="assets/pic3.jpg" alt="Product 3">
-        <h4>Product 3</h4>
-        <p>$39.99</p>
-        <button onclick="addToCart({name:'Product 3',price:39.99,image:'assets/pic3.jpg'})">Add to Cart</button>
-      </div>
-      <div class="product-card" data-category="new">
-        <img src="assets/pic4.jpg" alt="Product 4">
-        <h4>Product 4</h4>
-        <p>$29.99</p>
-        <button onclick="addToCart({name:'Product 4',price:29.99,image:'assets/pic4.jpg'})">Add to Cart</button>
-      </div>
+    <div class="product-grid" id="collection-grid-home">
+      <!-- Product cards will be rendered by script.js -->
     </div>
   </section>
 
@@ -122,5 +78,6 @@
       </a>
     </div>
   </footer>
+
 </body>
 </html>
