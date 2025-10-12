@@ -1,196 +1,131 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pusy Bali — Home</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
-<script defer src="login.js"></script>
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Home</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <script defer src="login.js"></script>
+  <script defer src="checkout.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<!-- Top moving strip -->
-<div class="top-strip">
-  <div class="top-strip-inner"><span id="top-msg">Free shipping over $100 • New drop every Friday</span></div>
-</div>
-
-<!-- header (same on every page) -->
-<header class="site-header container">
-  <div class="header-left">
-    <a href="index.html" class="logo"><img src="assets/logo.png" alt="Pusy Bali logo" class="logo-img"></a>
+  <!-- Top moving strip -->
+  <div class="top-strip">
+    <div class="top-strip-inner"><span id="top-msg">Free shipping over $100 • New drop every Friday</span></div>
   </div>
 
-  <nav class="main-nav">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="collections.html">Shop</a></li>
-      <li><a href="collections.html?category=gym">Gym</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
-  <div class="header-right">
-    <div class="search-wrap">
-      <input id="header-search" type="search" placeholder="Search products..." aria-label="Search">
-      <button id="search-btn" class="btn small">Search</button>
+  <!-- Header -->
+  <header class="site-header container">
+    <div class="header-left">
+      <a href="index.html" class="logo"><img src="assets/logo.png" alt="Pusy Bali" class="logo-img"></a>
     </div>
 
-    <div class="user-wrap">
-      <button id="open-auth" class="btn small"><i class="fa fa-user"></i></button>
-      <span id="user-greeting" class="user-greeting"></span>
-    </div>
-
-    <div class="cart-wrap">
-      <button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button>
-      <span id="cart-count" class="cart-count">0</span>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <img src="assets/pic1.jpg" alt="Hero" class="hero-img">
-  <div class="hero-overlay"></div>
-  <div class="hero-content container">
-    <h1>Move With Confidence</h1>
-    <p>Performance clothing designed to fit, perform, and last.</p>
-    <a href="collections.html" id="hero-shopnow" class="btn primary large">Shop Now</a>
-  </div>
-</section>
-
-<!-- Categories quick -->
-<section class="category-strip container">
-  <div class="category-grid">
-    <a class="cat-card" href="collections.html?category=new">
-      <img src="assets/pic2.jpg" alt="New">
-      <div class="cat-title">New</div>
-    </a>
-    <a class="cat-card" href="collections.html?category=tanks">
-      <img src="assets/pic3.jpg" alt="Tanks">
-      <div class="cat-title">Tanks</div>
-    </a>
-    <a class="cat-card" href="collections.html?category=bottoms">
-      <img src="assets/pic4.jpg" alt="Bottoms">
-      <div class="cat-title">Bottoms</div>
-    </a>
-    <a class="cat-card" href="collections.html?category=gym">
-      <img src="assets/pic5.jpg" alt="Gym">
-      <div class="cat-title">Gym</div>
-    </a>
-  </div>
-</section>
-
-<!-- New arrivals -->
-<section class="section container">
-  <header class="section-head">
-    <h2>New Arrivals</h2>
-    <p class="muted">Freshly added — shop the latest</p>
-  </header>
-
-  <div id="home-new-grid" class="products-grid">
-    <!-- product snippets: you can add more, follow same structure -->
-    <article class="product-item" data-id="p1" data-category="new" data-price="50" data-size="M" data-color="Red">
-      <a class="product-link">
-        <img src="assets/pic6.jpg" alt="Product 1">
-        <h3>Product 1</h3>
-        <div class="price">$50</div>
-      </a>
-      <div class="product-actions">
-        <button class="btn tiny add-to-cart">Add to cart</button>
-        <button class="btn tiny view-product">View</button>
-      </div>
-    </article>
-
-    <article class="product-item" data-id="p2" data-category="tanks" data-price="35" data-size="S" data-color="Black">
-      <a class="product-link">
-        <img src="assets/pic7.jpg" alt="Product 2">
-        <h3>Product 2</h3>
-        <div class="price">$35</div>
-      </a>
-      <div class="product-actions">
-        <button class="btn tiny add-to-cart">Add to cart</button>
-        <button class="btn tiny view-product">View</button>
-      </div>
-    </article>
-
-    <article class="product-item" data-id="p3" data-category="bottoms" data-price="70" data-size="M" data-color="Grey">
-      <a class="product-link">
-        <img src="assets/pic8.jpg" alt="Product 3">
-        <h3>Product 3</h3>
-        <div class="price">$70</div>
-      </a>
-      <div class="product-actions">
-        <button class="btn tiny add-to-cart">Add to cart</button>
-        <button class="btn tiny view-product">View</button>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- Videos -->
-<section class="section container">
-  <header class="section-head">
-    <h2>Videos</h2>
-    <p class="muted">See the range in motion</p>
-  </header>
-  <div class="video-grid">
-    <div class="video-card">
-      <video controls width="100%" poster="assets/pic10.jpg"><source src="assets/video1.mp4" type="video/mp4"></video>
-    </div>
-    <div class="video-card">
-      <video controls width="100%" poster="assets/pic11.jpg"><source src="assets/video2.mp4" type="video/mp4"></video>
-    </div>
-  </div>
-</section>
-
-<!-- About -->
-<section class="section about-brand container">
-  <h2>About Pusy Bali</h2>
-  <p>We design high-performance, comfortable activewear using premium materials. Fast shipping, easy returns, and a small team who cares about quality.</p>
-</section>
-
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="col">
-      <h4>Pusy Bali</h4>
-      <p class="muted">Performance, comfort, style</p>
-    </div>
-    <div class="col">
-      <h4>Shop</h4>
+    <nav class="main-nav">
       <ul>
-        <li><a href="collections.html?category=new">New</a></li>
-        <li><a href="collections.html?category=tanks">Tanks</a></li>
-        <li><a href="collections.html?category=bottoms">Bottoms</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Shop</a></li>
         <li><a href="collections.html?category=gym">Gym</a></li>
-      </ul>
-    </div>
-    <div class="col">
-      <h4>Help</h4>
-      <ul>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+    </nav>
+
+    <div class="header-right">
+      <div class="search-wrap">
+        <input id="header-search" type="search" placeholder="Search products..." aria-label="Search">
+        <button id="search-btn" class="btn small">Search</button>
+      </div>
+
+      <div class="user-wrap">
+        <button id="open-auth" class="btn small"><i class="fa fa-user"></i></button>
+        <span id="user-greeting" class="user-greeting"></span>
+      </div>
+
+      <div class="cart-wrap">
+        <button id="open-cart" class="cart-btn" title="View cart"><i class="fa fa-shopping-cart"></i></button>
+        <span id="cart-count" class="cart-count">0</span>
+      </div>
     </div>
-    <div class="col">
-      <h4>Follow</h4>
-      <a class="ig-round" href="https://www.instagram.com/pusy_bali/" target="_blank" rel="noopener">
-        <img src="assets/logo.png" alt="ig" style="width:36px;height:36px;border-radius:50%;">
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="assets/pic1.jpg" alt="Hero" class="hero-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <h1>Move With Confidence</h1>
+      <p>Performance apparel designed to fit, perform, and last.</p>
+      <a href="collections.html" id="hero-shopnow" class="btn primary large">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Category quick -->
+  <section class="category-strip container">
+    <div class="category-grid">
+      <a class="cat-card" href="collections.html?category=new">
+        <img src="assets/pic2.jpg" alt="New"><div class="cat-title">New</div>
+      </a>
+      <a class="cat-card" href="collections.html?category=tanks">
+        <img src="assets/pic3.jpg" alt="Tanks"><div class="cat-title">Tanks</div>
+      </a>
+      <a class="cat-card" href="collections.html?category=bottoms">
+        <img src="assets/pic4.jpg" alt="Bottoms"><div class="cat-title">Bottoms</div>
+      </a>
+      <a class="cat-card" href="collections.html?category=gym">
+        <img src="assets/pic5.jpg" alt="Gym"><div class="cat-title">Gym</div>
       </a>
     </div>
-  </div>
+  </section>
 
-  <div class="footer-bottom container">
-    <div>© 2025 Pusy Bali</div>
-    <div class="socials">
-      <a href="https://www.instagram.com/pusy_bali/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+  <!-- New Arrivals -->
+  <section class="section container">
+    <header class="section-head"><h2>New Arrivals</h2><p class="muted">Freshly added — shop the latest</p></header>
+    <div id="home-new-grid" class="products-grid">
+      <!-- example product card -->
+      <article class="product-item product-card" data-id="p1" data-category="new" data-price="50" data-size="M" data-color="Red">
+        <a class="product-link"><img src="assets/pic6.jpg" alt="Product 1"><h3>Product 1</h3><div class="price">$50</div></a>
+        <div class="product-actions"><button class="btn tiny add-to-cart">Add to cart</button><button class="btn tiny view-product">View</button></div>
+      </article>
+
+      <article class="product-item product-card" data-id="p2" data-category="tanks" data-price="35" data-size="S" data-color="Black">
+        <a class="product-link"><img src="assets/pic7.jpg" alt="Product 2"><h3>Product 2</h3><div class="price">$35</div></a>
+        <div class="product-actions"><button class="btn tiny add-to-cart">Add to cart</button><button class="btn tiny view-product">View</button></div>
+      </article>
+
+      <article class="product-item product-card" data-id="p3" data-category="bottoms" data-price="70" data-size="M" data-color="Grey">
+        <a class="product-link"><img src="assets/pic8.jpg" alt="Product 3"><h3>Product 3</h3><div class="price">$70</div></a>
+        <div class="product-actions"><button class="btn tiny add-to-cart">Add to cart</button><button class="btn tiny view-product">View</button></div>
+      </article>
     </div>
-  </div>
-</footer>
+  </section>
 
-<!-- Auth modal & cart panel are created by script.js & login.js as shared UI -->
+  <!-- Videos -->
+  <section class="section container">
+    <header class="section-head"><h2>Videos</h2><p class="muted">See the range in motion</p></header>
+    <div class="video-grid">
+      <div class="video-card"><video controls width="100%" poster="assets/pic10.jpg"><source src="assets/video1.mp4" type="video/mp4"></video></div>
+      <div class="video-card"><video controls width="100%" poster="assets/pic11.jpg"><source src="assets/video2.mp4" type="video/mp4"></video></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section about-brand container">
+    <h2>About Pusy Bali</h2>
+    <p>We design performance-minded activewear using premium materials. Fast shipping, easy returns, and a small team who cares about quality.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="col"><h4>Pusy Bali</h4><p class="muted">Performance, comfort, style</p></div>
+      <div class="col"><h4>Shop</h4><ul><li><a href="collections.html?category=new">New</a></li><li><a href="collections.html?category=tanks">Tanks</a></li><li><a href="collections.html?category=bottoms">Bottoms</a></li><li><a href="collections.html?category=gym">Gym</a></li></ul></div>
+      <div class="col"><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="col"><h4>Follow</h4><a class="ig-round" href="https://www.instagram.com/pusy_bali/" target="_blank"><img src="assets/logo.png" alt="ig" style="width:36px;height:36px;border-radius:50%;"></a></div>
+    </div>
+    <div class="footer-bottom container"><div>© 2025 Pusy Bali</div><div class="socials"><a href="https://www.instagram.com/pusy_bali/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a></div></div>
+  </footer>
 
 </body>
 </html>
