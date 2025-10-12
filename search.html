@@ -1,56 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Search</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusy Bali | Search</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-  <script defer src="login.js"></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
-<header class="site-header container">
-  <div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo" class="logo-img"></a></div>
-  <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="collections.html">Shop</a></li></ul></nav>
-  <div class="header-right"><div class="search-wrap"><input id="header-search" type="search" placeholder="Search products..."><button id="search-btn" class="btn small">Search</button></div><div class="cart-wrap"><button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button><span id="cart-count" class="cart-count">0</span></div></div>
-</header>
+  <!-- TOP BAR -->
+  <div class="top-bar">Search our products</div>
 
-<main class="container section">
-  <header class="section-head"><h2>Search results</h2><p class="muted" id="search-subtitle"></p></header>
-  <div id="search-results" class="products-grid"></div>
-</main>
+  <!-- NAVBAR -->
+  <header>
+    <div class="navbar">
+      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="collections.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
+      </div>
+    </div>
+    <form class="search-form active">
+      <input type="text" id="searchInput" placeholder="Search products..." required>
+      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+  </header>
 
-<footer class="site-footer">
-  <div class="container footer-grid"><div class="col"><h4>Pusy Bali</h4></div><div class="col"><h4>Help</h4></div><div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div></div>
-</footer>
+  <!-- SEARCH RESULTS -->
+  <section class="checkout-container">
+    <h2>Search Results</h2>
+    <div id="searchResults" class="product-grid"></div>
+  </section>
 
-<script>
-/* small search results renderer */
-document.addEventListener('DOMContentLoaded', () => {
-  const q = new URLSearchParams(window.location.search);
-  const query = q.get('q') || localStorage.getItem('searchQuery') || '';
-  const subtitle = document.getElementById('search-subtitle');
-  if (subtitle) subtitle.textContent = query ? `Results for "${query}"` : 'No search term provided.';
-  const resultsWrap = document.getElementById('search-results');
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+    <div class="instagram">
+      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
+        <img src="assets/logo.png" alt="Instagram Logo">
+      </a>
+    </div>
+  </footer>
 
-  // load all products from collections grid on collection page or use local sample
-  let sample = [
-    {id:'p1', name:'Product 1', price:50, img:'assets/pic6.jpg', category:'new'},
-    {id:'p2', name:'Product 2', price:35, img:'assets/pic7.jpg', category:'tanks'},
-    {id:'p3', name:'Product 3', price:70, img:'assets/pic8.jpg', category:'bottoms'}
-  ];
+  <script>
+    const products = [
+      {name: 'Tank 1', price: 49.99, image:'assets/pic1.jpg'},
+      {name: 'Bottom 1', price: 59.99, image:'assets/pic2.jpg'},
+      {name: 'Gym 1', price: 39.99, image:'assets/pic3.jpg'},
+      {name: 'New Arrival 1', price: 29.99, image:'assets/pic4.jpg'},
+      {name: 'Tank 2', price: 45.99, image:'assets/pic5.jpg'},
+      {name: 'Bottom 2', price: 55.99, image:'assets/pic6.jpg'}
+    ];
 
-  const filtered = sample.filter(p => !query || p.name.toLowerCase().includes(query.toLowerCase()));
-  if (filtered.length === 0) resultsWrap.innerHTML = '<p class="muted">No results found.</p>';
-  else {
-    resultsWrap.innerHTML = filtered.map(p => `
-      <article class="product-card" data-id="${p.id}">
-        <a class="product-link"><img src="${p.img}" alt="${p.name}"><h3>${p.name}</h3><div class="price">$${p.price}</div></a>
-        <div class="product-actions"><button class="btn tiny add-to-cart">Add to cart</button><button class="btn tiny view-product">View</button></div>
-      </article>
-    `).join('');
-  }
-});
-</script>
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    function renderResults(results) {
+      searchResults.innerHTML = '';
+      if (results.length === 0) {
+        searchResults.innerHTML = '<p>No products found.</p>';
+        return;
+      }
+      results.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h4>${product.name}</h4>
+          <p>$${product.price.toFixed(2)}</p>
+          <button onclick="addToCart(${JSON.stringify(product)})">Add to Cart</button>
+        `;
+        searchResults.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      renderResults(filtered);
+    });
+
+    // initial render
+    renderResults(products);
+  </script>
+
 </body>
 </html>
