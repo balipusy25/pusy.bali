@@ -1,122 +1,59 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pusy Bali — Collections</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
-<script defer src="login.js"></script>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Collections</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <script defer src="login.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- header included inline for simplicity -->
+
 <header class="site-header container">
-  <div class="header-left">
-    <a href="index.html" class="logo"><img src="assets/logo.png" alt="logo" class="logo-img"></a>
-  </div>
-  <nav class="main-nav">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="collections.html">Shop</a></li>
-      <li><a href="collections.html?category=gym">Gym</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo" class="logo-img"></a></div>
+  <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="collections.html">Shop</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
   <div class="header-right">
-    <div class="search-wrap">
-      <input id="header-search" type="search" placeholder="Search products...">
-      <button id="search-btn" class="btn small">Search</button>
-    </div>
-    <div class="user-wrap">
-      <button id="open-auth" class="btn small"><i class="fa fa-user"></i></button>
-      <span id="user-greeting"></span>
-    </div>
-    <div class="cart-wrap">
-      <button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button>
-      <span id="cart-count" class="cart-count">0</span>
-    </div>
+    <div class="search-wrap"><input id="header-search" type="search" placeholder="Search products..."><button id="search-btn" class="btn small">Search</button></div>
+    <div class="user-wrap"><button id="open-auth" class="btn small"><i class="fa fa-user"></i></button><span id="user-greeting"></span></div>
+    <div class="cart-wrap"><button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button><span id="cart-count" class="cart-count">0</span></div>
   </div>
 </header>
 
-<!-- Collections layout: filters left, products right -->
 <section class="section container collections-layout">
   <aside class="filters-col">
     <h3>Filters</h3>
-    <label>Category
-      <select id="filter-category">
-        <option value="all">All</option>
-        <option value="new">New</option>
-        <option value="tanks">Tanks</option>
-        <option value="bottoms">Bottoms</option>
-        <option value="gym">Gym</option>
-      </select>
-    </label>
-
-    <label>Size
-      <select id="filter-size">
-        <option value="all">All</option>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-      </select>
-    </label>
-
-    <label>Color
-      <select id="filter-color">
-        <option value="all">All</option>
-        <option value="Red">Red</option>
-        <option value="Blue">Blue</option>
-        <option value="Black">Black</option>
-      </select>
-    </label>
-
-    <label>Price
-      <select id="filter-price">
-        <option value="all">All</option>
-        <option value="0-50">$0 - $50</option>
-        <option value="51-100">$51 - $100</option>
-      </select>
-    </label>
-
+    <label>Category<select id="filter-category"><option value="all">All</option><option value="new">New</option><option value="tanks">Tanks</option><option value="bottoms">Bottoms</option><option value="gym">Gym</option></select></label>
+    <label>Size<select id="filter-size"><option value="all">All</option><option value="S">S</option><option value="M">M</option><option value="L">L</option></select></label>
+    <label>Color<select id="filter-color"><option value="all">All</option><option value="Red">Red</option><option value="Blue">Blue</option><option value="Black">Black</option></select></label>
+    <label>Price<select id="filter-price"><option value="all">All</option><option value="0-50">$0 - $50</option><option value="51-100">$51 - $100</option></select></label>
     <button id="clear-filters" class="btn">Clear</button>
   </aside>
 
   <div class="products-col">
-    <header class="section-head">
-      <h2>All Products</h2>
-      <p class="muted" id="collections-subtitle">Showing all items</p>
-    </header>
-
+    <header class="section-head"><h2 id="collections-title">All Products</h2><p class="muted" id="collections-subtitle">Showing all items</p></header>
     <div id="collections-grid" class="collection-grid products-grid">
-      <!-- Product snippets (placeholders) -->
-      <article class="product-item" data-id="p1" data-category="new" data-price="50" data-size="M" data-color="Red">
-        <a class="product-link"><img src="assets/pic6.jpg" alt=""><h3>Product 1</h3><div class="price">$50</div></a>
+      <!-- Product snippets -->
+      <article class="product-item product-card" data-id="p1" data-category="new" data-price="50" data-size="M" data-color="Red">
+        <a class="product-link"><img src="assets/pic6.jpg" alt="Product 1"><h3>Product 1</h3><div class="price">$50</div></a>
         <div class="product-actions"><button class="btn tiny add-to-cart">Add</button><button class="btn tiny view-product">View</button></div>
       </article>
 
-      <article class="product-item" data-id="p2" data-category="tanks" data-price="35" data-size="S" data-color="Black">
-        <a class="product-link"><img src="assets/pic7.jpg" alt=""><h3>Product 2</h3><div class="price">$35</div></a>
+      <article class="product-item product-card" data-id="p2" data-category="tanks" data-price="35" data-size="S" data-color="Black">
+        <a class="product-link"><img src="assets/pic7.jpg" alt="Product 2"><h3>Product 2</h3><div class="price">$35</div></a>
         <div class="product-actions"><button class="btn tiny add-to-cart">Add</button><button class="btn tiny view-product">View</button></div>
       </article>
 
-      <article class="product-item" data-id="p3" data-category="bottoms" data-price="70" data-size="M" data-color="Grey">
-        <a class="product-link"><img src="assets/pic8.jpg" alt=""><h3>Product 3</h3><div class="price">$70</div></a>
+      <article class="product-item product-card" data-id="p3" data-category="bottoms" data-price="70" data-size="M" data-color="Grey">
+        <a class="product-link"><img src="assets/pic8.jpg" alt="Product 3"><h3>Product 3</h3><div class="price">$70</div></a>
         <div class="product-actions"><button class="btn tiny add-to-cart">Add</button><button class="btn tiny view-product">View</button></div>
       </article>
-
-      <!-- Add more product snippets as needed -->
     </div>
   </div>
 </section>
 
-<!-- footer same as index -->
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="col"><h4>Pusy Bali</h4><p class="muted">Performance clothing</p></div>
-    <div class="col"><h4>Shop</h4><ul><li><a href="collections.html?category=new">New</a></li></ul></div>
-    <div class="col"><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/" target="_blank"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div>
-  </div>
+  <div class="container footer-grid"><div class="col"><h4>Pusy Bali</h4></div><div class="col"><h4>Shop</h4></div><div class="col"><h4>Help</h4></div><div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div></div>
 </footer>
 
 </body>
