@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Search results</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+<script defer src="login.js"></script>
+</head>
+<body>
+<header class="site-header container">
+  <div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo" class="logo-img"></a></div>
+  <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="collections.html">Shop</a></li></ul></nav>
+  <div class="header-right">
+    <div class="search-wrap"><input id="header-search" type="search" placeholder="Search products..."><button id="search-btn" class="btn small">Search</button></div>
+    <div class="cart-wrap"><button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button><span id="cart-count" class="cart-count">0</span></div>
+  </div>
+</header>
+
+<main class="container section">
+  <header class="section-head">
+    <h2>Search results</h2>
+    <p class="muted" id="search-subtitle"></p>
+  </header>
+
+  <div id="search-results" class="products-grid">
+    <!-- Results appended by script.js -->
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid"><div class="col"><h4>Pusy Bali</h4></div><div class="col"><h4>Help</h4></div><div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div></div>
+</footer>
+</body>
+</html>
