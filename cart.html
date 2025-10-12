@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pusy Bali | Cart</title>
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase-config.js"></script>
   <script type="module" src="script.js" defer></script>
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <header>
     <div class="navbar">
       <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
@@ -17,19 +20,26 @@
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass" onclick="window.location.href='search.html'"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="cart-count">0</span>
       </div>
     </div>
   </header>
 
+  <!-- CART ITEMS -->
   <section class="cart-section">
     <h2>Your Cart</h2>
-    <div id="cart-items">
-      <!-- Items will appear here via script.js -->
-    </div>
-    <p>Total: $<span id="cart-total">0</span></p>
+    <div id="cart-items"></div>
+    <p>Total: $<span id="cart-total">0.00</span></p>
     <button onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
   </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
