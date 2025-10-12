@@ -1,41 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Contact</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusy Bali | Contact</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-  <script defer src="login.js"></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
-<header class="site-header container">
-  <div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo" class="logo-img"></a></div>
-  <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="collections.html">Shop</a></li></ul></nav>
-  <div class="header-right"><div class="search-wrap"><input id="header-search" type="search" placeholder="Search products..."><button id="search-btn" class="btn small">Search</button></div><div class="cart-wrap"><button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button><span id="cart-count" class="cart-count">0</span></div></div>
-</header>
+  <!-- TOP BAR -->
+  <div class="top-bar">We'd love to hear from you!</div>
 
-<main class="container section">
-  <h2>Contact us</h2>
-  <p class="muted">Email: <a href="mailto:balipusy2@gmail.com">balipusy2@gmail.com</a></p>
-  <form id="contact-form" class="contact-form">
-    <input name="name" placeholder="Name" required>
-    <input name="email" type="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Message" required></textarea>
-    <button type="submit" class="btn primary">Send</button>
-  </form>
-</main>
+  <!-- NAVBAR -->
+  <header>
+    <div class="navbar">
+      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="collections.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
+      </div>
+    </div>
+    <form class="search-form" style="display:none;">
+      <input type="text" placeholder="Search products..." required>
+      <button type="submit">Search</button>
+    </form>
+  </header>
 
-<footer class="site-footer">
-  <div class="container footer-grid"><div class="col"><h4>Pusy Bali</h4></div></div>
-</footer>
+  <!-- CONTACT FORM -->
+  <section class="checkout-container">
+    <h2>Contact Us</h2>
+    <p>If you have any questions, feel free to reach out! We’ll get back to you as soon as possible.</p>
+    <form id="contactForm" action="mailto:balipusy2@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" placeholder="Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-<script>
-document.getElementById('contact-form').addEventListener('submit', e=>{
-  e.preventDefault();
-  alert('Message sent (simulated). Contact: balipusy2@gmail.com');
-  e.target.reset();
-});
-</script>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+    <div class="instagram">
+      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
+        <img src="assets/logo.png" alt="Instagram Logo">
+      </a>
+    </div>
+  </footer>
+
 </body>
 </html>
