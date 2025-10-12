@@ -23,14 +23,15 @@
       </div>
       <div class="nav-icons">
         <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
-        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
+        <i class="fa-solid fa-user"></i>
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="cart-count">0</span>
       </div>
     </div>
     <form class="search-form" style="display:none;">
-      <input type="text" placeholder="Search products..." required>
+      <input id="searchInput" type="text" placeholder="Search products..." required>
       <button type="submit">Search</button>
+      <div id="searchResults"></div>
     </form>
   </header>
 
