@@ -1,103 +1,146 @@
-// ------------------------------
-// CART FUNCTIONALITY
-// ------------------------------
-let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+// ------------------ Firebase Auth ------------------
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
-function addToCart(product) {
-    cartItems.push(product);
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-    updateCartCount();
-    alert(`${product.name} added to cart!`);
+const auth = window.auth;
+const provider = window.googleProvider;
+
+// Signup form
+const signupForm = document.getElementById("signup-form");
+if (signupForm) {
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("signup-email").value;
+    const password = document.getElementById("signup-password").value;
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Account created successfully!");
+      window.location.href = "index.html";
+    } catch (error) {
+      document.getElementById("signup-error").textContent = error.message;
+    }
+  });
+
+  document.getElementById("google-signup").addEventListener("click", async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      alert("Signed in with Google!");
+      window.location.href = "index.html";
+    } catch (error) {
+      document.getElementById("signup-error").textContent = error.message;
+    }
+  });
 }
 
-function removeFromCart(index) {
-    cartItems.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-    renderCart();
-    updateCartCount();
+// Login form
+const loginForm = document.getElementById("login-form");
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Logged in successfully!");
+      window.location.href = "index.html";
+    } catch (error) {
+      document.getElementById("login-error").textContent = error.message;
+    }
+  });
+
+  document.getElementById("google-login").addEventListener("click", async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      alert("Logged in with Google!");
+      window.location.href = "index.html";
+    } catch (error) {
+      document.getElementById("login-error").textContent = error.message;
+    }
+  });
 }
+
+// ------------------ Cart Functionality ------------------
+let cart = JSON.parse(localStorage.getItem("pusyCart")) || [];
 
 function updateCartCount() {
-    const countEl = document.querySelectorAll('.cart-count');
-    countEl.forEach(el => el.textContent = cartItems.length);
+  document.querySelectorAll(".cart-count").forEach(el => el.textContent = cart.length);
+}
+
+window.addToCart = function(product) {
+  cart.push(product);
+  localStorage.setItem("pusyCart", JSON.stringify(cart));
+  updateCartCount();
+  alert(`${product.name} added to cart!`);
 }
 
 function renderCart() {
-    const container = document.getElementById('cartItemsContainer');
-    if (!container) return;
-    container.innerHTML = '';
-    let total = 0;
-    cartItems.forEach((item, index) => {
-        total += item.price;
-        const div = document.createElement('div');
-        div.className = 'summary-item';
-        div.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <p>${item.name}</p>
-            <p>$${item.price.toFixed(2)}</p>
-            <input type="number" min="1" value="1" onchange="updateQuantity(${index}, this.value)">
-            <button onclick="removeFromCart(${index})">Remove</button>
-        `;
-        container.appendChild(div);
-    });
-    const totalEl = document.getElementById('cartTotal');
-    if (totalEl) totalEl.textContent = `Total: $${total.toFixed(2)}`;
+  const container = document.getElementById("cart-items");
+  if (!container) return;
+  container.innerHTML = "";
+  let total = 0;
+  cart.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+      <img src="${item.image}" alt="${item.name}">
+      <h4>${item.name}</h4>
+      <p>$${item.price.toFixed(2)}</p>
+      <button onclick="removeFromCart(${index})">Remove</button>
+    `;
+    container.appendChild(div);
+    total += item.price;
+  });
+  document.getElementById("cart-total").textContent = total.toFixed(2);
+  updateCartCount();
 }
 
-function updateQuantity(index, qty) {
-    qty = parseInt(qty);
-    if (qty < 1) qty = 1;
-    cartItems[index].price = cartItems[index].price / 1 * qty;
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-    renderCart();
+window.removeFromCart = function(index) {
+  cart.splice(index, 1);
+  localStorage.setItem("pusyCart", JSON.stringify(cart));
+  renderCart();
 }
 
-// ------------------------------
-// SEARCH FUNCTIONALITY
-// ------------------------------
-const products = [
-    {name: 'Tank 1', price: 49.99, image:'assets/pic1.jpg', category:'tanks'},
-    {name: 'Bottom 1', price: 59.99, image:'assets/pic2.jpg', category:'bottoms'},
-    {name: 'Gym 1', price: 39.99, image:'assets/pic3.jpg', category:'gym'},
-    {name: 'New Arrival 1', price: 29.99, image:'assets/pic4.jpg', category:'new'},
-    {name: 'Tank 2', price: 45.99, image:'assets/pic5.jpg', category:'tanks'},
-    {name: 'Bottom 2', price: 55.99, image:'assets/pic6.jpg', category:'bottoms'}
-];
+renderCart();
 
-function renderResults(results, containerId='searchResults') {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    container.innerHTML = '';
-    if (results.length === 0) {
-        container.innerHTML = '<p>No products found.</p>';
-        return;
+// ------------------ Collection Page Filtering ------------------
+const collectionGrid = document.getElementById("collection-grid");
+if (collectionGrid) {
+  const products = [
+    {name:"Product 1",price:49.99,image:"assets/pic1.jpg",category:"tanks"},
+    {name:"Product 2",price:59.99,image:"assets/pic2.jpg",category:"bottoms"},
+    {name:"Product 3",price:39.99,image:"assets/pic3.jpg",category:"gym"},
+    {name:"Product 4",price:29.99,image:"assets/pic4.jpg",category:"new"}
+  ];
+
+  const categoryFilter = document.getElementById("filter-category");
+  const sortSelect = document.getElementById("sort-products");
+
+  function renderProducts() {
+    let filtered = products;
+    if (categoryFilter && categoryFilter.value !== "all") {
+      filtered = products.filter(p => p.category === categoryFilter.value);
     }
-    results.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h4>${product.name}</h4>
-            <p>$${product.price.toFixed(2)}</p>
-            <button onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</button>
-        `;
-        container.appendChild(card);
-    });
-}
 
-// ------------------------------
-// INIT
-// ------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
-    renderCart();
-
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-            renderResults(filtered);
-        });
+    if (sortSelect) {
+      if (sortSelect.value === "price-low") filtered.sort((a,b)=>a.price-b.price);
+      if (sortSelect.value === "price-high") filtered.sort((a,b)=>b.price-a.price);
     }
-});
+
+    collectionGrid.innerHTML = "";
+    filtered.forEach(p => {
+      const div = document.createElement("div");
+      div.classList.add("product-card");
+      div.innerHTML = `
+        <img src="${p.image}" alt="${p.name}">
+        <h4>${p.name}</h4>
+        <p>$${p.price.toFixed(2)}</p>
+        <button onclick="addToCart({name:'${p.name}',price:${p.price},image:'${p.image}'})">Add to Cart</button>
+      `;
+      collectionGrid.appendChild(div);
+    });
+  }
+
+  if (categoryFilter) categoryFilter.addEventListener("change", renderProducts);
+  if (sortSelect) sortSelect.addEventListener("change", renderProducts);
+
+  renderProducts();
+}
