@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pusy Bali | Shop</title>
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase-config.js"></script>
   <script type="module" src="script.js" defer></script>
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <header>
     <div class="navbar">
       <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
@@ -17,36 +20,48 @@
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav-icons">
-        <i class="fa-solid fa-cart-shopping" onclick="window.location.href='cart.html'"></i>
+        <i class="fa-solid fa-magnifying-glass" onclick="window.location.href='search.html'"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
         <span class="cart-count">0</span>
       </div>
     </div>
   </header>
 
-  <section class="collection">
-    <h2>Shop Our Collection</h2>
-    <div class="filters">
-      <label>Category:
-        <select id="filter-category">
-          <option value="all">All</option>
-          <option value="tanks">Tanks</option>
-          <option value="bottoms">Bottoms</option>
-          <option value="gym">Gym</option>
-          <option value="new">New</option>
-        </select>
-      </label>
-      <label>Sort by:
-        <select id="sort-products">
-          <option value="newest">Newest</option>
-          <option value="price-low">Price: Low to High</option>
-          <option value="price-high">Price: High to Low</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="product-grid" id="collection-grid">
-      <!-- Products will be dynamically loaded via script.js -->
-    </div>
+  <!-- FILTERS -->
+  <section class="filters">
+    <label>Category:
+      <select id="filter-category">
+        <option value="all">All</option>
+        <option value="tanks">Tanks</option>
+        <option value="bottoms">Bottoms</option>
+        <option value="gym">Gym</option>
+        <option value="new">New</option>
+      </select>
+    </label>
+    <label>Sort:
+      <select id="sort-products">
+        <option value="newest">Newest</option>
+        <option value="price-low">Price Low → High</option>
+        <option value="price-high">Price High → Low</option>
+      </select>
+    </label>
   </section>
+
+  <!-- PRODUCTS -->
+  <section class="product-grid" id="collection-grid">
+    <!-- Products rendered by script.js -->
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+    <div class="instagram">
+      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
+        <img src="assets/Instagram.png" alt="Instagram Logo">
+      </a>
+    </div>
+  </footer>
+
 </body>
 </html>
