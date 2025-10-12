@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pusy Bali | Home</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <script type="module" src="script.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAEYagLFefMcmnOjbMGZLg2eNhCFDFXiwM",
+      authDomain: "pusy-bali.firebaseapp.com",
+      projectId: "pusy-bali",
+      storageBucket: "pusy-bali.firebasestorage.app",
+      messagingSenderId: "22279488877",
+      appId: "1:22279488877:web:0519d5fbf37cc1eacc0664",
+      measurementId: "G-NMN23YM78Y"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.auth = getAuth(app);
+    window.googleProvider = new GoogleAuthProvider();
+  </script>
 </head>
 <body>
   <!-- TOP SCROLLING BAR -->
@@ -23,15 +42,14 @@
       </div>
       <div class="nav-icons">
         <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
-        <i class="fa-solid fa-user"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
+        <i class="fa-solid fa-cart-shopping" onclick="window.location.href='cart.html'"></i>
         <span class="cart-count">0</span>
       </div>
     </div>
-    <form class="search-form" style="display:none;">
-      <input id="searchInput" type="text" placeholder="Search products..." required>
+    <form class="search-form">
+      <input type="text" placeholder="Search products..." required>
       <button type="submit">Search</button>
-      <div id="searchResults"></div>
     </form>
   </header>
 
