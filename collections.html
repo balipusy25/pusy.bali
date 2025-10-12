@@ -1,72 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Product</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusy Bali | Shop</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-  <script defer src="login.js"></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
-<header class="site-header container">
-  <div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo" class="logo-img"></a></div>
-  <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="collections.html">Shop</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
-  <div class="header-right"><div class="search-wrap"><input id="header-search" type="search" placeholder="Search products..."><button id="search-btn" class="btn small">Search</button></div><div class="user-wrap"><button id="open-auth" class="btn small"><i class="fa fa-user"></i></button><span id="user-greeting"></span></div><div class="cart-wrap"><button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button><span id="cart-count" class="cart-count">0</span></div></div>
-</header>
 
-<main class="container section">
-  <div class="product-detail">
-    <div class="product-images">
-      <img id="prod-img-1" src="assets/pic6.jpg" alt="Product image 1">
-      <img id="prod-img-2" src="assets/pic7.jpg" alt="Product image 2">
-    </div>
+  <!-- TOP BAR -->
+  <div class="top-bar">Explore our full collection of premium gym & lifestyle apparel.</div>
 
-    <div class="product-info">
-      <h2 id="prod-title">Product Title</h2>
-      <div id="prod-price" class="price">$0</div>
-
-      <label>Size<select id="prod-size"><option>S</option><option>M</option><option>L</option></select></label>
-      <label>Color<select id="prod-color"><option>Black</option><option>Blue</option><option>Red</option></select></label>
-      <label>Quantity<input id="prod-qty" type="number" min="1" value="1"></label>
-
-      <div style="display:flex;gap:10px;margin-top:12px">
-        <button id="prod-add" class="btn primary">Add to cart</button>
-        <a href="cart.html" class="btn">View cart</a>
+  <!-- NAVBAR -->
+  <header>
+    <div class="navbar">
+      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="collections.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
       </div>
     </div>
-  </div>
-</main>
+    <form class="search-form" style="display:none;">
+      <input type="text" placeholder="Search products..." required>
+      <button type="submit">Search</button>
+    </form>
+  </header>
 
-<footer class="site-footer">
-  <div class="container footer-grid"><div class="col"><h4>Pusy Bali</h4></div><div class="col"><h4>Shop</h4></div><div class="col"><h4>Help</h4></div><div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div></div>
-</footer>
+  <!-- COLLECTION FILTERS -->
+  <section class="category-buttons">
+    <button onclick="filterProducts('all')">All</button>
+    <button onclick="filterProducts('tanks')">Tanks</button>
+    <button onclick="filterProducts('bottoms')">Bottoms</button>
+    <button onclick="filterProducts('gym')">Gym</button>
+    <button onclick="filterProducts('new')">New</button>
+  </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', ()=>{
-  const sel = JSON.parse(localStorage.getItem('puys_selected_product') || 'null');
-  if (!sel) return;
-  document.getElementById('prod-title').innerText = sel.name || '';
-  document.getElementById('prod-price').innerText = '$' + (sel.price || 0);
-  document.getElementById('prod-img-1').src = sel.img || 'assets/pic6.jpg';
-  document.getElementById('prod-img-2').src = sel.img || 'assets/pic7.jpg';
-  document.getElementById('prod-add').addEventListener('click', ()=>{
-    const CART_KEY = 'puys_cart_v1';
-    let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
-    const id = sel.id || sel.name;
-    const qty = parseInt(document.getElementById('prod-qty').value) || 1;
-    const size = document.getElementById('prod-size').value;
-    const color = document.getElementById('prod-color').value;
-    const variant = size + '|' + color;
-    const existing = cart.find(i => i.id === id && i.variant === variant);
-    if (existing) existing.qty = (existing.qty || 0) + qty;
-    else cart.push({ id, name: sel.name, price: sel.price, img: sel.img, qty, variant });
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    alert('Added to cart');
-    // call global cart count updater if provided
-    if (typeof window.updateCartCount === 'function') window.updateCartCount();
-  });
-});
-</script>
+  <!-- PRODUCTS GRID -->
+  <section class="new-arrivals">
+    <h2>Shop All Products</h2>
+    <div class="product-grid">
+      <div class="product-card" data-category="tanks">
+        <img src="assets/pic1.jpg" alt="Tank 1">
+        <h4>Tank 1</h4>
+        <p>$49.99</p>
+        <button onclick="addToCart({name:'Tank 1',price:49.99,image:'assets/pic1.jpg'})">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="bottoms">
+        <img src="assets/pic2.jpg" alt="Bottom 1">
+        <h4>Bottom 1</h4>
+        <p>$59.99</p>
+        <button onclick="addToCart({name:'Bottom 1',price:59.99,image:'assets/pic2.jpg'})">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="gym">
+        <img src="assets/pic3.jpg" alt="Gym 1">
+        <h4>Gym 1</h4>
+        <p>$39.99</p>
+        <button onclick="addToCart({name:'Gym 1',price:39.99,image:'assets/pic3.jpg'})">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="new">
+        <img src="assets/pic4.jpg" alt="New 1">
+        <h4>New Arrival 1</h4>
+        <p>$29.99</p>
+        <button onclick="addToCart({name:'New Arrival 1',price:29.99,image:'assets/pic4.jpg'})">Add to Cart</button>
+      </div>
+      <!-- More product placeholders -->
+      <div class="product-card" data-category="tanks">
+        <img src="assets/pic5.jpg" alt="Tank 2">
+        <h4>Tank 2</h4>
+        <p>$45.99</p>
+        <button onclick="addToCart({name:'Tank 2',price:45.99,image:'assets/pic5.jpg'})">Add to Cart</button>
+      </div>
+      <div class="product-card" data-category="bottoms">
+        <img src="assets/pic6.jpg" alt="Bottom 2">
+        <h4>Bottom 2</h4>
+        <p>$55.99</p>
+        <button onclick="addToCart({name:'Bottom 2',price:55.99,image:'assets/pic6.jpg'})">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+    <div class="instagram">
+      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
+        <img src="assets/logo.png" alt="Instagram Logo">
+      </a>
+    </div>
+  </footer>
 
 </body>
 </html>
