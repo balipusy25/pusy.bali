@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusy Bali | Checkout</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="checkout.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">Secure Checkout - Complete Your Order</div>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="navbar">
+      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="collections.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
+        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
+      </div>
+    </div>
+    <form class="search-form" style="display:none;">
+      <input type="text" placeholder="Search products..." required>
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <!-- CHECKOUT FORM -->
+  <section class="checkout-container">
+    <h2>Checkout</h2>
+    <form id="checkoutForm">
+      <h3>Billing & Shipping Details</h3>
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="address" placeholder="Shipping Address" required>
+      <input type="text" name="city" placeholder="City" required>
+      <input type="text" name="postal" placeholder="Postal / ZIP Code" required>
+      <input type="text" name="country" placeholder="Country" required>
+
+      <h3>Payment Method</h3>
+      <select name="paymentMethod" required>
+        <option value="credit card">Credit Card</option>
+        <option value="paypal">PayPal</option>
+      </select>
+      <input type="text" name="card" placeholder="Card Number or PayPal Email" required>
+
+      <h3>Order Summary</h3>
+      <div id="orderSummary"></div>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+    <div class="instagram">
+      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
+        <img src="assets/logo.png" alt="Instagram Logo">
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
