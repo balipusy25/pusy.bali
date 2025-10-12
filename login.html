@@ -1,36 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusy Bali | Login</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="login.js"></script>
+  <script src="login.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
-<header class="site-header container"><div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo"></a></div></header>
+  <!-- TOP BAR -->
+  <div class="top-bar">Welcome back! Please login to your account.</div>
 
-<main class="container section">
-  <h2>Sign in / Create account</h2>
-
-  <section style="display:flex;gap:30px;flex-wrap:wrap">
-    <form id="loginForm" style="flex:1;min-width:280px">
-      <h3>Sign in</h3>
-      <input name="email" placeholder="Email" required>
-      <input name="password" type="password" placeholder="Password" required>
-      <button class="btn primary" type="submit">Sign in</button>
+  <!-- NAVBAR -->
+  <header>
+    <div class="navbar">
+      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="collections.html">Shop</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-solid fa-magnifying-glass" onclick="document.querySelector('.search-form').classList.toggle('active')"></i>
+        <i class="fa-solid fa-user"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
+      </div>
+    </div>
+    <form class="search-form" style="display:none;">
+      <input type="text" placeholder="Search products..." required>
+      <button type="submit">Search</button>
     </form>
+  </header>
 
-    <form id="signupForm" style="flex:1;min-width:280px">
-      <h3>Create account</h3>
-      <input name="name" placeholder="Full name" required>
-      <input name="email" placeholder="Email" required>
-      <input name="password" type="password" placeholder="Password" required>
-      <button class="btn" type="submit">Create account</button>
+  <!-- LOGIN FORM -->
+  <section class="checkout-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
     </form>
+    <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
   </section>
-</main>
 
-<footer class="site-footer"><div class="container footer-grid"><div class="col"><h4>Pusy Bali</h4></div></div></footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pusy Bali. All rights reserved.</p>
+    <div class="instagram">
+      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
+        <img src="assets/logo.png" alt="Instagram Logo">
+      </a>
+    </div>
+  </footer>
+
 </body>
 </html>
