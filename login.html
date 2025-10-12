@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="login.js"></script>
+</head>
+<body>
+
+<header class="site-header container"><div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo"></a></div></header>
+
+<main class="container section">
+  <h2>Sign in / Create account</h2>
+
+  <section style="display:flex;gap:30px;flex-wrap:wrap">
+    <form id="loginForm" style="flex:1;min-width:280px">
+      <h3>Sign in</h3>
+      <input name="email" placeholder="Email" required>
+      <input name="password" type="password" placeholder="Password" required>
+      <button class="btn primary" type="submit">Sign in</button>
+    </form>
+
+    <form id="signupForm" style="flex:1;min-width:280px">
+      <h3>Create account</h3>
+      <input name="name" placeholder="Full name" required>
+      <input name="email" placeholder="Email" required>
+      <input name="password" type="password" placeholder="Password" required>
+      <button class="btn" type="submit">Create account</button>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="container footer-grid"><div class="col"><h4>Pusy Bali</h4></div></div></footer>
+</body>
+</html>
