@@ -1,45 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali | Cart</title>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Cart</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase-config.js"></script>
-  <script type="module" src="script.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-
-  <!-- NAVBAR -->
   <header>
     <div class="navbar">
-      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="collections.html">Shop</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass" onclick="window.location.href='search.html'"></i>
-        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span class="cart-count">0</span>
-      </div>
+      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="logo"></a></div>
+      <nav class="nav-links"><a href="index.html">Home</a><a href="collections.html">Shop</a></nav>
+      <div class="nav-icons"><a href="checkout.html">Checkout</a></div>
     </div>
   </header>
 
-  <!-- CART ITEMS -->
-  <section class="cart-section">
+  <main class="checkout-container">
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
-    <p>Total: $<span id="cart-total">0.00</span></p>
-    <button onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
-  </section>
+    <div style="text-align:right;margin-top:12px">Subtotal: <strong id="cart-total">$0.00</strong></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:12px">
+      <a href="checkout.html" class="btn primary">Proceed to Checkout</a>
+    </div>
+  </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Pusy Bali. All rights reserved.</p>
-  </footer>
+<script>
+  // Ensure script.js has already set up cart; render cart contents
+  document.addEventListener('DOMContentLoaded', () => {
+    // script.js provides renderCartPage which reads localStorage
+    if (typeof window.renderCartPage === 'function') window.renderCartPage();
+  });
+</script>
 
 </body>
 </html>
