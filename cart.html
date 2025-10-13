@@ -1,39 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Cart</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pusy Bali — Cart</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="site-header" class="header"></div>
 
-  <header>
-    <div class="logo"><a href="index.html">ShopName</a></div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="collections.html">Collections</a></li>
-        <li><a href="search.html">Search</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="cart.html">Cart</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="cart-page">
-    <h1>Your Shopping Cart</h1>
-    <div id="cart-items"></div>
-
-    <div class="cart-total">
-      <h2>Total: $<span id="cart-total">0.00</span></h2>
-      <button id="checkout-btn">Proceed to Checkout</button>
+  <div class="cart-page container">
+    <h2>Your Cart</h2>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;">
+      <div style="flex:1">
+        <div id="cart-items" class="cart-list"></div>
+      </div>
+      <div style="width:320px;">
+        <div class="cart-summary">
+          <h3>Order Summary</h3>
+          <div style="margin-top:8px;">Subtotal: $<span id="cart-total">0.00</span></div>
+          <div class="cart-actions">
+            <button id="proceed-checkout" class="btn">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </main>
+  </div>
 
-  <footer>
-    <p>© 2025 ShopName. All Rights Reserved.</p>
-  </footer>
+  <div id="site-footer" class="site-footer"></div>
 
   <script src="script.js"></script>
   <script src="checkout.js"></script>
