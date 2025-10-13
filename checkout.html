@@ -1,44 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali | Checkout</title>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Checkout</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase-config.js"></script>
+  <!-- checkout.js uses firebase -> import as module -->
   <script type="module" src="checkout.js" defer></script>
 </head>
 <body>
-
-  <!-- NAVBAR -->
   <header>
     <div class="navbar">
-      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="collections.html">Shop</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass" onclick="window.location.href='search.html'"></i>
-        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span class="cart-count">0</span>
-      </div>
+      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="logo"></a></div>
     </div>
   </header>
 
-  <section class="checkout-section">
+  <main class="checkout-container">
     <h2>Checkout</h2>
-    <div id="cart-items"></div>
-    <p>Total: $<span id="checkout-total">0.00</span></p>
-    <div id="paypal-button-container"></div>
-  </section>
+    <form id="checkout-form">
+      <label>Full name <input name="name" required></label>
+      <label>Email <input name="email" type="email" required></label>
+      <label>Address <input name="address" required></label>
+      <label>City <input name="city" required></label>
+      <label>Postal <input name="postal" required></label>
+      <label>Payment Method
+        <select name="paymentMethod" required>
+          <option value="paypal">PayPal</option>
+          <option value="card">Credit Card</option>
+        </select>
+      </label>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Pusy Bali. All rights reserved.</p>
+      <h3>Order Summary</h3>
+      <div id="order-summary"></div>
+
+      <button type="submit" class="btn primary">Place Order</button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid container">
+      <div class="col"><p class="muted">Questions? <a href="contact.html">Contact us</a></p></div>
+    </div>
   </footer>
-
 </body>
 </html>
