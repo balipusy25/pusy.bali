@@ -6,19 +6,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="site-header" class="header"></div>
+  <div id="site-header" class="site-header"></div>
 
   <div class="section container">
-    <h2>Collections</h2>
-    <div style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
-      <button onclick="goToCategory('all')" class="btn">All</button>
-      <button onclick="goToCategory('new')" class="btn">New</button>
-      <button onclick="goToCategory('tanks')" class="btn">Tanks</button>
-      <button onclick="goToCategory('bottoms')" class="btn">Bottoms</button>
-      <button onclick="goToCategory('gym')" class="btn">Gym</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h2>Collections</h2>
+      <div>
+        <button class="btn" onclick="goToCategory('all')">All</button>
+        <button class="btn-light" onclick="goToCategory('new')">New</button>
+        <button class="btn-light" onclick="goToCategory('tanks')">Tanks</button>
+        <button class="btn-light" onclick="goToCategory('bottoms')">Bottoms</button>
+        <button class="btn-light" onclick="goToCategory('gym')">Gym</button>
+      </div>
     </div>
 
-    <div id="collection-products" class="products-grid"></div>
+    <div id="collection-products" class="products-grid" style="margin-top:18px;"></div>
   </div>
 
   <div id="site-footer" class="site-footer"></div>
