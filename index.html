@@ -1,83 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali | Home</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Home</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase-config.js"></script>
-  <script type="module" src="script.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="top-strip">Free shipping over $100</div>
 
-  <!-- TOP SCROLLING BAR -->
-  <div class="top-bar"><span>Welcome to Pusy Bali! Exclusive gym & lifestyle apparel.</span></div>
-
-  <!-- NAVBAR -->
   <header>
     <div class="navbar">
-      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
-      <div class="nav-links">
+      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Pusy Bali"></a></div>
+      <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="collections.html">Shop</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </nav>
       <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass" onclick="window.location.href='search.html'"></i>
-        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span class="cart-count">0</span>
+        <a href="search.html" title="Search">🔍</a>
+        <a href="login.html" title="Login">👤</a>
+        <a href="cart.html" title="Cart">🛒 <span class="cart-count">0</span></a>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Discover Your Style</h1>
-    <button onclick="window.location.href='collections.html'">Shop Now</button>
-  </section>
+  <main>
+    <section class="hero">
+      <img src="assets/pic1.jpg" alt="Hero image">
+      <button onclick="location.href='collections.html'" class="btn primary">Shop Now</button>
+    </section>
 
-  <!-- CATEGORY BUTTONS -->
-  <section class="category-buttons">
-    <button onclick="window.location.href='collections.html?filter=new'">New</button>
-    <button onclick="window.location.href='collections.html?filter=tanks'">Tanks</button>
-    <button onclick="window.location.href='collections.html?filter=bottoms'">Bottoms</button>
-    <button onclick="window.location.href='collections.html?filter=gym'">Gym</button>
-  </section>
+    <section class="category-strip container">
+      <div class="category-grid">
+        <a class="cat-card" href="collections.html?category=new"><img src="assets/pic2.jpg" alt=""><div class="cat-title">New</div></a>
+        <a class="cat-card" href="collections.html?category=tanks"><img src="assets/pic3.jpg" alt=""><div class="cat-title">Tanks</div></a>
+        <a class="cat-card" href="collections.html?category=bottoms"><img src="assets/pic4.jpg" alt=""><div class="cat-title">Bottoms</div></a>
+        <a class="cat-card" href="collections.html?category=gym"><img src="assets/pic5.jpg" alt=""><div class="cat-title">Gym</div></a>
+      </div>
+    </section>
 
-  <!-- NEW ARRIVALS -->
-  <section class="new-arrivals">
-    <h2>New Arrivals</h2>
-    <div class="product-grid" id="collection-grid-home">
-      <!-- Product cards will be rendered by script.js -->
-    </div>
-  </section>
+    <section class="container">
+      <div class="section-head"><h2>New Arrivals</h2><p class="muted">Freshly added</p></div>
+      <div id="new-products" class="products-grid"></div>
+    </section>
 
-  <!-- VIDEO SECTION -->
-  <section class="new-arrivals">
-    <h2>Videos</h2>
-    <div class="product-grid">
-      <video controls src="assets/video1.mp4" width="100%"></video>
-      <video controls src="assets/video2.mp4" width="100%"></video>
-    </div>
-  </section>
+    <section class="container">
+      <div class="section-head"><h2>Videos</h2><p class="muted">See our fit in motion</p></div>
+      <div class="products-grid">
+        <video controls src="assets/video1.mp4" poster="assets/pic10.jpg"></video>
+        <video controls src="assets/video2.mp4" poster="assets/pic11.jpg"></video>
+      </div>
+    </section>
 
-  <!-- ABOUT BRAND -->
-  <section class="new-arrivals">
-    <h2>About Pusy Bali</h2>
-    <p>Pusy Bali provides premium gym & lifestyle apparel designed for comfort, style, and performance. Shop our collection and experience quality like no other.</p>
-  </section>
+    <section class="about-brand container">
+      <h2>About Pusy Bali</h2>
+      <p class="muted">Performance-minded apparel designed with care in Bali. Fast shipping & easy returns.</p>
+    </section>
+  </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Pusy Bali. All rights reserved.</p>
-    <div class="instagram">
-      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
-        <img src="assets/Instagram.png" alt="Instagram Logo">
-      </a>
+  <footer class="site-footer">
+    <div class="footer-grid container">
+      <div class="col"><h4>Pusy Bali</h4><p class="muted">Performance. Comfort. Style.</p></div>
+      <div class="col"><h4>Shop</h4><a href="collections.html?category=new">New</a><br><a href="collections.html?category=tanks">Tanks</a></div>
+      <div class="col"><h4>Help</h4><a href="contact.html">Contact</a></div>
+      <div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/" target="_blank"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div>
     </div>
   </footer>
-
 </body>
 </html>
