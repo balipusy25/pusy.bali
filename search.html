@@ -1,36 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali | Search</title>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Search</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="script.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <header><div class="top-strip">Search</div></header>
 
-  <!-- NAVBAR -->
-  <header>
-    <div class="navbar">
-      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="collections.html">Shop</a>
-        <a href="contact.html">Contact</a>
+  <main class="container">
+    <div style="max-width:900px;margin:18px auto">
+      <div style="display:flex;gap:8px">
+        <input id="search-input" type="text" placeholder="Search products..." style="flex:1;padding:10px;border-radius:8px;border:1px solid #ddd">
+        <button id="search-btn" class="btn">Search</button>
       </div>
-      <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span class="cart-count">0</span>
-      </div>
+      <div id="search-results" class="products-grid" style="margin-top:16px"></div>
     </div>
-  </header>
+  </main>
 
-  <section class="search-section">
-    <h2>Search Results</h2>
-    <div id="search-results"></div>
-  </section>
-
+  <script>
+    document.getElementById('search-btn').addEventListener('click', () => {
+      const qv = document.getElementById('search-input').value.trim();
+      // Save query for script.js fallback
+      localStorage.setItem('searchQuery', qv);
+      // script.js will handle rendering when search.html loads if needed
+      // Simple immediate client-side search example:
+      const sample = [
+        {id:'p1',name:'New Yoga Tank',price:49.99,image:'assets/pic6.jpg'},
+        {id:'p2',name:'Stretch Bottoms',price:69.99,image:'assets/pic7.jpg'},
+        {id:'p3',name:'Performance Tee',price:39.99,image:'assets/pic8.jpg'}
+      ];
+      const results = sample.filter(p => p.name.toLowerCase().includes(qv.toLowerCase()));
+      const wrap = document.getElementById('search-results');
+      wrap.innerHTML = results.length ? results.map(p => `
+        <article class="product-card">
+          <img src="${p.image}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <div class="price">$${p.price.toFixed(2)}</div>
+          <div class="product-actions"><button class="btn" onclick='addToCart(${JSON.stringify(p)})'>Add</button></div>
+        </article>
+      `).join('') : '<p class="muted">No results</p>';
+    });
+  </script>
 </body>
 </html>
