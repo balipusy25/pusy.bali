@@ -6,64 +6,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- header injection point -->
-  <div id="site-header" class="header"></div>
+  <div id="site-header" class="site-header"></div>
 
-  <!-- moving slogan + small left icons layout -->
-  <div class="container" style="margin-top:14px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-      <div style="font-weight:700">Live Bold. Move Free. Feel Pusy Bali.</div>
-      <div style="display:flex;gap:12px;align-items:center;">
-        <a href="cart.html" class="btn-cart-link">🛒 <span class="cart-count">0</span></a>
-        <a href="search.html">🔍</a>
-      </div>
-    </div>
-  </div>
+  <div class="slogan-bar">Live Bold • Move Free • Feel Pusy Bali</div>
 
-  <!-- hero -->
-  <div class="hero">
-    <img class="hero-img" src="assets/pic1.jpg" alt="Hero">
+  <div class="hero container">
+    <img class="hero-img" src="assets/pic1.jpg" alt="Hero image">
     <div class="hero-cta">
-      <button onclick="window.location.href='collections.html'">Shop Now</button>
+      <h1>Performance. Comfort. Style.</h1>
+      <p>Made for movement — inspired by Bali</p>
+      <button class="btn" onclick="window.location.href='collections.html'">Shop Now</button>
     </div>
   </div>
 
-  <!-- categories -->
-  <div class="categories container" style="margin-top:18px;">
-    <div class="cat-card" onclick="goToCategory('new')"><img src="assets/pic2.jpg"><div class="cat-title">New</div></div>
-    <div class="cat-card" onclick="goToCategory('tanks')"><img src="assets/pic3.jpg"><div class="cat-title">Tanks</div></div>
-    <div class="cat-card" onclick="goToCategory('bottoms')"><img src="assets/pic4.jpg"><div class="cat-title">Bottoms</div></div>
-    <div class="cat-card" onclick="goToCategory('gym')"><img src="assets/pic5.jpg"><div class="cat-title">Gym</div></div>
+  <div class="categories">
+    <div class="cat-card" onclick="goToCategory('new')"><img src="assets/pic2.jpg" alt=""><div class="cat-label">New</div></div>
+    <div class="cat-card" onclick="goToCategory('tanks')"><img src="assets/pic3.jpg" alt=""><div class="cat-label">Tanks</div></div>
+    <div class="cat-card" onclick="goToCategory('bottoms')"><img src="assets/pic4.jpg" alt=""><div class="cat-label">Bottoms</div></div>
+    <div class="cat-card" onclick="goToCategory('gym')"><img src="assets/pic5.jpg" alt=""><div class="cat-label">Gym</div></div>
   </div>
 
-  <!-- new arrivals -->
-  <section class="section">
-    <div class="container">
-      <h2>New Arrivals</h2>
-      <div id="home-products" class="products-grid"></div>
+  <section class="section container">
+    <h2>New Arrivals</h2>
+    <div id="home-products" class="products-grid"></div>
+  </section>
+
+  <section class="section container">
+    <h2>Videos</h2>
+    <div class="videos-grid">
+      <video src="assets/video1.mp4" controls></video>
+      <video src="assets/video2.mp4" controls></video>
     </div>
   </section>
 
-  <!-- videos -->
-  <section class="section">
-    <div class="container center">
-      <h2>Videos</h2>
-      <div class="videos-grid">
-        <video src="assets/video1.mp4" controls></video>
-        <video src="assets/video2.mp4" controls></video>
-      </div>
-    </div>
-  </section>
-
-  <!-- about -->
-  <section class="section">
-    <div class="container about">
+  <section class="section container">
+    <div class="about">
       <h2>About Pusy Bali</h2>
-      <p>Performance-minded apparel inspired by Bali — comfort, fit, and style for everyday life and training.</p>
+      <p>We craft elevated activewear with a focus on fit and function. Designed in Bali, built for everyday movement.</p>
     </div>
   </section>
 
-  <!-- footer injection -->
   <div id="site-footer" class="site-footer"></div>
 
   <script src="script.js"></script>
