@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart - Pusy Bali</title>
-<link rel="stylesheet" href="style.css">
-<script type="module" src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <div class="top-bar">
-    <img src="assets/logo.png" alt="Pusy Bali Logo" class="logo" onclick="goHome()">
-    <input type="text" placeholder="Search" id="search-input">
-    <button id="search-btn">&#128269;</button>
-    <div id="cart-icon">
-      🛒 <span id="cart-count">0</span>
+
+  <header>
+    <div class="logo"><a href="index.html">ShopName</a></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="cart-page">
+    <h1>Your Shopping Cart</h1>
+    <div id="cart-items"></div>
+
+    <div class="cart-total">
+      <h2>Total: $<span id="cart-total">0.00</span></h2>
+      <button id="checkout-btn">Proceed to Checkout</button>
     </div>
-  </div>
-</header>
+  </main>
 
-<main>
-  <h1>Your Cart</h1>
-  <section id="cart-items">
-    <!-- Cart items dynamically inserted here -->
-  </section>
-  <div class="cart-total">
-    Total: $<span id="cart-total">0</span>
-    <button onclick="goToCheckout()">Proceed to Checkout</button>
-  </div>
-</main>
+  <footer>
+    <p>© 2025 ShopName. All Rights Reserved.</p>
+  </footer>
 
-<footer>
-  <div class="footer-content">
-    <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
-    <a href="https://www.instagram.com/pusy_bali/" target="_blank">Instagram</a>
-  </div>
-</footer>
+  <script src="script.js"></script>
+  <script src="checkout.js"></script>
 </body>
 </html>
