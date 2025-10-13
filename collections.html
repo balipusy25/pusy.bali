@@ -1,49 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Collections | ShopName</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pusy Bali — Collections</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="site-header" class="header"></div>
 
-  <header>
-    <div class="logo"><a href="index.html">ShopName</a></div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="collections.html" class="active">Collections</a></li>
-        <li><a href="search.html">Search</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="cart.html">Cart</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="collections">
-    <h1>Our Collections</h1>
-    <div class="products" id="product-list">
-      <!-- Placeholder items -->
-      <div class="product">
-        <img src="assets/product1.jpg" alt="Product 1">
-        <h3>Product One</h3>
-        <p>$39.99</p>
-        <button class="add-to-cart" data-name="Product One" data-price="39.99">Add to Cart</button>
-      </div>
-
-      <div class="product">
-        <img src="assets/product2.jpg" alt="Product 2">
-        <h3>Product Two</h3>
-        <p>$49.99</p>
-        <button class="add-to-cart" data-name="Product Two" data-price="49.99">Add to Cart</button>
-      </div>
+  <div class="section container">
+    <h2>Collections</h2>
+    <div style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+      <button onclick="goToCategory('all')" class="btn">All</button>
+      <button onclick="goToCategory('new')" class="btn">New</button>
+      <button onclick="goToCategory('tanks')" class="btn">Tanks</button>
+      <button onclick="goToCategory('bottoms')" class="btn">Bottoms</button>
+      <button onclick="goToCategory('gym')" class="btn">Gym</button>
     </div>
-  </main>
 
-  <footer>
-    <p>© 2025 pusy bali All Rights Reserved.</p>
-  </footer>
+    <div id="collection-products" class="products-grid"></div>
+  </div>
+
+  <div id="site-footer" class="site-footer"></div>
 
   <script src="script.js"></script>
 </body>
