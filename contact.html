@@ -1,36 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali | Contact</title>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Contact</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="navbar">
-      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="collections.html">Shop</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="nav-icons">
-        <i class="fa-solid fa-cart-shopping" onclick="window.location.href='cart.html'"></i>
-        <span class="cart-count">0</span>
-      </div>
-    </div>
-  </header>
+  <header><div class="top-strip">Reach out — we reply fast</div></header>
 
-  <section class="contact-section">
-    <h2>Contact Us</h2>
-    <p>Email us at <a href="mailto:balipusy2@gmail.com">balipusy2@gmail.com</a></p>
-    <form id="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
+  <main class="checkout-container">
+    <h2>Contact</h2>
+    <p class="muted">Email: <a href="mailto:balipusy2@gmail.com">balipusy2@gmail.com</a></p>
+    <form id="contact-form" onsubmit="event.preventDefault(); alert('Message sent (simulated).'); this.reset();">
+      <input name="name" placeholder="Name" required>
+      <input name="email" placeholder="Email" required type="email">
+      <textarea name="message" placeholder="Message" required></textarea>
+      <button class="btn primary" type="submit">Send Message</button>
     </form>
-  </section>
+  </main>
 </body>
 </html>
