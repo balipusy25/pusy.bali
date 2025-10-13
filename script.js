@@ -1,141 +1,201 @@
-// Import Firebase auth
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+// script.js
+// Main site logic: cart, product rendering, search, header UI.
+// This file is not a module (for broad compatibility), but pages that need Firebase will import firebase-config separately.
 
-// Initialize auth
-const auth = getAuth();
+(function () {
+  // Cart stored in localStorage as 'puys_cart_v1'
+  const CART_KEY = 'puys_cart_v1';
+  let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
 
-// -------------------- CART --------------------
-let cart = JSON.parse(localStorage.getItem('pusyBaliCart')) || [];
-const cartCount = document.querySelectorAll('.cart-count');
+  // DOM helpers
+  const q = sel => document.querySelector(sel);
+  const qAll = sel => Array.from(document.querySelectorAll(sel));
 
-function updateCartCount() {
-    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.forEach(el => el.textContent = total);
-}
-updateCartCount();
+  // Update all cart-count elements
+  function updateCartCount() {
+    const count = cart.reduce((s, it) => s + (it.qty || 1), 0);
+    qAll('.cart-count').forEach(el => el.textContent = count);
+  }
 
-export function addToCart(product) {
-    const existing = cart.find(item => item.name === product.name);
-    if (existing) {
-        existing.quantity += 1;
+  // Save cart
+  function saveCart() {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }
+
+  // Add product to cart
+  window.addToCart = function (product) {
+    // product should be an object { id?, name, price, image, qty? }
+    const existsIdx = cart.findIndex(ci => ci.id && product.id && ci.id === product.id && ci.variant === product.variant);
+    if (existsIdx > -1) {
+      cart[existsIdx].qty = (cart[existsIdx].qty || 1) + (product.qty || 1);
     } else {
-        cart.push({ ...product, quantity: 1 });
+      const p = Object.assign({ qty: 1 }, product);
+      cart.push(p);
     }
-    localStorage.setItem('pusyBaliCart', JSON.stringify(cart));
+    saveCart();
     updateCartCount();
-    alert(`${product.name} added to cart!`);
-}
+    // quick UI feedback
+    if (typeof window.onCartUpdated === 'function') window.onCartUpdated(cart);
+    alert(`${product.name} added to cart`);
+  };
 
-// -------------------- PRODUCTS --------------------
-const products = [
-    { name:'Product 1', price:49.99, image:'assets/pic1.jpg', category:'tanks' },
-    { name:'Product 2', price:59.99, image:'assets/pic2.jpg', category:'bottoms' },
-    { name:'Product 3', price:39.99, image:'assets/pic3.jpg', category:'gym' },
-    { name:'Product 4', price:29.99, image:'assets/pic4.jpg', category:'new' },
-];
-
-function renderProducts(containerId, filter='all') {
+  // Render product list to a container id
+  window.renderProducts = function (products, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = '';
-    let filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
-    filtered.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <img src="${p.image}" alt="${p.name}">
-            <h4>${p.name}</h4>
-            <p>$${p.price.toFixed(2)}</p>
-            <button onclick="addToCart({name:'${p.name}', price:${p.price}, image:'${p.image}'})">Add to Cart</button>
-        `;
-        container.appendChild(card);
-    });
-}
-
-// Render collection products
-renderProducts('collection-grid-home');
-renderProducts('collection-grid');
-
-// Filter from URL (collections.html)
-const params = new URLSearchParams(window.location.search);
-if (params.has('filter')) {
-    renderProducts('collection-grid', params.get('filter'));
-}
-
-// -------------------- SEARCH --------------------
-const searchResults = document.getElementById('search-results');
-if (searchResults) {
-    const query = params.get('q')?.toLowerCase() || '';
-    const results = products.filter(p => p.name.toLowerCase().includes(query));
-    if (results.length === 0) searchResults.innerHTML = '<p>No results found</p>';
-    else results.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'product-card';
-        div.innerHTML = `<img src="${p.image}" alt="${p.name}"><h4>${p.name}</h4><p>$${p.price}</p>`;
-        searchResults.appendChild(div);
-    });
-}
-
-// -------------------- AUTH --------------------
-// Signup
-const signupForm = document.getElementById('signup-form');
-if (signupForm) {
-    signupForm.addEventListener('submit', e => {
+    products.forEach(p => {
+      const card = document.createElement('article');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <a class="product-link" data-id="${p.id || ''}">
+          <img src="${p.image || 'assets/pic1.jpg'}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <div class="price">$${Number(p.price || 0).toFixed(2)}</div>
+        </a>
+        <div class="product-actions">
+          <button class="btn tiny add-to-cart">Add to cart</button>
+          <button class="btn tiny view-product">View</button>
+        </div>
+      `;
+      // attach add-to-cart handler
+      card.querySelector('.add-to-cart').addEventListener('click', (e) => {
         e.preventDefault();
-        const email = document.getElementById('signup-email').value;
-        const password = document.getElementById('signup-password').value;
-        createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            alert('Signup successful!');
-            window.location.href = 'index.html';
-        })
-        .catch(err => document.getElementById('signup-error').textContent = err.message);
-    });
-}
-
-// Login
-const loginForm = document.getElementById('login-form');
-if (loginForm) {
-    loginForm.addEventListener('submit', e => {
+        window.addToCart(p);
+      });
+      // view product
+      card.querySelector('.view-product').addEventListener('click', (e) => {
         e.preventDefault();
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            alert('Login successful!');
-            window.location.href = 'index.html';
-        })
-        .catch(err => document.getElementById('login-error').textContent = err.message);
+        localStorage.setItem('puys_selected_product', JSON.stringify(p));
+        window.location.href = 'product.html';
+      });
+      container.appendChild(card);
     });
-}
+  };
 
-// Google login/signup
-const googleProvider = new GoogleAuthProvider();
-
-const googleLoginBtn = document.getElementById('google-login');
-if (googleLoginBtn) googleLoginBtn.addEventListener('click', () => {
-    signInWithPopup(auth, googleProvider)
-    .then(res => window.location.href='index.html')
-    .catch(err => alert(err.message));
-});
-const googleSignupBtn = document.getElementById('google-signup');
-if (googleSignupBtn) googleSignupBtn.addEventListener('click', () => {
-    signInWithPopup(auth, googleProvider)
-    .then(res => window.location.href='index.html')
-    .catch(err => alert(err.message));
-});
-
-// -------------------- CART PAGE RENDER --------------------
-const cartItemsContainer = document.getElementById('cart-items');
-if (cartItemsContainer) {
-    cart.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `<img src="${item.image}" alt="${item.name}" width="50">
-                         <span>${item.name} x ${item.quantity}</span>
-                         <span>$${(item.price * item.quantity).toFixed(2)}</span>`;
-        cartItemsContainer.appendChild(div);
+  // Display cart items (used on cart.html)
+  window.renderCartPage = function () {
+    const container = document.getElementById('cart-items');
+    if (!container) return;
+    container.innerHTML = '';
+    if (cart.length === 0) {
+      container.innerHTML = '<p class="muted">Your cart is empty.</p>';
+      document.getElementById('cart-total').textContent = '$0.00';
+      return;
+    }
+    let subtotal = 0;
+    cart.forEach((it, idx) => {
+      subtotal += (it.price || 0) * (it.qty || 1);
+      const div = document.createElement('div');
+      div.className = 'cart-row';
+      div.innerHTML = `
+        <img src="${it.image || 'assets/pic1.jpg'}" alt="${it.name}">
+        <div class="cart-row-info">
+          <h4>${it.name}</h4>
+          <div>$${(it.price || 0).toFixed(2)}</div>
+          <div>
+            <input type="number" min="1" value="${it.qty || 1}" data-idx="${idx}" class="cart-qty">
+            <button class="btn tiny remove-item" data-idx="${idx}">Remove</button>
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
     });
-    const totalEl = document.getElementById('cart-total');
-    if (totalEl) totalEl.textContent = cart.reduce((sum,item)=>sum+item.price*item.quantity,0).toFixed(2);
-}
+    document.getElementById('cart-total').textContent = '$' + subtotal.toFixed(2);
+
+    // attach events
+    qAll('.cart-qty').forEach(inp => {
+      inp.addEventListener('change', (e) => {
+        const idx = Number(e.target.dataset.idx);
+        let v = parseInt(e.target.value, 10) || 1;
+        if (v < 1) v = 1;
+        cart[idx].qty = v;
+        saveCart();
+        renderCartPage();
+        updateCartCount();
+      });
+    });
+    qAll('.remove-item').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = Number(e.target.dataset.idx);
+        cart.splice(idx, 1);
+        saveCart();
+        renderCartPage();
+        updateCartCount();
+      });
+    });
+  };
+
+  // Search redirect utility (search input with id 'search-input' on pages)
+  function attachSearch() {
+    const searchInput = q('#search-input');
+    const searchBtn = q('#search-btn');
+    if (searchBtn && searchInput) {
+      searchBtn.addEventListener('click', () => {
+        const qv = searchInput.value.trim();
+        window.location.href = 'search.html?q=' + encodeURIComponent(qv);
+      });
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') searchBtn.click();
+      });
+    }
+  }
+
+  // On DOM loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    attachSearch();
+
+    // If collections or home pages have containers, render sample products (if none provided)
+    const newGrid = document.getElementById('new-products');
+    const collectionGrid = document.getElementById('collection-products');
+
+    // sample fallback products (can be replaced by Firestore fetch)
+    const sampleProducts = [
+      { id: 'p1', name: 'New Yoga Tank', category: 'tanks', price: 49.99, image: 'assets/pic6.jpg' },
+      { id: 'p2', name: 'Stretch Bottoms', category: 'bottoms', price: 69.99, image: 'assets/pic7.jpg' },
+      { id: 'p3', name: 'Performance Tee', category: 'new', price: 39.99, image: 'assets/pic8.jpg' },
+      { id: 'p4', name: 'Gym Shorts', category: 'gym', price: 34.99, image: 'assets/pic9.jpg' }
+    ];
+
+    if (newGrid) renderProducts(sampleProducts, 'new-products');
+    if (collectionGrid) renderProducts(sampleProducts, 'collection-products');
+
+    // If on cart page
+    if (q('#cart-items')) renderCartPage();
+
+    // If on product page, populate with selected product
+    const selected = localStorage.getItem('puys_selected_product');
+    if (selected && q('#prod-title')) {
+      const p = JSON.parse(selected);
+      q('#prod-title').textContent = p.name;
+      q('#prod-price').textContent = '$' + Number(p.price || 0).toFixed(2);
+      const img1 = q('#prod-img-1'); if (img1) img1.src = p.image || 'assets/pic6.jpg';
+      const addBtn = q('#prod-add');
+      if (addBtn) {
+        addBtn.addEventListener('click', () => {
+          const qty = Number(q('#prod-qty')?.value || 1);
+          const prod = Object.assign({}, p, { qty });
+          window.addToCart(prod);
+        });
+      }
+    }
+
+    // If on search.html, read query and show filtered results
+    if (window.location.pathname.endsWith('search.html')) {
+      const params = new URLSearchParams(window.location.search);
+      const qv = params.get('q') || params.get('qv') || localStorage.getItem('searchQuery') || '';
+      const searchResultsContainer = q('#search-results');
+      if (qv && searchResultsContainer) {
+        const filtered = sampleProducts.filter(sp => sp.name.toLowerCase().includes(qv.toLowerCase()));
+        if (filtered.length === 0) searchResultsContainer.innerHTML = '<p class="muted">No results</p>';
+        else renderProducts(filtered, 'search-results');
+      }
+    }
+  });
+
+  // Expose updateCartCount to other scripts
+  window.updateCartCount = updateCartCount;
+  window.getCart = () => cart;
+  window.saveCart = saveCart;
+})();
