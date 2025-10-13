@@ -1,60 +1,60 @@
-// PayPal Buttons integration
-let cart = JSON.parse(localStorage.getItem('pusyBaliCart')) || [];
+// checkout.js
+import { auth, db } from './firebase-config.js';
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const totalEl = document.getElementById('checkout-total');
-if (totalEl) totalEl.textContent = cart.reduce((sum, item) => sum + item.price*item.quantity,0).toFixed(2);
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('checkout-form');
+  const cart = JSON.parse(localStorage.getItem('puys_cart_v1') || '[]');
 
-const cartItemsContainer = document.getElementById('cart-items');
-if (cartItemsContainer) {
-    cart.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `<img src="${item.image}" alt="${item.name}" width="50">
-                         <span>${item.name} x ${item.quantity}</span>
-                         <span>$${(item.price*item.quantity).toFixed(2)}</span>`;
-        cartItemsContainer.appendChild(div);
-    });
-}
-
-// PayPal Button render
-if (document.getElementById('paypal-button-container')) {
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: { value: cart.reduce((sum,item)=>sum+item.price*item.quantity,0).toFixed(2) }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details){
-                alert('Transaction completed by ' + details.payer.name.given_name);
-                localStorage.removeItem('pusyBaliCart');
-                window.location.href = 'index.html';
-            });
-        }
-    }).render('#paypal-button-container');
-}
-import { loadScript } from "https://www.paypal.com/sdk/js";
-
-const checkoutContainer = document.getElementById("paypal-button-container");
-const cartItems = JSON.parse(localStorage.getItem("pusyCart")) || [];
-const totalAmount = cartItems.reduce((sum,item)=>sum+item.price,0).toFixed(2);
-document.getElementById("checkout-total").textContent = totalAmount;
-
-paypal.Buttons({
-    createOrder: function(data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          amount: { value: totalAmount }
-        }]
-      });
-    },
-    onApprove: function(data, actions) {
-      return actions.order.capture().then(function(details) {
-        alert("Transaction completed by " + details.payer.name.given_name);
-        localStorage.removeItem("pusyCart");
-        window.location.href = "index.html";
-      });
+  // Render order summary if present
+  const orderSummary = document.getElementById('order-summary');
+  if (orderSummary) {
+    if (cart.length === 0) orderSummary.innerHTML = '<p>Your cart is empty</p>';
+    else {
+      orderSummary.innerHTML = cart.map(it => `
+        <div class="summary-item">
+          <img src="${it.image || 'assets/pic1.jpg'}" alt="${it.name}">
+          <div><strong>${it.name}</strong><div>$${Number(it.price).toFixed(2)} x ${it.qty || 1}</div></div>
+        </div>
+      `).join('');
     }
-}).render("#paypal-button-container");
+  }
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (cart.length === 0) { alert('Cart empty'); return; }
+
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const address = form.querySelector('input[name="address"]').value.trim();
+    const city = form.querySelector('input[name="city"]').value.trim();
+    const postal = form.querySelector('input[name="postal"]').value.trim();
+    const paymentMethod = form.querySelector('select[name="paymentMethod"]').value;
+
+    // Create order object
+    const order = {
+      customerName: name,
+      customerEmail: email,
+      address: { address, city, postal },
+      paymentMethod,
+      items: cart,
+      total: cart.reduce((s, it) => s + (it.price || 0) * (it.qty || 1), 0),
+      createdAt: serverTimestamp()
+    };
+
+    try {
+      // Save order to Firestore (collection: orders)
+      const docRef = await addDoc(collection(db, 'orders'), order);
+      // Clear cart on success
+      localStorage.removeItem('puys_cart_v1');
+      if (window.updateCartCount) window.updateCartCount();
+      alert('Order placed! Order ID: ' + docRef.id);
+      window.location.href = 'success.html?order=' + docRef.id;
+    } catch (err) {
+      console.error('Order save error:', err);
+      alert('Failed to place order: ' + (err.message || err));
+    }
+  });
+});
