@@ -1,67 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali | Shop</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Shop</title>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase-config.js"></script>
-  <script type="module" src="script.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="top-strip">Explore our collection</div>
 
-  <!-- NAVBAR -->
   <header>
     <div class="navbar">
-      <img src="assets/logo.png" alt="Pusy Bali Logo" onclick="window.location.href='index.html'">
-      <div class="nav-links">
+      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="logo"></a></div>
+      <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="collections.html">Shop</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </nav>
       <div class="nav-icons">
-        <i class="fa-solid fa-magnifying-glass" onclick="window.location.href='search.html'"></i>
-        <i class="fa-solid fa-user" onclick="window.location.href='login.html'"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span class="cart-count">0</span>
+        <a href="search.html">🔍</a>
+        <a href="login.html">👤</a>
+        <a href="cart.html">🛒 <span class="cart-count">0</span></a>
       </div>
     </div>
   </header>
 
-  <!-- FILTERS -->
-  <section class="filters">
-    <label>Category:
-      <select id="filter-category">
-        <option value="all">All</option>
-        <option value="tanks">Tanks</option>
-        <option value="bottoms">Bottoms</option>
-        <option value="gym">Gym</option>
-        <option value="new">New</option>
-      </select>
-    </label>
-    <label>Sort:
-      <select id="sort-products">
-        <option value="newest">Newest</option>
-        <option value="price-low">Price Low → High</option>
-        <option value="price-high">Price High → Low</option>
-      </select>
-    </label>
-  </section>
+  <main class="container collections-layout">
+    <aside class="filters-col">
+      <h3>Filters</h3>
+      <label>Category
+        <select id="filter-category">
+          <option value="all">All</option>
+          <option value="new">New</option>
+          <option value="tanks">Tanks</option>
+          <option value="bottoms">Bottoms</option>
+          <option value="gym">Gym</option>
+        </select>
+      </label>
+      <label>Size
+        <select id="filter-size">
+          <option value="all">All</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+        </select>
+      </label>
+    </aside>
 
-  <!-- PRODUCTS -->
-  <section class="product-grid" id="collection-grid">
-    <!-- Products rendered by script.js -->
-  </section>
+    <div class="products-col">
+      <header class="section-head"><h2>All Products</h2><p class="muted">Filter or search to refine</p></header>
+      <div id="collection-products" class="products-grid"></div>
+    </div>
+  </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Pusy Bali. All rights reserved.</p>
-    <div class="instagram">
-      <a href="https://www.instagram.com/pusy_bali/" target="_blank">
-        <img src="assets/Instagram.png" alt="Instagram Logo">
-      </a>
+  <footer class="site-footer">
+    <div class="footer-grid container">
+      <div class="col"><h4>Pusy Bali</h4></div>
+      <div class="col"><h4>Shop</h4></div>
+      <div class="col"><h4>Help</h4></div>
+      <div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div>
     </div>
   </footer>
+
+<script>
+  // apply category filter dropdown
+  document.addEventListener('DOMContentLoaded', () => {
+    const sel = document.getElementById('filter-category');
+    sel.addEventListener('change', e => {
+      const val = e.target.value;
+      // sample products are rendered by script.js default -> filter client-side
+      const all = [
+        {id:'p1',name:'New Yoga Tank',category:'tanks',price:49.99,image:'assets/pic6.jpg'},
+        {id:'p2',name:'Stretch Bottoms',category:'bottoms',price:69.99,image:'assets/pic7.jpg'},
+        {id:'p3',name:'Performance Tee',category:'new',price:39.99,image:'assets/pic8.jpg'},
+        {id:'p4',name:'Gym Shorts',category:'gym',price:34.99,image:'assets/pic9.jpg'}
+      ];
+      const filtered = val === 'all' ? all : all.filter(p => p.category === val);
+      window.renderProducts(filtered, 'collection-products');
+    });
+  });
+</script>
 
 </body>
 </html>
