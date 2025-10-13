@@ -2,42 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Pusy Bali — Search</title>
+  <title>Pusy Bali — Checkout</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="site-header" class="site-header"></div>
 
   <div class="section container">
-    <h2>Search</h2>
-    <div style="display:flex;gap:8px;align-items:center;margin-bottom:14px;">
-      <input id="search-input" placeholder="Search products..." style="flex:1;padding:10px;border-radius:8px;border:1px solid #ddd;">
-      <button id="search-go" class="btn">Search</button>
+    <h2>Checkout</h2>
+    <div class="checkout-form">
+      <div class="form-card checkout-left">
+        <form id="checkout-form">
+          <label>Full name</label>
+          <input name="name" required placeholder="Jane Doe">
+          <label>Email</label>
+          <input name="email" type="email" required placeholder="you@example.com">
+          <label>Address</label>
+          <input name="address" required placeholder="123 Bali St">
+          <div class="form-row">
+            <input name="city" placeholder="City">
+            <input name="postal" placeholder="Postal code">
+          </div>
+          <div style="margin-top:12px;">
+            <button type="submit" class="btn">Place order (placeholder)</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-card checkout-right">
+        <h3>Order Summary</h3>
+        <div id="order-summary" style="margin-top:12px;"></div>
+        <hr style="margin:12px 0;">
+        <h4>Pay with PayPal</h4>
+        <div id="paypal-button-area"></div>
+        <div style="margin-top:8px;font-size:13px;color:#777;"></div>
+      </div>
     </div>
-    <div id="search-results" class="products-grid"></div>
   </div>
 
   <div id="site-footer" class="site-footer"></div>
 
+  <!-- If owner creates config.js (window.CONFIG), include it here before checkout.js:
+    <script src="config.js"></script>
+  -->
   <script src="script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function(){
-      const input = document.getElementById('search-input');
-      const btn = document.getElementById('search-go');
-
-      function doSearch(q){
-        q = q.trim();
-        if(!q) return alert('Type something to search');
-        const prods = JSON.parse(localStorage.getItem('pusy_products') || '[]');
-        const filtered = prods.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
-        window.renderProducts(filtered, 'search-results');
-      }
-
-      btn.addEventListener('click', ()=> doSearch(input.value));
-
-      const preset = localStorage.getItem('pusy_search');
-      if(preset){ input.value = preset; doSearch(preset); localStorage.removeItem('pusy_search'); }
-    });
-  </script>
+  <script src="checkout.js"></script>
 </body>
 </html>
