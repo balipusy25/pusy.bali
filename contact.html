@@ -1,23 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Pusy Bali — Contact</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
-  <header><div class="top-strip">Reach out — we reply fast</div></header>
+  <div id="site-header" class="header"></div>
 
-  <main class="checkout-container">
+  <div class="section container">
     <h2>Contact</h2>
-    <p class="muted">Email: <a href="mailto:balipusy2@gmail.com">balipusy2@gmail.com</a></p>
-    <form id="contact-form" onsubmit="event.preventDefault(); alert('Message sent (simulated).'); this.reset();">
-      <input name="name" placeholder="Name" required>
-      <input name="email" placeholder="Email" required type="email">
-      <textarea name="message" placeholder="Message" required></textarea>
-      <button class="btn primary" type="submit">Send Message</button>
+    <p class="muted">Email us at <a href="mailto:balipusy2@gmail.com">balipusy2@gmail.com</a></p>
+    <form id="contact-form" style="max-width:700px;margin-top:12px;">
+      <input name="name" placeholder="Your name" required style="margin-bottom:10px;">
+      <input name="email" placeholder="Your email" required style="margin-bottom:10px;">
+      <textarea name="message" placeholder="Message" rows="6" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;"></textarea>
+      <div style="margin-top:10px;"><button class="btn" type="submit">Send</button></div>
     </form>
-  </main>
+  </div>
+
+  <div id="site-footer" class="site-footer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Message sent (simulated). Owner: balipusy2@gmail.com will receive it by email if you set up a backend.');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
