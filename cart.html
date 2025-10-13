@@ -6,21 +6,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="site-header" class="header"></div>
+  <div id="site-header" class="site-header"></div>
 
   <div class="cart-page container">
     <h2>Your Cart</h2>
     <div style="display:flex;gap:20px;flex-wrap:wrap;">
-      <div style="flex:1">
-        <div id="cart-items" class="cart-list"></div>
-      </div>
-      <div style="width:320px;">
-        <div class="cart-summary">
-          <h3>Order Summary</h3>
-          <div style="margin-top:8px;">Subtotal: $<span id="cart-total">0.00</span></div>
-          <div class="cart-actions">
-            <button id="proceed-checkout" class="btn">Proceed to Checkout</button>
-          </div>
+      <div class="cart-list" id="cart-items"></div>
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+        <div style="margin-top:8px;">Subtotal: $<span id="cart-total">0.00</span></div>
+        <div class="cart-actions" style="margin-top:12px;">
+          <button id="proceed-checkout" class="btn">Proceed to Checkout</button>
         </div>
       </div>
     </div>
