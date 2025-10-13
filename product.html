@@ -1,51 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Product</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product - Pusy Bali</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="script.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="navbar">
-      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="logo"></a></div>
-      <nav class="nav-links"><a href="index.html">Home</a><a href="collections.html">Shop</a></nav>
-      <div class="nav-icons"><a href="cart.html">🛒 <span class="cart-count">0</span></a></div>
+<header>
+  <div class="top-bar">
+    <img src="assets/logo.png" alt="Pusy Bali Logo" class="logo" onclick="goHome()">
+    <input type="text" placeholder="Search" id="search-input">
+    <button id="search-btn">&#128269;</button>
+    <div id="cart-icon">
+      🛒 <span id="cart-count">0</span>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="container section">
-    <div class="product-detail">
-      <div class="product-images">
-        <img id="prod-img-1" src="assets/pic6.jpg" alt="product image">
-      </div>
-      <div class="product-info">
-        <h2 id="prod-title">Product Title</h2>
-        <div id="prod-price" class="price">$0.00</div>
-        <label>Qty <input id="prod-qty" type="number" value="1" min="1"></label>
-        <div style="margin-top:12px;">
-          <button id="prod-add" class="btn primary">Add to cart</button>
-          <a href="cart.html" class="btn">View cart</a>
-        </div>
-      </div>
-    </div>
-  </main>
+<main>
+  <section class="product-detail">
+    <img src="assets/pic2.png" alt="Product Image">
+    <h1>Product Name</h1>
+    <p>$49.99</p>
+    <p>Description of the product goes here.</p>
+    <button onclick="addToCart('Product Name', 49.99)">Add to Cart</button>
+  </section>
+</main>
 
-<script>
-  // product page logic (script.js also tries to populate)
-  document.addEventListener('DOMContentLoaded', () => {
-    const sel = JSON.parse(localStorage.getItem('puys_selected_product') || 'null');
-    if (!sel) return;
-    document.getElementById('prod-title').textContent = sel.name || '';
-    document.getElementById('prod-price').textContent = '$' + (sel.price || 0).toFixed(2);
-    document.getElementById('prod-img-1').src = sel.image || sel.img || 'assets/pic6.jpg';
-    document.getElementById('prod-add').addEventListener('click', () => {
-      const qty = Number(document.getElementById('prod-qty').value) || 1;
-      window.addToCart(Object.assign({}, sel, { qty }));
-    });
-  });
-</script>
-
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
+    <a href="https://www.instagram.com/pusy_bali/" target="_blank">Instagram</a>
+  </div>
+</footer>
 </body>
 </html>
