@@ -1,64 +1,25 @@
 {
   "version": 2,
+  "name": "pusy-bali",
   "builds": [
     {
-      "src": "**/*.html",
+      "src": "*.html",
       "use": "@vercel/static"
     },
     {
-      "src": "**/*.js",
+      "src": "script.js",
       "use": "@vercel/static"
     },
     {
-      "src": "**/*.css",
+      "src": "checkout.js",
       "use": "@vercel/static"
     },
     {
-      "src": "assets/**",
+      "src": "style.css",
       "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "src": "/collections/(.*)",
-      "dest": "/collections.html"
-    },
-    {
-      "src": "/cart",
-      "dest": "/cart.html"
-    },
-    {
-      "src": "/checkout",
-      "dest": "/checkout.html"
-    },
-    {
-      "src": "/login",
-      "dest": "/login.html"
-    },
-    {
-      "src": "/signup",
-      "dest": "/signup.html"
-    },
-    {
-      "src": "/product/(.*)",
-      "dest": "/product.html"
-    },
-    {
-      "src": "/contact",
-      "dest": "/contact.html"
-    },
-    {
-      "src": "/search",
-      "dest": "/search.html"
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/.*",
-      "status": 404,
-      "dest": "/index.html"
-    }
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
