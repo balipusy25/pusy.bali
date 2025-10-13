@@ -1,36 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Search Results - Pusy Bali</title>
-<link rel="stylesheet" href="style.css">
-<script type="module" src="script.js" defer></script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pusy Bali — Search</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="top-bar">
-    <img src="assets/logo.png" alt="Pusy Bali Logo" class="logo" onclick="goHome()">
-    <input type="text" placeholder="Search" id="search-input">
-    <button id="search-btn">&#128269;</button>
-    <div id="cart-icon">
-      🛒 <span id="cart-count">0</span>
+  <div id="site-header" class="header"></div>
+
+  <div class="section container">
+    <h2>Search</h2>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:14px;">
+      <input id="search-input" placeholder="Search products..." style="flex:1;padding:10px;border-radius:8px;border:1px solid #ddd;">
+      <button id="search-go" class="btn">Search</button>
     </div>
+    <div id="search-results" class="products-grid"></div>
   </div>
-</header>
 
-<main>
-  <h1>Search Results</h1>
-  <div class="products-grid" id="search-results">
-    <!-- Populated dynamically -->
-  </div>
-</main>
+  <div id="site-footer" class="site-footer"></div>
 
-<footer>
-  <div class="footer-content">
-    <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
-    <a href="https://www.instagram.com/pusy_bali/" target="_blank">Instagram</a>
-  </div>
-</footer>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const input = document.getElementById('search-input');
+      const btn = document.getElementById('search-go');
+
+      function doSearch(q) {
+        localStorage.setItem('pusy_search', q);
+        // reuse render on search page
+        const products = JSON.parse(localStorage.getItem('pusy_products') || '[]');
+        const filtered = products.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
+        window.renderProducts(filtered, 'search-results');
+      }
+
+      btn.addEventListener('click', ()=> {
+        const q = input.value.trim();
+        if(!q) return alert('Type something');
+        doSearch(q);
+      });
+
+      // if search term was set from header use it
+      const preset = localStorage.getItem('pusy_search');
+      if(preset) {
+        input.value = preset;
+        doSearch(preset);
+        localStorage.removeItem('pusy_search');
+      }
+    });
+  </script>
 </body>
 </html>
