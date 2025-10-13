@@ -1,36 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Cart</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - Pusy Bali</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="script.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="navbar">
-      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="logo"></a></div>
-      <nav class="nav-links"><a href="index.html">Home</a><a href="collections.html">Shop</a></nav>
-      <div class="nav-icons"><a href="checkout.html">Checkout</a></div>
+<header>
+  <div class="top-bar">
+    <img src="assets/logo.png" alt="Pusy Bali Logo" class="logo" onclick="goHome()">
+    <input type="text" placeholder="Search" id="search-input">
+    <button id="search-btn">&#128269;</button>
+    <div id="cart-icon">
+      🛒 <span id="cart-count">0</span>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="checkout-container">
-    <h2>Your Cart</h2>
-    <div id="cart-items"></div>
-    <div style="text-align:right;margin-top:12px">Subtotal: <strong id="cart-total">$0.00</strong></div>
-    <div style="display:flex;justify-content:flex-end;margin-top:12px">
-      <a href="checkout.html" class="btn primary">Proceed to Checkout</a>
-    </div>
-  </main>
+<main>
+  <h1>Your Cart</h1>
+  <section id="cart-items">
+    <!-- Cart items dynamically inserted here -->
+  </section>
+  <div class="cart-total">
+    Total: $<span id="cart-total">0</span>
+    <button onclick="goToCheckout()">Proceed to Checkout</button>
+  </div>
+</main>
 
-<script>
-  // Ensure script.js has already set up cart; render cart contents
-  document.addEventListener('DOMContentLoaded', () => {
-    // script.js provides renderCartPage which reads localStorage
-    if (typeof window.renderCartPage === 'function') window.renderCartPage();
-  });
-</script>
-
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
+    <a href="https://www.instagram.com/pusy_bali/" target="_blank">Instagram</a>
+  </div>
+</footer>
 </body>
 </html>
