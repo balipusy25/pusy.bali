@@ -1,46 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collections - Pusy Bali</title>
-<link rel="stylesheet" href="style.css">
-<script type="module" src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections - Pusy Bali</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- Header -->
 <header>
   <div class="top-bar">
-    <img src="assets/logo.png" alt="Pusy Bali Logo" class="logo" onclick="goHome()">
+    <img src="assets/logo.png" alt="Pusy Bali" class="logo" onclick="goHome()">
     <input type="text" placeholder="Search" id="search-input">
     <button id="search-btn">&#128269;</button>
-    <div id="cart-icon">
+    <div id="cart-icon" onclick="window.location.href='cart.html'">
       🛒 <span id="cart-count">0</span>
     </div>
   </div>
+  <div class="moving-slogans">
+    <span>New Arrivals • Gym Wear • Stylish & Comfortable</span>
+  </div>
 </header>
 
-<main>
-  <h1>All Products</h1>
-  <aside class="filters">
-    <h3>Filter</h3>
-    <p>Category</p>
-    <button onclick="filterCategory('new')">New</button>
-    <button onclick="filterCategory('tanks')">Tanks</button>
-    <button onclick="filterCategory('bottoms')">Bottoms</button>
-    <button onclick="filterCategory('gym')">Gym</button>
-  </aside>
+<!-- Filters Sidebar -->
+<div class="categories" style="justify-content:flex-start; padding-left:20px; flex-wrap:wrap;">
+  <button onclick="filterCategory('all')">All</button>
+  <button onclick="filterCategory('new')">New</button>
+  <button onclick="filterCategory('tanks')">Tanks</button>
+  <button onclick="filterCategory('bottoms')">Bottoms</button>
+  <button onclick="filterCategory('gym')">Gym</button>
+</div>
 
-  <section class="products-grid" id="collection-products">
-    <div class="product"><img src="assets/pic2.png" alt="Product 1"><p>Product 1</p></div>
-    <div class="product"><img src="assets/pic3.png" alt="Product 2"><p>Product 2</p></div>
-  </section>
-</main>
+<!-- Products Grid -->
+<section class="products-grid" id="products-grid">
+  <!-- Dynamically loaded by script.js -->
+</section>
 
+<!-- Footer -->
 <footer>
   <div class="footer-content">
     <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
     <a href="https://www.instagram.com/pusy_bali/" target="_blank">Instagram</a>
   </div>
 </footer>
+
+<script src="script.js"></script>
+<script>
+  // Apply filter from homepage or category buttons
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const products = JSON.parse(localStorage.getItem('products')) || [
+      {name:'Product 1', img:'assets/pic2.png', price:49.99, category:'new'},
+      {name:'Product 2', img:'assets/pic3.png', price:59.99, category:'new'},
+      {name:'Gym Tank', img:'assets/pic4.png', price:39.99, category:'tanks'},
+      {name:'Yoga Bottoms', img:'assets/pic5.png', price:44.99, category:'bottoms'},
+      {name:'Gym Shorts', img:'assets/pic6.png', price:29.99, category:'gym'}
+    ];
+
+    const filter = localStorage.getItem('filter') || 'all';
+    const searchQuery = localStorage.getItem('searchQuery') || '';
+
+    const filteredProducts = products.filter(p=>{
+      if(searchQuery){
+        return p.name.toLowerCase().includes(searchQuery.toLowerCase());
+      }
+      if(filter === 'all') return true;
+      return p.category === filter;
+    });
+
+    const grid = document.getElementById('products-grid');
+    grid.innerHTML = '';
+
+    filteredProducts.forEach(p=>{
+      const div = document.createElement('div');
+      div.classList.add('product');
+      div.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <p>${p.name}</p>
+        <p>$${p.price}</p>
+        <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+      `;
+      grid.appendChild(div);
+    });
+
+    updateCartCount();
+    localStorage.removeItem('filter'); // Reset filter after use
+    localStorage.removeItem('searchQuery'); // Reset search after use
+  });
+
+  // Category button clicks
+  function filterCategory(category){
+    localStorage.setItem('filter', category);
+    window.location.reload();
+  }
+
+  // Search button
+  document.getElementById('search-btn').addEventListener('click', ()=>{
+    const query = document.getElementById('search-input').value.trim();
+    if(query){
+      localStorage.setItem('searchQuery', query);
+      window.location.reload();
+    }
+  });
+</script>
+
 </body>
 </html>
