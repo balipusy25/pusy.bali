@@ -1,72 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Home</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pusy Bali</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="script.js" defer></script>
 </head>
 <body>
-  <div class="top-strip">Free shipping over $100</div>
-
-  <header>
-    <div class="navbar">
-      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Pusy Bali"></a></div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="collections.html">Shop</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="nav-icons">
-        <a href="search.html" title="Search">🔍</a>
-        <a href="login.html" title="Login">👤</a>
-        <a href="cart.html" title="Cart">🛒 <span class="cart-count">0</span></a>
-      </div>
+<header>
+  <div class="top-bar">
+    <img src="assets/logo.png" alt="Pusy Bali Logo" class="logo" onclick="goHome()">
+    <input type="text" placeholder="Search" id="search-input">
+    <button id="search-btn">&#128269;</button>
+    <div id="cart-icon">
+      🛒 <span id="cart-count">0</span>
     </div>
-  </header>
+  </div>
+  <div class="moving-slogans">
+    <p>Stylish, Comfortable, Bali Inspired</p>
+  </div>
+</header>
 
-  <main>
-    <section class="hero">
-      <img src="assets/pic1.jpg" alt="Hero image">
-      <button onclick="location.href='collections.html'" class="btn primary">Shop Now</button>
-    </section>
+<main>
+  <section class="hero">
+    <img src="assets/pic1.png" alt="Hero Image">
+    <button onclick="goToCollections()">Shop Now</button>
+  </section>
 
-    <section class="category-strip container">
-      <div class="category-grid">
-        <a class="cat-card" href="collections.html?category=new"><img src="assets/pic2.jpg" alt=""><div class="cat-title">New</div></a>
-        <a class="cat-card" href="collections.html?category=tanks"><img src="assets/pic3.jpg" alt=""><div class="cat-title">Tanks</div></a>
-        <a class="cat-card" href="collections.html?category=bottoms"><img src="assets/pic4.jpg" alt=""><div class="cat-title">Bottoms</div></a>
-        <a class="cat-card" href="collections.html?category=gym"><img src="assets/pic5.jpg" alt=""><div class="cat-title">Gym</div></a>
-      </div>
-    </section>
+  <section class="categories">
+    <button onclick="filterCategory('new')">New</button>
+    <button onclick="filterCategory('tanks')">Tanks</button>
+    <button onclick="filterCategory('bottoms')">Bottoms</button>
+    <button onclick="filterCategory('gym')">Gym</button>
+  </section>
 
-    <section class="container">
-      <div class="section-head"><h2>New Arrivals</h2><p class="muted">Freshly added</p></div>
-      <div id="new-products" class="products-grid"></div>
-    </section>
-
-    <section class="container">
-      <div class="section-head"><h2>Videos</h2><p class="muted">See our fit in motion</p></div>
-      <div class="products-grid">
-        <video controls src="assets/video1.mp4" poster="assets/pic10.jpg"></video>
-        <video controls src="assets/video2.mp4" poster="assets/pic11.jpg"></video>
-      </div>
-    </section>
-
-    <section class="about-brand container">
-      <h2>About Pusy Bali</h2>
-      <p class="muted">Performance-minded apparel designed with care in Bali. Fast shipping & easy returns.</p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-grid container">
-      <div class="col"><h4>Pusy Bali</h4><p class="muted">Performance. Comfort. Style.</p></div>
-      <div class="col"><h4>Shop</h4><a href="collections.html?category=new">New</a><br><a href="collections.html?category=tanks">Tanks</a></div>
-      <div class="col"><h4>Help</h4><a href="contact.html">Contact</a></div>
-      <div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/" target="_blank"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div>
+  <section class="new-arrivals">
+    <h2>New Arrivals</h2>
+    <div class="products-grid" id="new-products">
+      <div class="product"><img src="assets/pic2.png" alt="Product 1"><p>Product 1</p></div>
+      <div class="product"><img src="assets/pic3.png" alt="Product 2"><p>Product 2</p></div>
     </div>
-  </footer>
+  </section>
+
+  <section class="videos">
+    <h2>Videos</h2>
+    <video src="assets/video1.mp4" controls></video>
+    <video src="assets/video2.mp4" controls></video>
+  </section>
+
+  <section class="about">
+    <h2>About Pusy Bali</h2>
+    <p>We provide stylish, comfortable clothing inspired by Bali. Perfect for everyday wear and gym activities.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
+    <a href="https://www.instagram.com/pusy_bali/" target="_blank">Instagram</a>
+  </div>
+</footer>
 </body>
 </html>
