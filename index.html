@@ -1,127 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pusy Bali</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopName | Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Top Bar -->
-<header>
-  
-  <div class="logo"><a href="index.html">ShopName</a></div>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="collections.html">Collections</a></li>
-      <li><a href="search.html">Search</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="cart.html">Cart</a></li>
-    </ul>
-  </nav>
-  <div class="social">
-    <a href="https://instagram.com/" target="_blank">Instagram</a>
-  </div>
-  <div class="top-bar">
-    <img src="assets/logo.png" alt="Pusy Bali" class="logo" onclick="goHome()">
-    
-    <input type="text" placeholder="Search" id="search-input">
-    <button id="search-btn">&#128269;</button>
-    
-    <div id="cart-icon" onclick="window.location.href='cart.html'">
-      🛒 <span id="cart-count">0</span>
-    </div>
-  </div>
+  <header>
+    <div class="logo"><a href="index.html">ShopName</a></div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="moving-slogans">
-    <span>New Arrivals • Gym Wear • Stylish & Comfortable</span>
-  </div>
-</header>
+  <main class="home">
+    <section class="hero">
+      <h1>Welcome to ShopName</h1>
+      <p>Explore our newest collections and find your style.</p>
+      <div class="hero-buttons">
+        <a href="collections.html" class="btn">Shop Now</a>
+        <a href="contact.html" class="btn secondary">Contact Us</a>
+      </div>
+    </section>
+  </main>
 
-<!-- Hero Section -->
-<div class="hero">
-  <img src="assets/pic1.png" alt="Hero Image">
-  <button id="shop-now-btn">Shop Now</button>
-</div>
+  <footer>
+    <p>© 2025 ShopName. All Rights Reserved.</p>
+  </footer>
 
-<!-- Categories -->
-<div class="categories">
-  <button onclick="filterCategory('new')">New</button>
-  <button onclick="filterCategory('tanks')">Tanks</button>
-  <button onclick="filterCategory('bottoms')">Bottoms</button>
-  <button onclick="filterCategory('gym')">Gym</button>
-</div>
-
-<!-- New Arrivals Section -->
-<section class="products-grid" id="products-grid">
-  <!-- Products dynamically loaded by script.js -->
-</section>
-
-<!-- Videos Section -->
-<section class="videos">
-  <h2>Check Our Videos</h2>
-  <video src="assets/video1.mp4" controls></video>
-  <video src="assets/video2.mp4" controls></video>
-</section>
-
-<!-- About Section -->
-<section class="about">
-  <h2>About Our Brand</h2>
-  <p>Pusy Bali offers high-quality, stylish gym and casual wear. Comfort and style are our priority.</p>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="footer-content">
-    <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
-    <a href="https://www.instagram.com/pusy_bali/" target="_blank">Instagram</a>
-  </div>
-</footer>
-
-<script src="script.js"></script>
-<script>
-  // Shop Now Button
-  document.getElementById('shop-now-btn').addEventListener('click', ()=>{
-    window.location.href='collections.html';
-  });
-
-  // Search Button
-  document.getElementById('search-btn').addEventListener('click', ()=>{
-    const query = document.getElementById('search-input').value.trim();
-    if(query){
-      localStorage.setItem('searchQuery', query);
-      window.location.href='search.html';
-    }
-  });
-
-  // Load products for homepage new arrivals
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const products = JSON.parse(localStorage.getItem('products')) || [
-      {name:'Product 1', img:'assets/pic2.png', price:49.99, category:'new'},
-      {name:'Product 2', img:'assets/pic3.png', price:59.99, category:'new'},
-      {name:'Gym Tank', img:'assets/pic4.png', price:39.99, category:'tanks'},
-      {name:'Yoga Bottoms', img:'assets/pic5.png', price:44.99, category:'bottoms'}
-    ];
-
-    const grid = document.getElementById('products-grid');
-    products.forEach(p=>{
-      const div = document.createElement('div');
-      div.classList.add('product');
-      div.innerHTML = `
-        <img src="${p.img}" alt="${p.name}">
-        <p>${p.name}</p>
-        <p>$${p.price}</p>
-        <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
-      `;
-      grid.appendChild(div);
-    });
-
-    // Update cart count
-    updateCartCount();
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
