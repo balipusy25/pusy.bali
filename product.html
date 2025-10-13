@@ -1,89 +1,51 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pusy Bali — Product</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
-<script defer src="login.js"></script>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pusy Bali — Product</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-<header class="site-header container">
-  <div class="header-left"><a href="index.html" class="logo"><img src="assets/logo.png" alt="logo" class="logo-img"></a></div>
-  <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="collections.html">Shop</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
-  <div class="header-right">
-    <div class="search-wrap"><input id="header-search" type="search" placeholder="Search products..."><button id="search-btn" class="btn small">Search</button></div>
-    <div class="user-wrap"><button id="open-auth" class="btn small"><i class="fa fa-user"></i></button><span id="user-greeting"></span></div>
-    <div class="cart-wrap"><button id="open-cart" class="cart-btn"><i class="fa fa-shopping-cart"></i></button><span id="cart-count" class="cart-count">0</span></div>
-  </div>
-</header>
-
-<main class="container section">
-  <div class="product-detail">
-    <div class="product-images">
-      <img id="prod-img-1" src="assets/pic6.jpg" alt="Product image 1">
-      <img id="prod-img-2" src="assets/pic7.jpg" alt="Product image 2">
+  <header>
+    <div class="navbar">
+      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="logo"></a></div>
+      <nav class="nav-links"><a href="index.html">Home</a><a href="collections.html">Shop</a></nav>
+      <div class="nav-icons"><a href="cart.html">🛒 <span class="cart-count">0</span></a></div>
     </div>
+  </header>
 
-    <div class="product-info">
-      <h2 id="prod-title">Product Title</h2>
-      <div id="prod-price" class="price">$0</div>
-
-      <label>Size
-        <select id="prod-size"><option>S</option><option>M</option><option>L</option></select>
-      </label>
-
-      <label>Color
-        <select id="prod-color"><option>Black</option><option>Blue</option><option>Red</option></select>
-      </label>
-
-      <label>Quantity
-        <input id="prod-qty" type="number" min="1" value="1">
-      </label>
-
-      <div style="display:flex;gap:10px;margin-top:12px">
-        <button id="prod-add" class="btn primary">Add to cart</button>
-        <a href="cart.html" class="btn">View cart</a>
+  <main class="container section">
+    <div class="product-detail">
+      <div class="product-images">
+        <img id="prod-img-1" src="assets/pic6.jpg" alt="product image">
+      </div>
+      <div class="product-info">
+        <h2 id="prod-title">Product Title</h2>
+        <div id="prod-price" class="price">$0.00</div>
+        <label>Qty <input id="prod-qty" type="number" value="1" min="1"></label>
+        <div style="margin-top:12px;">
+          <button id="prod-add" class="btn primary">Add to cart</button>
+          <a href="cart.html" class="btn">View cart</a>
+        </div>
       </div>
     </div>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="col"><h4>Pusy Bali</h4></div>
-    <div class="col"><h4>Shop</h4></div>
-    <div class="col"><h4>Help</h4></div>
-    <div class="col"><h4>Follow</h4><a href="https://www.instagram.com/pusy_bali/"><img src="assets/logo.png" style="width:36px;height:36px;border-radius:50%"></a></div>
-  </div>
-</footer>
+  </main>
 
 <script>
-/* populate product page from localStorage (set by collections/product snippet) */
-document.addEventListener('DOMContentLoaded', ()=>{
-  const sel = JSON.parse(localStorage.getItem('puys_selected_product') || 'null');
-  if (!sel) return;
-  document.getElementById('prod-title').innerText = sel.name || '';
-  document.getElementById('prod-price').innerText = '$' + (sel.price || 0);
-  document.getElementById('prod-img-1').src = sel.img || 'assets/pic6.jpg';
-  document.getElementById('prod-img-2').src = sel.img || 'assets/pic7.jpg';
-  // attach add to cart (uses same cart key as script.js)
-  document.getElementById('prod-add').addEventListener('click', ()=>{
-    const CART_KEY = 'puys_cart_v1';
-    let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
-    const id = sel.id || sel.name;
-    const qty = parseInt(document.getElementById('prod-qty').value) || 1;
-    const size = document.getElementById('prod-size').value;
-    const color = document.getElementById('prod-color').value;
-    const existing = cart.find(i => i.id === id && i.variant === size + '|' + color);
-    if (existing) existing.qty = (existing.qty || 0) + qty;
-    else cart.push({ id, name: sel.name, price: sel.price, img: sel.img, qty, variant: size + '|' + color });
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    // update cart count UI (if script.js loaded)
-    if (window.updateCartCount) window.updateCartCount();
-    alert('Added to cart');
+  // product page logic (script.js also tries to populate)
+  document.addEventListener('DOMContentLoaded', () => {
+    const sel = JSON.parse(localStorage.getItem('puys_selected_product') || 'null');
+    if (!sel) return;
+    document.getElementById('prod-title').textContent = sel.name || '';
+    document.getElementById('prod-price').textContent = '$' + (sel.price || 0).toFixed(2);
+    document.getElementById('prod-img-1').src = sel.image || sel.img || 'assets/pic6.jpg';
+    document.getElementById('prod-add').addEventListener('click', () => {
+      const qty = Number(document.getElementById('prod-qty').value) || 1;
+      window.addToCart(Object.assign({}, sel, { qty }));
+    });
   });
-});
 </script>
+
 </body>
 </html>
