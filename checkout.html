@@ -1,45 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pusy Bali — Checkout</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- checkout.js uses firebase -> import as module -->
-  <script type="module" src="checkout.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - Pusy Bali</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="checkout.js" defer></script>
+<script type="module" src="config.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="navbar">
-      <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="logo"></a></div>
+<header>
+  <div class="top-bar">
+    <img src="assets/logo.png" alt="Pusy Bali Logo" class="logo" onclick="goHome()">
+    <input type="text" placeholder="Search" id="search-input">
+    <button id="search-btn">&#128269;</button>
+    <div id="cart-icon">
+      🛒 <span id="cart-count">0</span>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="checkout-container">
-    <h2>Checkout</h2>
-    <form id="checkout-form">
-      <label>Full name <input name="name" required></label>
-      <label>Email <input name="email" type="email" required></label>
-      <label>Address <input name="address" required></label>
-      <label>City <input name="city" required></label>
-      <label>Postal <input name="postal" required></label>
-      <label>Payment Method
-        <select name="paymentMethod" required>
-          <option value="paypal">PayPal</option>
-          <option value="card">Credit Card</option>
-        </select>
-      </label>
+<main>
+  <h1>Checkout</h1>
+  <div id="paypal-button-container"></div>
+</main>
 
-      <h3>Order Summary</h3>
-      <div id="order-summary"></div>
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2025 Pusy Bali. All rights reserved.</p>
+    <a href="https://www.instagram.com/pusy_bali/" target="_blank">Instagram</a>
+  </div>
+</footer>
 
-      <button type="submit" class="btn primary">Place Order</button>
-    </form>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-grid container">
-      <div class="col"><p class="muted">Questions? <a href="contact.html">Contact us</a></p></div>
-    </div>
-  </footer>
+<script src="https://www.paypal.com/sdk/js?client-id=REPLACE_WITH_PAYPAL_CLIENT_ID&currency=USD"></script>
 </body>
 </html>
